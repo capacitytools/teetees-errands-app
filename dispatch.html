@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Urgent Dispatch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .express-badge {
+            background: #FFF3E0;
+            color: #FF6B35;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #2D3436;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E8ECEF;
+            border-radius: 10px;
+            font-size: 14px;
+            background: white;
+            font-family: Arial, sans-serif;
+        }
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .delivery-types {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .delivery-type {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border: 2px solid #E8ECEF;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #636E72;
+            background: white;
+        }
+        .delivery-type.active {
+            border-color: #FF6B35;
+            color: #FF6B35;
+            background: #FFF3E0;
+        }
+        
+        .upload-area {
+            border: 2px dashed #E8ECEF;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            background: white;
+            cursor: pointer;
+        }
+        .upload-area .camera-icon { font-size: 36px; display: block; }
+        .upload-area .upload-text { color: #636E72; font-size: 14px; }
+        
+        .price-card {
+            background: #FFF3E0;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            color: #2D3436;
+            padding: 5px 0;
+        }
+        .price-row.total { 
+            font-weight: bold; 
+            font-size: 18px; 
+            border-top: 2px solid #FF6B35;
+            padding-top: 10px;
+            margin-top: 5px;
+        }
+        .calculate-link { color: #FF6B35; cursor: pointer; }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-primary:hover { background: #E55A2B; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="index.html" class="back">←</a>
+        <span class="title">Urgent Dispatch</span>
+        <span>🚚</span>
+    </div>
+    
+    <!-- Express Badge -->
+    <div class="express-badge">⚡ Express Available</div>
+    
+    <!-- Pickup Address -->
+    <div class="form-group">
+        <label>📍 Pickup Address</label>
+        <input type="text" placeholder="Enter pickup address">
+    </div>
+    
+    <!-- Delivery Address -->
+    <div class="form-group">
+        <label>📍 Delivery Address</label>
+        <input type="text" placeholder="Enter delivery address">
+    </div>
+    
+    <!-- Package Details -->
+    <div class="form-group">
+        <label>📦 Package Details</label>
+        <textarea placeholder="Describe package (weight, dimensions, contents)"></textarea>
+    </div>
+    
+    <!-- Upload Photo -->
+    <div class="form-group">
+        <label>📸 Package Photo</label>
+        <div class="upload-area">
+            <span class="camera-icon">📷</span>
+            <div class="upload-text">Upload package photo (optional)</div>
+        </div>
+    </div>
+    
+    <!-- Delivery Type -->
+    <div class="form-group">
+        <label>⏱️ Delivery Type</label>
+        <div class="delivery-types">
+            <div class="delivery-type">Standard</div>
+            <div class="delivery-type active">Same Day</div>
+            <div class="delivery-type">Express</div>
+        </div>
+    </div>
+    
+    <!-- Urgent Toggle -->
+    <div class="form-group">
+        <label>🚨 Priority</label>
+        <div class="toggle-row" style="display:flex;justify-content:space-between;background:white;padding:15px;border-radius:10px;border:1px solid #E8ECEF;">
+            <span style="font-weight:bold;color:#2D3436;">Priority handling</span>
+            <div class="toggle-switch active" style="width:50px;height:28px;background:#FF6B35;border-radius:14px;position:relative;cursor:pointer;" onclick="this.classList.toggle('active')">
+                <div style="width:22px;height:22px;background:white;border-radius:50%;position:absolute;top:3px;left:25px;transition:0.3s;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Price Estimate -->
+    <div class="price-card">
+        <div class="price-row"><span>Estimated Price</span><span>₦0.00</span></div>
+        <div class="price-row"><span style="color:#FF6B35;font-size:14px;">Calculate</span></div>
+    </div>
+    
+    <!-- Book Button -->
+    <button class="btn-primary">🚚 Book Dispatch</button>
+</body>
+</html>
