@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .provider-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+        .provider-card .icon { font-size: 40px; }
+        .provider-card .info { flex: 1; }
+        .provider-card .info .name { font-weight: bold; color: #2D3436; font-size: 16px; }
+        .provider-card .info .desc { color: #636E72; font-size: 13px; }
+        .provider-card .radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #B2BEC3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .provider-card .radio.active {
+            border-color: #FF6B35;
+        }
+        .provider-card .radio.active::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #FF6B35;
+            border-radius: 50%;
+        }
+        
+        .code-block {
+            background: #1E1E1E;
+            color: #D4D4D4;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            margin: 10px 0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .code-block .comment { color: #6A9955; }
+        .code-block .keyword { color: #C586C0; }
+        .code-block .string { color: #CE9178; }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .copy-btn {
+            padding: 6px 16px;
+            background: #E8ECEF;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="how-to-add-firebase.html" class="back">←</a>
+        <span class="title">Payment Setup</span>
+        <span>💳</span>
+    </div>
+    
+    <div class="provider-card">
+        <span class="icon">💳</span>
+        <div class="info">
+            <div class="name">Paystack (Recommended for Nigeria)</div>
+            <div class="desc">Most popular Nigerian payment gateway</div>
+        </div>
+        <div class="radio active"></div>
+    </div>
+    
+    <div class="provider-card">
+        <span class="icon">💳</span>
+        <div class="info">
+            <div class="name">Flutterwave</div>
+            <div class="desc">Pan-African payment solution</div>
+        </div>
+        <div class="radio"></div>
+    </div>
+    
+    <div class="provider-card">
+        <span class="icon">💳</span>
+        <div class="info">
+            <div class="name">Stripe</div>
+            <div class="desc">Global payment processing</div>
+        </div>
+        <div class="radio"></div>
+    </div>
+    
+    <div style="background:white;border-radius:16px;padding:20px;border:1px solid #E8ECEF;margin-top:15px;">
+        <h3 style="color:#2D3436;font-size:16px;margin-bottom:10px;">Paystack Integration Code</h3>
+        <div class="code-block">
+<span class="comment">// Install Paystack</span>
+<span class="comment">// npm install react-paystack</span>
+
+<span class="keyword">import</span> { PaystackButton } <span class="keyword">from</span> <span class="string">'react-paystack'</span>;
+
+<span class="keyword">const</span> PaystackPayment = () => {
+    <span class="keyword">const</span> config = {
+        reference: <span class="keyword">new</span> Date().getTime().toString(),
+        email: <span class="string">"customer@email.com"</span>,
+        amount: 780000, <span class="comment">// ₦7,800 in kobo</span>
+        publicKey: <span class="string">"YOUR_PUBLIC_KEY"</span>,
+    };
+
+    <span class="keyword">const</span> handleSuccess = (reference) => {
+        console.log(<span class="string">"Payment successful!"</span>, reference);
+        <span class="comment">// Update order status in database</span>
+    };
+
+    <span class="keyword">return</span> (
+        &lt;PaystackButton 
+            {...config}
+            onSuccess={handleSuccess}
+            text=<span class="string">"Pay Now"</span>
+            className=<span class="string">"btn-primary"</span>
+        /&gt;
+    );
+};
+        </div>
+        <button class="copy-btn">📋 Copy Code</button>
+    </div>
+    
+    <div style="background:#FFF3E0;border-radius:12px;padding:15px;margin:15px 0;border-left:4px solid #FF6B35;">
+        <p style="color:#2D3436;font-size:14px;">
+            <strong>💡 Tip:</strong> For Nigerian customers, Paystack is the best choice. 
+            Sign up at <strong>paystack.com</strong> and get your public key.
+        </p>
+    </div>
+    
+    <button class="btn-primary">✅ Complete Payment Setup</button>
+</body>
+</html>
