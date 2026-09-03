@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi-Stop Errand</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .route-summary {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 20px;
+        }
+        .route-summary .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            color: #2D3436;
+            font-size: 14px;
+        }
+        .route-summary .row .label { color: #636E72; }
+        .route-summary .row .value { font-weight: bold; }
+        
+        .map-preview {
+            background: #E8ECEF;
+            border-radius: 12px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #DDE1E6;
+            color: #636E72;
+            font-size: 14px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .map-preview .dots {
+            font-size: 30px;
+            letter-spacing: 10px;
+        }
+        
+        .stop-list {
+            margin-bottom: 20px;
+        }
+        .stop-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .stop-item .number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #FF6B35;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .stop-item .content { flex: 1; }
+        .stop-item .content .type {
+            font-weight: bold;
+            color: #2D3436;
+            font-size: 14px;
+        }
+        .stop-item .content .address {
+            color: #636E72;
+            font-size: 13px;
+            margin-top: 2px;
+        }
+        .stop-item .content .notes {
+            color: #B2BEC3;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+        .stop-item .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .stop-item .actions button {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .stop-item .actions .remove { color: #FF1744; }
+        .stop-item .actions .reorder { color: #636E72; }
+        
+        .add-stop {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 2px dashed #E8ECEF;
+            text-align: center;
+            cursor: pointer;
+            color: #636E72;
+            font-weight: bold;
+        }
+        .add-stop .icon { display: block; font-size: 24px; }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #2D3436;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E8ECEF;
+            border-radius: 10px;
+            font-size: 14px;
+            background: white;
+        }
+        .form-group textarea {
+            min-height: 60px;
+            resize: vertical;
+            font-family: Arial, sans-serif;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="services.html" class="back">←</a>
+        <span class="title">Multi-Stop Errand</span>
+        <span>🗺️</span>
+    </div>
+    
+    <!-- Route Summary -->
+    <div class="route-summary">
+        <div class="row"><span class="label">📏 Total Distance</span><span class="value">4.5 km</span></div>
+        <div class="row"><span class="label">⏱️ Estimated Time</span><span class="value">25 min</span></div>
+        <div class="row"><span class="label">📍 Stops</span><span class="value">3 stops</span></div>
+    </div>
+    
+    <!-- Map -->
+    <div class="map-preview">
+        <span class="dots">📍 → 📍 → 📍</span>
+    </div>
+    
+    <!-- Stop List -->
+    <div class="stop-list">
+        <div class="stop-item">
+            <div class="number">1</div>
+            <div class="content">
+                <div class="type">🛒 Grocery Pickup</div>
+                <div class="address">No 1, Road 10, Iworoko Ekiti</div>
+                <div class="notes">📝 Rice, Milk, Vegetables</div>
+            </div>
+            <div class="actions">
+                <button class="remove">🗑️</button>
+                <button class="reorder">↕</button>
+            </div>
+        </div>
+        
+        <div class="stop-item">
+            <div class="number">2</div>
+            <div class="content">
+                <div class="type">💊 Prescription Pickup</div>
+                <div class="address">EKSU Pharmacy, Iworoko Ekiti</div>
+                <div class="notes">📝 Order #RX-2024-001</div>
+            </div>
+            <div class="actions">
+                <button class="remove">🗑️</button>
+                <button class="reorder">↕</button>
+            </div>
+        </div>
+        
+        <div class="stop-item">
+            <div class="number">3</div>
+            <div class="content">
+                <div class="type">🏠 Final Delivery</div>
+                <div class="address">Teetees Lane, Ado Ekiti</div>
+                <div class="notes">📝 Deliver all items</div>
+            </div>
+            <div class="actions">
+                <button class="remove">🗑️</button>
+                <button class="reorder">↕</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Stop -->
+    <div class="add-stop">
+        <span class="icon">➕</span>
+        Add Stop
+    </div>
+    
+    <!-- Add New Stop Form -->
+    <div style="background:white;border-radius:12px;padding:15px;border:1px solid #E8ECEF;margin:15px 0;">
+        <h3 style="color:#2D3436;font-size:16px;margin-bottom:12px;">📍 Add New Stop</h3>
+        <div class="form-group">
+            <label>Address</label>
+            <input type="text" placeholder="Enter address">
+        </div>
+        <div class="form-group">
+            <label>Service Type</label>
+            <input type="text" placeholder="e.g., Pickup, Delivery, Shopping">
+        </div>
+        <div class="form-group">
+            <label>Notes</label>
+            <textarea placeholder="Add notes for this stop"></textarea>
+        </div>
+        <button style="width:100%;padding:12px;background:#FF6B35;color:white;border:none;border-radius:10px;font-weight:bold;cursor:pointer;">➕ Add Stop</button>
+    </div>
+    
+    <!-- Optimize Button -->
+    <button class="btn-primary">🔄 Optimize Route</button>
+    
+    <div style="text-align:center;color:#636E72;font-size:12px;margin-top:10px;">
+        We'll optimize the route for the fastest delivery
+    </div>
+</body>
+</html>
