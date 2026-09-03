@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .order-id {
+            text-align: center;
+            color: #636E72;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        .order-status-big {
+            text-align: center;
+            padding: 8px 0;
+            margin-bottom: 20px;
+            background: #FFF3E0;
+            border-radius: 10px;
+            color: #FF6B35;
+            font-weight: bold;
+        }
+        
+        .detail-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 15px;
+        }
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #F5F6FA;
+        }
+        .detail-row:last-child { border-bottom: none; }
+        .detail-label { color: #636E72; font-size: 14px; }
+        .detail-value { color: #2D3436; font-weight: bold; font-size: 14px; }
+        
+        .runner-mini {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+        }
+        .runner-mini .photo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #FF6B35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        .runner-mini .info .name { font-weight: bold; color: #2D3436; }
+        .runner-mini .info .phone { font-size: 12px; color: #636E72; }
+        
+        .items-list {
+            margin: 10px 0;
+        }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 14px;
+            color: #2D3436;
+            border-bottom: 1px solid #F5F6FA;
+        }
+        .item-row:last-child { border-bottom: none; }
+        
+        .payment-breakdown {
+            background: #FFF3E0;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .payment-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            color: #2D3436;
+            font-size: 14px;
+        }
+        .payment-row.total {
+            font-weight: bold;
+            font-size: 18px;
+            border-top: 2px solid #FF6B35;
+            padding-top: 10px;
+            margin-top: 5px;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .btn-track {
+            flex: 1;
+            padding: 12px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn-support {
+            flex: 1;
+            padding: 12px;
+            background: white;
+            color: #FF6B35;
+            border: 2px solid #FF6B35;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .rating-section {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E8ECEF;
+        }
+        .rating-section .stars { font-size: 30px; }
+        .rating-section .rate-text { color: #636E72; font-size: 14px; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="history.html" class="back">←</a>
+        <span class="title">Order Details</span>
+        <span>📄</span>
+    </div>
+    
+    <!-- Order ID & Status -->
+    <div class="order-id">Order #ORD-2024-001</div>
+    <div class="order-status-big">🔄 Active - In Progress</div>
+    
+    <!-- Order Summary -->
+    <div class="detail-card">
+        <div class="detail-row">
+            <span class="detail-label">Service</span>
+            <span class="detail-value">🛒 Grocery Shopping</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Date & Time</span>
+            <span class="detail-value">Today, 10:30 AM</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Pickup Address</span>
+            <span class="detail-value">No 1, Road 10, Iworoko</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Delivery Address</span>
+            <span class="detail-value">Teetees Lane, Ado Ekiti</span>
+        </div>
+    </div>
+    
+    <!-- Runner Info -->
+    <div class="detail-card">
+        <div style="font-weight:bold;color:#2D3436;margin-bottom:10px;">👤 Runner</div>
+        <div class="runner-mini">
+            <div class="photo">👤</div>
+            <div class="info">
+                <div class="name">John Doe</div>
+                <div class="phone">⭐ 4.8 (245 reviews)</div>
+                <div class="phone">📞 +234 803 430 1587</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Items -->
+    <div class="detail-card">
+        <div style="font-weight:bold;color:#2D3436;margin-bottom:10px;">📋 Items</div>
+        <div class="items-list">
+            <div class="item-row"><span>Rice 2kg</span><span>₦2,000</span></div>
+            <div class="item-row"><span>Milk 1L</span><span>₦1,500</span></div>
+            <div class="item-row"><span>Bread</span><span>₦800</span></div>
+            <div class="item-row"><span>Eggs (12)</span><span>₦1,200</span></div>
+            <div class="item-row"><span>Vegetables</span><span>₦1,000</span></div>
+        </div>
+    </div>
+    
+    <!-- Payment Breakdown -->
+    <div class="payment-breakdown">
+        <div class="payment-row"><span>Subtotal</span><span>₦6,500</span></div>
+        <div class="payment-row"><span>Service Fee</span><span>₦500</span></div>
+        <div class="payment-row"><span>Delivery Fee</span><span>₦1,000</span></div>
+        <div class="payment-row"><span>Discount</span><span>-₦200</span></div>
+        <div class="payment-row total"><span>Total</span><span>₦7,800</span></div>
+    </div>
+    
+    <!-- Buttons -->
+    <div class="btn-group">
+        <a href="track.html" class="btn-track">📍 Track Order</a>
+        <a href="support.html" class="btn-support">💬 Contact Support</a>
+    </div>
+    
+    <!-- Rating -->
+    <div class="rating-section">
+        <div class="stars">⭐⭐⭐⭐☆</div>
+        <div class="rate-text">Rate your experience</div>
+        <div style="font-size:12px;color:#636E72;margin-top:5px;">Tap to rate</div>
+    </div>
+</body>
+</html>
