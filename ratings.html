@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rate Your Experience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .rating-main {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 20px;
+        }
+        .smiley { font-size: 60px; display: block; margin-bottom: 10px; }
+        .rating-stars {
+            font-size: 48px;
+            margin: 10px 0;
+        }
+        .rating-stars .star {
+            cursor: pointer;
+            transition: 0.2s;
+            color: #E8ECEF;
+        }
+        .rating-stars .star.active { color: #FFD700; }
+        .rating-stars .star:hover { transform: scale(1.2); }
+        .rating-label { color: #636E72; font-size: 16px; }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #2D3436;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E8ECEF;
+            border-radius: 10px;
+            font-size: 14px;
+            background: white;
+            min-height: 100px;
+            resize: vertical;
+            font-family: Arial, sans-serif;
+        }
+        
+        .aspect-ratings {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 20px;
+        }
+        .aspect-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #F5F6FA;
+        }
+        .aspect-row:last-child { border-bottom: none; }
+        .aspect-label { font-weight: bold; color: #2D3436; font-size: 14px; }
+        .aspect-stars { color: #FFD700; font-size: 18px; }
+        
+        .upload-area {
+            border: 2px dashed #E8ECEF;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            background: white;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .upload-area .camera-icon { font-size: 30px; display: block; }
+        .upload-area .upload-text { color: #636E72; font-size: 14px; }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .past-reviews {
+            margin-top: 20px;
+        }
+        .past-reviews h3 { color: #2D3436; margin-bottom: 15px; }
+        .review {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 10px;
+        }
+        .review .reviewer { font-weight: bold; color: #2D3436; }
+        .review .review-stars { color: #FFD700; font-size: 14px; }
+        .review .review-text { color: #636E72; font-size: 13px; margin-top: 5px; }
+        .review .review-time { color: #B2BEC3; font-size: 11px; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="details.html" class="back">←</a>
+        <span class="title">Rate Your Experience</span>
+        <span>⭐</span>
+    </div>
+    
+    <!-- Rating Main -->
+    <div class="rating-main">
+        <span class="smiley">😊</span>
+        <div class="rating-label">How was your experience?</div>
+        <div class="rating-stars">
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star">☆</span>
+        </div>
+        <div style="font-size:20px;font-weight:bold;color:#FFD700;margin-top:5px;">4.0 / 5.0</div>
+    </div>
+    
+    <!-- Aspect Ratings -->
+    <div class="aspect-ratings">
+        <div class="aspect-row">
+            <span class="aspect-label">⏱️ Punctuality</span>
+            <span class="aspect-stars">★★★★☆</span>
+        </div>
+        <div class="aspect-row">
+            <span class="aspect-label">🤝 Professionalism</span>
+            <span class="aspect-stars">★★★★★</span>
+        </div>
+        <div class="aspect-row">
+            <span class="aspect-label">💰 Value for Money</span>
+            <span class="aspect-stars">★★★☆☆</span>
+        </div>
+        <div class="aspect-row">
+            <span class="aspect-label">💬 Communication</span>
+            <span class="aspect-stars">★★★★☆</span>
+        </div>
+    </div>
+    
+    <!-- Review Text -->
+    <div class="form-group">
+        <label>📝 Share Your Experience</label>
+        <textarea placeholder="What did you like? What could be improved?"></textarea>
+    </div>
+    
+    <!-- Upload Photo -->
+    <div class="upload-area">
+        <span class="camera-icon">📷</span>
+        <div class="upload-text">Add a photo (optional)</div>
+    </div>
+    
+    <!-- Submit -->
+    <button class="btn-primary">⭐ Submit Review</button>
+    
+    <!-- Past Reviews -->
+    <div class="past-reviews">
+        <h3>Recent Reviews</h3>
+        <div class="review">
+            <div class="reviewer">Abiola O. <span class="review-stars">★★★★★</span></div>
+            <div class="review-text">Amazing service! My groceries arrived on time and the runner was very friendly.</div>
+            <div class="review-time">2 days ago</div>
+        </div>
+        <div class="review">
+            <div class="reviewer">Chidi E. <span class="review-stars">★★★★☆</span></div>
+            <div class="review-text">Good service but delivery was a bit late. Still very reliable overall.</div>
+            <div class="review-time">1 week ago</div>
+        </div>
+    </div>
+</body>
+</html>
