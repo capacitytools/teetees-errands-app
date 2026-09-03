@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assign Runner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .order-summary {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 20px;
+        }
+        .order-summary h3 {
+            color: #2D3436;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .order-summary .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 14px;
+            color: #636E72;
+        }
+        .order-summary .row .val { color: #2D3436; font-weight: bold; }
+        
+        .filters {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .filter {
+            padding: 6px 16px;
+            border-radius: 20px;
+            background: white;
+            border: 2px solid #E8ECEF;
+            font-weight: bold;
+            font-size: 12px;
+            color: #636E72;
+            cursor: pointer;
+        }
+        .filter.active {
+            border-color: #FF6B35;
+            color: #FF6B35;
+            background: #FFF3E0;
+        }
+        
+        .runner-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .runner-card .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #FF6B35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .runner-card .info { flex: 1; }
+        .runner-card .info .name {
+            font-weight: bold;
+            color: #2D3436;
+            font-size: 15px;
+        }
+        .runner-card .info .rating {
+            color: #FFD700;
+            font-size: 13px;
+        }
+        .runner-card .info .distance {
+            color: #636E72;
+            font-size: 12px;
+        }
+        .runner-card .assign-btn {
+            padding: 8px 20px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .runner-card .assign-btn.assigned {
+            background: #00C853;
+        }
+        
+        .map-mini {
+            background: #E8ECEF;
+            border-radius: 12px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #DDE1E6;
+            margin-bottom: 20px;
+            color: #636E72;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="admin.html" class="back">←</a>
+        <span class="title">Assign Runner</span>
+        <span>👥</span>
+    </div>
+    
+    <!-- Order Summary -->
+    <div class="order-summary">
+        <h3>📦 Order #ORD-2024-001</h3>
+        <div class="row"><span>Service</span><span class="val">🛒 Grocery Shopping</span></div>
+        <div class="row"><span>Pickup</span><span class="val">No 1, Road 10, Iworoko</span></div>
+        <div class="row"><span>Delivery</span><span class="val">Teetees Lane, Ado Ekiti</span></div>
+        <div class="row"><span>Distance</span><span class="val">4.5 km</span></div>
+    </div>
+    
+    <!-- Map -->
+    <div class="map-mini">
+        🗺️ Available runners near you
+    </div>
+    
+    <!-- Filters -->
+    <div class="filters">
+        <span class="filter active">All</span>
+        <span class="filter">Nearest</span>
+        <span class="filter">⭐ Top Rated</span>
+        <span class="filter">🟢 Online</span>
+    </div>
+    
+    <!-- Runners -->
+    <div class="runner-card">
+        <div class="avatar">👤</div>
+        <div class="info">
+            <div class="name">John Doe</div>
+            <div class="rating">⭐ 4.8 (245 reviews)</div>
+            <div class="distance">📍 1.2 km away • 🟢 Available</div>
+        </div>
+        <button class="assign-btn">Assign</button>
+    </div>
+    
+    <div class="runner-card" style="border-color:#00C853;">
+        <div class="avatar">👤</div>
+        <div class="info">
+            <div class="name">Jane Smith</div>
+            <div class="rating">⭐ 4.9 (312 reviews)</div>
+            <div class="distance">📍 2.5 km away • 🟢 Available</div>
+        </div>
+        <button class="assign-btn assigned">✅ Assigned</button>
+    </div>
+    
+    <div class="runner-card">
+        <div class="avatar">👤</div>
+        <div class="info">
+            <div class="name">Mike Johnson</div>
+            <div class="rating">⭐ 4.7 (189 reviews)</div>
+            <div class="distance">📍 3.8 km away • 🟢 Available</div>
+        </div>
+        <button class="assign-btn">Assign</button>
+    </div>
+    
+    <div class="runner-card" style="opacity:0.6;">
+        <div class="avatar">👤</div>
+        <div class="info">
+            <div class="name">Sarah Williams</div>
+            <div class="rating">⭐ 4.5 (156 reviews)</div>
+            <div class="distance">📍 5.2 km away • 🔴 Busy</div>
+        </div>
+        <button class="assign-btn" style="background:#B2BEC3;cursor:not-allowed;">Busy</button>
+    </div>
+</body>
+</html>
