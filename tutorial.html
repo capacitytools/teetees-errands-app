@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How It Works</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px 20px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        .step-card .number {
+            width: 40px;
+            height: 40px;
+            background: #FF6B35;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .step-card .content { flex: 1; }
+        .step-card .content .title {
+            font-weight: bold;
+            color: #2D3436;
+            font-size: 16px;
+        }
+        .step-card .content .desc {
+            color: #636E72;
+            font-size: 14px;
+            margin-top: 3px;
+            line-height: 1.5;
+        }
+        .step-card .content .icon {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .video-placeholder {
+            background: #E8ECEF;
+            border-radius: 12px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #636E72;
+            font-size: 14px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border: 1px solid #DDE1E6;
+        }
+        .video-placeholder .play {
+            font-size: 60px;
+            opacity: 0.5;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0;
+        }
+        .dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #E8ECEF;
+        }
+        .dots .dot.active {
+            background: #FF6B35;
+            width: 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="index.html" class="back">←</a>
+        <span class="title">How It Works</span>
+        <span>📖</span>
+    </div>
+    
+    <!-- Video -->
+    <div class="video-placeholder">
+        <span class="play">▶️</span>
+    </div>
+    
+    <!-- Steps -->
+    <div class="step-card">
+        <div class="number">1</div>
+        <div class="content">
+            <span class="icon">📝</span>
+            <div class="title">Place Your Order</div>
+            <div class="desc">Choose from our services - Grocery, Prescription, Gift, Dispatch, or Elderly Care. Fill in the details and submit.</div>
+        </div>
+    </div>
+    
+    <div class="step-card">
+        <div class="number">2</div>
+        <div class="content">
+            <span class="icon">👤</span>
+            <div class="title">Runner Assigned</div>
+            <div class="desc">A professional runner will be assigned to your errand. You'll receive real-time updates.</div>
+        </div>
+    </div>
+    
+    <div class="step-card">
+        <div class="number">3</div>
+        <div class="content">
+            <span class="icon">🚚</span>
+            <div class="title">Errand in Progress</div>
+            <div class="desc">Track your errand live on the map. You'll know exactly when your items are picked up and delivered.</div>
+        </div>
+    </div>
+    
+    <div class="step-card">
+        <div class="number">4</div>
+        <div class="content">
+            <span class="icon">✅</span>
+            <div class="title">Complete & Rate</div>
+            <div class="desc">Once delivered, rate your experience. Your feedback helps us improve and rewards our runners.</div>
+        </div>
+    </div>
+    
+    <!-- Dots -->
+    <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+    
+    <!-- Get Started -->
+    <button class="btn-primary">🚀 Get Started</button>
+</body>
+</html>
