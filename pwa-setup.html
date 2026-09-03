@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWA Setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 15px;
+        }
+        .step-card .number {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #FF6B35;
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .step-card h3 {
+            color: #2D3436;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .step-card p {
+            color: #636E72;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .step-card .code-block {
+            background: #2D3436;
+            color: #F5F6FA;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            margin: 10px 0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .copy-btn {
+            padding: 6px 16px;
+            background: #E8ECEF;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back">←</a>
+        <span class="title">PWA Setup Guide</span>
+        <span>📱</span>
+    </div>
+    
+    <div class="step-card">
+        <span class="number">Step 1</span>
+        <h3>Add manifest.json</h3>
+        <p>Create a file called <strong>manifest.json</strong> in your root folder.</p>
+        <p>This tells the browser: "This app can be installed!"</p>
+        <div class="code-block">
+{
+  "name": "Teetees Errands",
+  "short_name": "Teetees",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FF6B35",
+  "icons": [...]
+}
+        </div>
+        <button class="copy-btn">📋 Copy</button>
+    </div>
+    
+    <div class="step-card">
+        <span class="number">Step 2</span>
+        <h3>Add sw.js (Service Worker)</h3>
+        <p>Create a file called <strong>sw.js</strong> in your root folder.</p>
+        <p>This makes your app work OFFLINE! 🎉</p>
+        <div class="code-block">
+const CACHE_NAME = 'teetees-v1';
+const urlsToCache = ['/', '/index.html', ...];
+self.addEventListener('install', ...);
+self.addEventListener('fetch', ...);
+        </div>
+        <button class="copy-btn">📋 Copy</button>
+    </div>
+    
+    <div class="step-card">
+        <span class="number">Step 3</span>
+        <h3>Add to index.html</h3>
+        <p>Add these links to your <strong>index.html</strong> head section:</p>
+        <div class="code-block">
+&lt;link rel="manifest" href="/manifest.json"&gt;
+&lt;link rel="apple-touch-icon" href="/icons/icon-192x192.png"&gt;
+&lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
+&lt;meta name="apple-mobile-web-app-status-bar-style" content="default"&gt;
+&lt;meta name="theme-color" content="#FF6B35"&gt;
+&lt;meta name="mobile-web-app-capable" content="yes"&gt;
+        </div>
+        <button class="copy-btn">📋 Copy</button>
+    </div>
+    
+    <div class="step-card">
+        <span class="number">Step 4</span>
+        <h3>Register Service Worker</h3>
+        <p>Add this to your <strong>index.html</strong> before closing body tag:</p>
+        <div class="code-block">
+&lt;script&gt;
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('SW registered!'))
+            .catch(err => console.log('SW error:', err));
+    }
+&lt;/script&gt;
+        </div>
+        <button class="copy-btn">📋 Copy</button>
+    </div>
+    
+    <div class="step-card" style="border:2px solid #00C853;">
+        <span class="number" style="background:#00C853;">✨ Done!</span>
+        <h3>✅ Your App is Now a PWA!</h3>
+        <p>Users can now:</p>
+        <ul style="color:#636E72;font-size:14px;line-height:1.8;padding-left:20px;">
+            <li>📱 Install on their phone's home screen</li>
+            <li>📶 Use the app offline</li>
+            <li>🔔 Receive push notifications</li>
+            <li>⚡ Experience faster loading</li>
+        </ul>
+    </div>
+    
+    <button class="btn-primary">✅ Make My App a PWA!</button>
+</body>
+</html>
