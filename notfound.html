@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .notfound-container {
+            text-align: center;
+            padding: 20px;
+            max-width: 350px;
+        }
+        
+        .notfound-icon {
+            font-size: 100px;
+            display: block;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .notfound-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2D3436;
+            margin-bottom: 5px;
+        }
+        
+        .notfound-sub {
+            color: #636E72;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .notfound-desc {
+            color: #B2BEC3;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .btn-primary {
+            padding: 14px 40px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-outline {
+            padding: 14px 40px;
+            background: white;
+            color: #FF6B35;
+            border: 2px solid #E8ECEF;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .suggestions {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .suggestions .suggestion {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #E8ECEF;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #636E72;
+            text-decoration: none;
+        }
+        
+        .error-code {
+            margin-top: 20px;
+            color: #B2BEC3;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="notfound-container">
+        <span class="notfound-icon">🔍</span>
+        <div class="notfound-title">404</div>
+        <div class="notfound-sub">Page Not Found</div>
+        <div class="notfound-desc">
+            Oops! The page you're looking for doesn't exist or has been moved.
+        </div>
+        
+        <button class="btn-primary">🏠 Go Back Home</button>
+        <button class="btn-outline">📞 Contact Support</button>
+        
+        <div class="suggestions">
+            <a href="#" class="suggestion">🏠 Home</a>
+            <a href="#" class="suggestion">📋 Services</a>
+            <a href="#" class="suggestion">📦 Orders</a>
+            <a href="#" class="suggestion">👤 Profile</a>
+        </div>
+        
+        <div class="error-code">Error Code: 404-Not-Found</div>
+    </div>
+</body>
+</html>
