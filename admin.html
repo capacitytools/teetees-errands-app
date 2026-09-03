@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        .admin-badge {
+            padding: 4px 12px;
+            background: #FF6B35;
+            color: white;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+        }
+        .stat-card .stat-icon { font-size: 24px; }
+        .stat-card .stat-number { 
+            font-size: 28px; 
+            font-weight: bold; 
+            color: #2D3436;
+            margin: 3px 0;
+        }
+        .stat-card .stat-label {
+            color: #636E72;
+            font-size: 12px;
+        }
+        .stat-card .stat-change {
+            font-size: 12px;
+            font-weight: bold;
+            color: #00C853;
+        }
+        .stat-card .stat-change.down { color: #FF1744; }
+        .stat-card.orange .stat-number { color: #FF6B35; }
+        .stat-card.green .stat-number { color: #00C853; }
+        .stat-card.blue .stat-number { color: #1877F2; }
+        .stat-card.gold .stat-number { color: #FFD700; }
+        
+        .chart-placeholder {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .chart-placeholder .chart-bars {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 120px;
+            padding: 10px 0;
+        }
+        .chart-placeholder .bar {
+            width: 30px;
+            background: #FF6B35;
+            border-radius: 4px 4px 0 0;
+            min-height: 20px;
+        }
+        .chart-placeholder .bar-label {
+            font-size: 10px;
+            color: #636E72;
+            margin-top: 5px;
+        }
+        .chart-placeholder .chart-title {
+            font-weight: bold;
+            color: #2D3436;
+            margin-bottom: 10px;
+        }
+        
+        .recent-orders {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 20px;
+        }
+        .recent-orders h3 {
+            color: #2D3436;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #F5F6FA;
+            font-size: 13px;
+        }
+        .order-row:last-child { border-bottom: none; }
+        .order-row .customer { font-weight: bold; color: #2D3436; }
+        .order-row .service { color: #636E72; }
+        .order-row .amount { font-weight: bold; color: #2D3436; }
+        .order-row .status {
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .order-row .status.active { background: #FFF3E0; color: #FF6B35; }
+        .order-row .status.completed { background: #E8F5E9; color: #00C853; }
+        .order-row .status.pending { background: #F5F6FA; color: #636E72; }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .quick-action {
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E8ECEF;
+            text-align: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: #2D3436;
+            font-size: 13px;
+        }
+        .quick-action .icon { display: block; font-size: 28px; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="profile.html" class="back">←</a>
+        <span class="title">Admin Dashboard</span>
+        <span class="admin-badge">Admin</span>
+    </div>
+    
+    <!-- Stats -->
+    <div class="stats-grid">
+        <div class="stat-card orange">
+            <div class="stat-icon">📦</div>
+            <div class="stat-number">156</div>
+            <div class="stat-label">Total Orders</div>
+            <div class="stat-change">↑ 12% this week</div>
+        </div>
+        <div class="stat-card green">
+            <div class="stat-icon">👤</div>
+            <div class="stat-number">24</div>
+            <div class="stat-label">Active Runners</div>
+            <div class="stat-change">↑ 3 new this week</div>
+        </div>
+        <div class="stat-card gold">
+            <div class="stat-icon">💰</div>
+            <div class="stat-number">₦284,500</div>
+            <div class="stat-label">Revenue Today</div>
+            <div class="stat-change">↑ 8% from yesterday</div>
+        </div>
+        <div class="stat-card blue">
+            <div class="stat-icon">⭐</div>
+            <div class="stat-number">4.8</div>
+            <div class="stat-label">Customer Satisfaction</div>
+            <div class="stat-change">↑ 0.2 points</div>
+        </div>
+    </div>
+    
+    <!-- Chart -->
+    <div class="chart-placeholder">
+        <div class="chart-title">📈 Orders Trend (Last 7 Days)</div>
+        <div class="chart-bars">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="bar" style="height:60px;"></div>
+                <div class="bar-label">Mon</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="bar" style="height:80px;"></div>
+                <div class="bar-label">Tue</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="bar" style="height:45px;"></div>
+                <div class="bar-label">Wed</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="bar" style="height:95px;background:#FF8F65;"></div>
+                <div class="bar-label">Thu</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="bar" style="height:70px;"></div>
+                <div class="bar-label">Fri</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="bar" style="height:110px;background:#FF6B35;"></div>
+                <div class="bar-label">Sat</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="bar" style="height:50px;"></div>
+                <div class="bar-label">Sun</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Orders -->
+    <div class="recent-orders">
+        <h3>📋 Recent Orders</h3>
+        <div class="order-row">
+            <span class="customer">Abiola O.</span>
+            <span class="service">🛒 Grocery</span>
+            <span class="amount">₦12,500</span>
+            <span class="status active">Active</span>
+        </div>
+        <div class="order-row">
+            <span class="customer">Chidi E.</span>
+            <span class="service">💊 Prescription</span>
+            <span class="amount">₦3,200</span>
+            <span class="status completed">Completed</span>
+        </div>
+        <div class="order-row">
+            <span class="customer">Funke A.</span>
+            <span class="service">🎁 Gift</span>
+            <span class="amount">₦8,000</span>
+            <span class="status pending">Pending</span>
+        </div>
+        <div class="order-row">
+            <span class="customer">Segun B.</span>
+            <span class="service">🚚 Dispatch</span>
+            <span class="amount">₦5,000</span>
+            <span class="status active">Active</span>
+        </div>
+        <div class="order-row">
+            <span class="customer">Tunde O.</span>
+            <span class="service">❤️ Elderly</span>
+            <span class="amount">₦7,800</span>
+            <span class="status completed">Completed</span>
+        </div>
+    </div>
+    
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <div class="quick-action">
+            <span class="icon">➕</span>
+            Add Service
+        </div>
+        <div class="quick-action">
+            <span class="icon">👤</span>
+            Manage Runners
+        </div>
+        <div class="quick-action">
+            <span class="icon">📊</span>
+            View Reports
+        </div>
+        <div class="quick-action">
+            <span class="icon">⚙️</span>
+            Settings
+        </div>
+    </div>
+</body>
+</html>
