@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase Connection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .code-card {
+            background: #1E1E1E;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+        .code-card .code {
+            color: #D4D4D4;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        .code-card .code .comment { color: #6A9955; }
+        .code-card .code .keyword { color: #C586C0; }
+        .code-card .code .string { color: #CE9178; }
+        .code-card .code .function { color: #DCDCAA; }
+        .code-card .code .variable { color: #9CDCFE; }
+        .code-card .code .number { color: #B5CEA8; }
+        
+        .copy-btn {
+            padding: 8px 20px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="firebase-setup.html" class="back">←</a>
+        <span class="title">Connection Code</span>
+        <span>🔥</span>
+    </div>
+    
+    <div class="code-card">
+        <div class="code">
+<span class="comment">// ============================================</span>
+<span class="comment">// TEETEES ERRANDS - FIREBASE CONNECTION</span>
+<span class="comment">// ============================================</span>
+
+<span class="comment">// 1. Install Firebase</span>
+<span class="comment">// npm install firebase</span>
+
+<span class="comment">// 2. Import Firebase</span>
+<span class="keyword">import</span> { initializeApp } <span class="keyword">from</span> <span class="string">'firebase/app'</span>;
+<span class="keyword">import</span> { 
+    getAuth, 
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} <span class="keyword">from</span> <span class="string">'firebase/auth'</span>;
+<span class="keyword">import</span> {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    doc,
+    getDoc,
+    updateDoc,
+    deleteDoc,
+    query,
+    where,
+    orderBy,
+    onSnapshot
+} <span class="keyword">from</span> <span class="string">'firebase/firestore'</span>;
+
+<span class="comment">// 3. Your Firebase Config</span>
+<span class="keyword">const</span> firebaseConfig = {
+    apiKey: <span class="string">"YOUR_API_KEY"</span>,
+    authDomain: <span class="string">"YOUR_PROJECT.firebaseapp.com"</span>,
+    projectId: <span class="string">"YOUR_PROJECT_ID"</span>,
+    storageBucket: <span class="string">"YOUR_PROJECT.appspot.com"</span>,
+    messagingSenderId: <span class="string">"YOUR_SENDER_ID"</span>,
+    appId: <span class="string">"YOUR_APP_ID"</span>
+};
+
+<span class="comment">// 4. Initialize Firebase</span>
+<span class="keyword">const</span> app = initializeApp(firebaseConfig);
+<span class="keyword">const</span> auth = getAuth(app);
+<span class="keyword">const</span> db = getFirestore(app);
+
+<span class="comment">// ============================================</span>
+<span class="comment">// AUTHENTICATION FUNCTIONS</span>
+<span class="comment">// ============================================</span>
+
+<span class="comment">// Sign Up</span>
+<span class="keyword">async function</span> <span class="function">signUp</span>(email, password, userData) {
+    <span class="keyword">try</span> {
+        <span class="keyword">const</span> userCredential = <span class="keyword">await</span> createUserWithEmailAndPassword(auth, email, password);
+        <span class="comment">// Save user data to Firestore</span>
+        <span class="keyword">await</span> addDoc(collection(db, <span class="string">"users"</span>), {
+            uid: userCredential.user.uid,
+            ...userData,
+            createdAt: <span class="keyword">new</span> Date()
+        });
+        <span class="keyword">return</span> { success: <span class="keyword">true</span>, user: userCredential.user };
+    } <span class="keyword">catch</span> (error) {
+        <span class="keyword">return</span> { success: <span class="keyword">false</span>, error: error.message };
+    }
+}
+
+<span class="comment">// Login</span>
+<span class="keyword">async function</span> <span class="function">login</span>(email, password) {
+    <span class="keyword">try</span> {
+        <span class="keyword">const</span> userCredential = <span class="keyword">await</span> signInWithEmailAndPassword(auth, email, password);
+        <span class="keyword">return</span> { success: <span class="keyword">true</span>, user: userCredential.user };
+    } <span class="keyword">catch</span> (error) {
+        <span class="keyword">return</span> { success: <span class="keyword">false</span>, error: error.message };
+    }
+}
+
+<span class="comment">// Logout</span>
+<span class="keyword">async function</span> <span class="function">logout</span>() {
+    <span class="keyword">try</span> {
+        <span class="keyword">await</span> signOut(auth);
+        <span class="keyword">return</span> { success: <span class="keyword">true</span> };
+    } <span class="keyword">catch</span> (error) {
+        <span class="keyword">return</span> { success: <span class="keyword">false</span>, error: error.message };
+    }
+}
+
+<span class="comment">// Auth State Listener</span>
+onAuthStateChanged(auth, (user) => {
+    <span class="keyword">if</span> (user) {
+        <span class="comment">// User is logged in</span>
+        console.log(<span class="string">"User logged in:"</span>, user.email);
+    } <span class="keyword">else</span> {
+        <span class="comment">// User is logged out</span>
+        console.log(<span class="string">"User logged out"</span>);
+    }
+});
+
+<span class="comment">// ============================================</span>
+<span class="comment">// ORDERS FUNCTIONS</span>
+<span class="comment">// ============================================</span>
+
+<span class="comment">// Place Order</span>
+<span class="keyword">async function</span> <span class="function">placeOrder</span>(orderData) {
+    <span class="keyword">try</span> {
+        <span class="keyword">const</span> docRef = <span class="keyword">await</span> addDoc(collection(db, <span class="string">"orders"</span>), {
+            ...orderData,
+            userId: auth.currentUser?.uid,
+            status: <span class="string">"pending"</span>,
+            createdAt: <span class="keyword">new</span> Date()
+        });
+        <span class="keyword">return</span> { success: <span class="keyword">true</span>, id: docRef.id };
+    } <span class="keyword">catch</span> (error) {
+        <span class="keyword">return</span> { success: <span class="keyword">false</span>, error: error.message };
+    }
+}
+
+<span class="comment">// Get All Orders</span>
+<span class="keyword">async function</span> <span class="function">getOrders</span>() {
+    <span class="keyword">try</span> {
+        <span class="keyword">const</span> q = query(
+            collection(db, <span class="string">"orders"</span>),
+            where(<span class="string">"userId"</span>, <span class="string">"=="</span>, auth.currentUser?.uid),
+            orderBy(<span class="string">"createdAt"</span>, <span class="string">"desc"</span>)
+        );
+        <span class="keyword">const</span> querySnapshot = <span class="keyword">await</span> getDocs(q);
+        <span class="keyword">const</span> orders = [];
+        querySnapshot.forEach((doc) => {
+            orders.push({ id: doc.id, ...doc.data() });
+        });
+        <span class="keyword">return</span> { success: <span class="keyword">true</span>, orders };
+    } <span class="keyword">catch</span> (error) {
+        <span class="keyword">return</span> { success: <span class="keyword">false</span>, error: error.message };
+    }
+}
+
+<span class="comment">// Update Order Status</span>
+<span class="keyword">async function</span> <span class="function">updateOrderStatus</span>(orderId, status) {
+    <span class="keyword">try</span> {
+        <span class="keyword">const</span> orderRef = doc(db, <span class="string">"orders"</span>, orderId);
+        <span class="keyword">await</span> updateDoc(orderRef, {
+            status: status,
+            updatedAt: <span class="keyword">new</span> Date()
+        });
+        <span class="keyword">return</span> { success: <span class="keyword">true</span> };
+    } <span class="keyword">catch</span> (error) {
+        <span class="keyword">return</span> { success: <span class="keyword">false</span>, error: error.message };
+    }
+}
+
+<span class="comment">// ============================================</span>
+<span class="comment">// REAL-TIME SUBSCRIPTIONS</span>
+<span class="comment">// ============================================</span>
+
+<span class="comment">// Listen to Order Updates</span>
+<span class="keyword">function</span> <span class="function">listenToOrders</span>(callback) {
+    <span class="keyword">const</span> q = query(
+        collection(db, <span class="string">"orders"</span>),
+        where(<span class="string">"userId"</span>, <span class="string">"=="</span>, auth.currentUser?.uid)
+    );
+    <span class="keyword">return</span> onSnapshot(q, (snapshot) => {
+        <span class="keyword">const</span> orders = [];
+        snapshot.forEach((doc) => {
+            orders.push({ id: doc.id, ...doc.data() });
+        });
+        callback(orders);
+    });
+}
+        </div>
+        <button class="copy-btn">📋 Copy All Code</button>
+    </div>
+    
+    <button class="btn-primary">✅ Continue to Next Step</button>
+</body>
+</html>
