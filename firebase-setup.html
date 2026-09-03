@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase Setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 15px;
+        }
+        .step-card .step-number {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #FF6B35;
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .step-card h3 {
+            color: #2D3436;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .step-card p {
+            color: #636E72;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .step-card .code-block {
+            background: #2D3436;
+            color: #F5F6FA;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            margin: 10px 0;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+        .step-card .code-block .comment { color: #6B8E23; }
+        .step-card .code-block .string { color: #FFD700; }
+        .step-card .code-block .keyword { color: #FF6B35; }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .copy-btn {
+            padding: 6px 16px;
+            background: #E8ECEF;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back">←</a>
+        <span class="title">Firebase Setup</span>
+        <span>🔥</span>
+    </div>
+    
+    <div class="step-card">
+        <span class="step-number">Step 1</span>
+        <h3>Create a Firebase Account</h3>
+        <p>Go to <strong>firebase.google.com</strong> and sign in with your Google account. It's completely free!</p>
+    </div>
+    
+    <div class="step-card">
+        <span class="step-number">Step 2</span>
+        <h3>Create a New Project</h3>
+        <p>Click "Create a project" and name it <strong>"Teetees Errands"</strong>. Follow the steps and click "Create".</p>
+    </div>
+    
+    <div class="step-card">
+        <span class="step-number">Step 3</span>
+        <h3>Add Firebase to Your Web App</h3>
+        <p>Click the </> icon to add Firebase to your web app. Copy the config code below:</p>
+        <div class="code-block">
+            <span class="comment">// Your Firebase config</span>
+            <span class="keyword">const</span> firebaseConfig = {
+                apiKey: <span class="string">"YOUR_API_KEY"</span>,
+                authDomain: <span class="string">"YOUR_PROJECT.firebaseapp.com"</span>,
+                projectId: <span class="string">"YOUR_PROJECT_ID"</span>,
+                storageBucket: <span class="string">"YOUR_PROJECT.appspot.com"</span>,
+                messagingSenderId: <span class="string">"YOUR_SENDER_ID"</span>,
+                appId: <span class="string">"YOUR_APP_ID"</span>
+            };
+        </div>
+        <button class="copy-btn">📋 Copy Config</button>
+    </div>
+    
+    <div class="step-card">
+        <span class="step-number">Step 4</span>
+        <h3>Enable Authentication</h3>
+        <p>Go to "Authentication" → "Sign-in methods" and enable <strong>Email/Password</strong>. Also enable Google sign-in if you want.</p>
+    </div>
+    
+    <div class="step-card">
+        <span class="step-number">Step 5</span>
+        <h3>Create a Database</h3>
+        <p>Go to "Firestore Database" → "Create Database" → Start in "Test Mode" (for development).</p>
+        <div class="code-block">
+            <span class="comment">// Database structure</span>
+            <span class="keyword">collection</span>: users
+                → document: userId
+                    → name, email, phone, address
+            <span class="keyword">collection</span>: orders
+                → document: orderId
+                    → service, items, total, status, userId
+            <span class="keyword">collection</span>: runners
+                → document: runnerId
+                    → name, phone, rating, available
+        </div>
+    </div>
+    
+    <button class="btn-primary">✅ Continue to Code</button>
+</body>
+</html>
