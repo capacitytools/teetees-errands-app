@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teetees - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #F5F6FA; }
+        
+        .header {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #E8ECEF;
+        }
+        .logo { color: #FF6B35; font-weight: bold; font-size: 20px; }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: #FF6B35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .greeting {
+            padding: 20px;
+            background: white;
+            margin: 10px;
+            border-radius: 12px;
+        }
+        .greeting h2 { color: #2D3436; }
+        .greeting p { color: #636E72; }
+        
+        .search {
+            margin: 10px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E8ECEF;
+            color: #B2BEC3;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            padding: 10px;
+            background: white;
+            margin: 10px;
+            border-radius: 12px;
+        }
+        .action {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .action .icon {
+            background: #FF6B35;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 5px;
+            font-size: 20px;
+        }
+        .action .label { font-size: 11px; color: #2D3436; }
+        
+        .recent {
+            background: white;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 12px;
+        }
+        .recent h3 { color: #2D3436; margin-bottom: 15px; }
+        .order {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #E8ECEF;
+        }
+        .order:last-child { border-bottom: none; }
+        .order-info { color: #2D3436; }
+        .order-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            background: #00C853;
+            color: white;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #E8ECEF;
+        }
+        .nav-item {
+            text-align: center;
+            color: #B2BEC3;
+            font-size: 12px;
+        }
+        .nav-item.active { color: #FF6B35; }
+        .nav-item .nav-icon { font-size: 24px; display: block; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">TEETEES ERRANDS</div>
+        <div class="avatar">👤</div>
+    </div>
+    
+    <!-- Greeting -->
+    <div class="greeting">
+        <h2>Good morning! 👋</h2>
+        <p>What errand can we help with today?</p>
+    </div>
+    
+    <!-- Search -->
+    <div class="search">🔍 What errand do you need?</div>
+    
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <div class="action">
+            <div class="icon">🛒</div>
+            <div class="label">Grocery</div>
+        </div>
+        <div class="action">
+            <div class="icon">💊</div>
+            <div class="label">Prescription</div>
+        </div>
+        <div class="action">
+            <div class="icon">🎁</div>
+            <div class="label">Gift</div>
+        </div>
+        <div class="action">
+            <div class="icon">🚚</div>
+            <div class="label">Courier</div>
+        </div>
+        <div class="action">
+            <div class="icon">❤️</div>
+            <div class="label">Elderly</div>
+        </div>
+    </div>
+    
+    <!-- Recent Orders -->
+    <div class="recent">
+        <h3>Your Recent Errands</h3>
+        <div class="order">
+            <div class="order-info">🛒 Grocery Shopping<br><small>Today, 10:30 AM</small></div>
+            <div><span class="order-status">✅ Completed</span></div>
+        </div>
+        <div class="order">
+            <div class="order-info">💊 Prescription Pickup<br><small>Yesterday, 2:00 PM</small></div>
+            <div><span class="order-status" style="background:#FF6B35;">🔄 Active</span></div>
+        </div>
+        <div class="order">
+            <div class="order-info">🎁 Gift Delivery<br><small>Aug 28, 4:00 PM</small></div>
+            <div><span class="order-status" style="background:#B2BEC3;">⏳ Pending</span></div>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <span class="nav-icon">🏠</span>
+            Home
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">📋</span>
+            Services
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">📦</span>
+            Orders
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">👤</span>
+            Profile
+        </div>
+    </div>
+</body>
+</html>
