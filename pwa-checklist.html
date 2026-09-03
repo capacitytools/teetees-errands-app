@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PWA Checklist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 15px;
+        }
+        .card .category {
+            font-weight: bold;
+            color: #FF6B35;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #F5F6FA;
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-item .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #E8ECEF;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        .check-item .checkbox.done {
+            background: #00C853;
+            border-color: #00C853;
+            color: white;
+        }
+        .check-item .text { color: #2D3436; font-size: 14px; }
+        .check-item .text .sub { color: #636E72; font-size: 12px; display: block; }
+        .check-item .status {
+            margin-left: auto;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 2px 12px;
+            border-radius: 12px;
+        }
+        .check-item .status.done { background: #E8F5E9; color: #00C853; }
+        .check-item .status.pending { background: #FFF3E0; color: #FF6B35; }
+        .check-item .status.optional { background: #E3F2FD; color: #1877F2; }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .celebration {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #FF6B35, #FF8F65);
+            border-radius: 16px;
+            color: white;
+        }
+        .celebration .emoji { font-size: 60px; display: block; }
+        .celebration h2 { font-size: 24px; margin: 10px 0; }
+        .celebration p { opacity: 0.9; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="create-icons.html" class="back">←</a>
+        <span class="title">PWA Checklist</span>
+        <span>✅</span>
+    </div>
+    
+    <div class="celebration">
+        <span class="emoji">🚀</span>
+        <h2>Make Teetees a PWA!</h2>
+        <p>Follow this checklist to make your app installable</p>
+    </div>
+    
+    <div class="card">
+        <div class="category">📄 Manifest.json</div>
+        <div class="check-item">
+            <div class="checkbox done">✓</div>
+            <div class="text">Create manifest.json<sub class="sub">In root folder</sub></div>
+            <span class="status done">✅ Done</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox done">✓</div>
+            <div class="text">Add app name & description<sub class="sub">"Teetees Errands"</sub></div>
+            <span class="status done">✅ Done</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Add all icon sizes<sub class="sub">72px to 512px</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="category">⚡ Service Worker</div>
+        <div class="check-item">
+            <div class="checkbox done">✓</div>
+            <div class="text">Create sw.js<sub class="sub">In root folder</sub></div>
+            <span class="status done">✅ Done</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Add cache list<sub class="sub">All 40+ files</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Add offline fallback<sub class="sub">Show index.html</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="category">📱 HTML Setup</div>
+        <div class="check-item">
+            <div class="checkbox done">✓</div>
+            <div class="text">Add manifest link to index.html<sub class="sub">&lt;link rel="manifest"&gt;</sub></div>
+            <span class="status done">✅ Done</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox done">✓</div>
+            <div class="text">Add theme-color meta tag<sub class="sub">#FF6B35</sub></div>
+            <span class="status done">✅ Done</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Add service worker registration<sub class="sub">JavaScript</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="category">🎨 Icons</div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Create icons folder<sub class="sub">/icons/</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Generate 8 icon sizes<sub class="sub">72-512px</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Test icons on phone<sub class="sub">Looks good?</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+    </div>
+    
+    <div class="card" style="border:2px solid #FF6B35;">
+        <div class="category">🚀 Final Check</div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Push all code to GitHub<sub class="sub">git add . & git push</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Vercel auto-deploys<sub class="sub">Wait 2 minutes</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Visit app on phone<sub class="sub">Chrome browser</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+        <div class="check-item">
+            <div class="checkbox">☐</div>
+            <div class="text">Tap "Add to Home Screen"<sub class="sub">Install the app!</sub></div>
+            <span class="status pending">⏳ Pending</span>
+        </div>
+    </div>
+    
+    <button class="btn-primary">🚀 Complete PWA Setup</button>
+</body>
+</html>
