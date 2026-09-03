@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How to Add Firebase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .instruction-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 15px;
+        }
+        .instruction-card .number {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #FF6B35;
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .instruction-card h3 {
+            color: #2D3436;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .instruction-card p {
+            color: #636E72;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .instruction-card .code-block {
+            background: #F5F6FA;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            margin: 10px 0;
+            overflow-x: auto;
+            border: 1px solid #E8ECEF;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #F5F6FA;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #2D3436;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist li .check { color: #00C853; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="firebase-connect.html" class="back">←</a>
+        <span class="title">How to Add Firebase</span>
+        <span>📝</span>
+    </div>
+    
+    <div class="instruction-card">
+        <span class="number">Step 1</span>
+        <h3>Install Firebase Package</h3>
+        <p>Open your terminal and run:</p>
+        <div class="code-block">npm install firebase</div>
+    </div>
+    
+    <div class="instruction-card">
+        <span class="number">Step 2</span>
+        <h3>Create a firebase.js File</h3>
+        <p>Create a new file called <strong>firebase.js</strong> in your app folder.</p>
+        <div class="code-block">
+            // app/firebase.js
+            import { initializeApp } from 'firebase/app';
+            import { getAuth } from 'firebase/auth';
+            import { getFirestore } from 'firebase/firestore';
+            
+            const firebaseConfig = {
+                // Paste your config here
+            };
+            
+            const app = initializeApp(firebaseConfig);
+            export const auth = getAuth(app);
+            export const db = getFirestore(app);
+        </div>
+    </div>
+    
+    <div class="instruction-card">
+        <span class="number">Step 3</span>
+        <h3>Use in Your Components</h3>
+        <p>Import and use Firebase in any component:</p>
+        <div class="code-block">
+            import { auth, db } from './firebase';
+            import { signInWithEmailAndPassword } from 'firebase/auth';
+            
+            // Example: Login
+            const loginUser = async (email, password) => {
+                try {
+                    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                    console.log('Logged in!', userCredential.user);
+                } catch (error) {
+                    console.error('Error:', error.message);
+                }
+            };
+        </div>
+    </div>
+    
+    <div class="instruction-card">
+        <span class="number">Step 4</span>
+        <h3>Check Your Data</h3>
+        <p>Go to Firebase Console → Firestore Database to see your data.</p>
+    </div>
+    
+    <div class="instruction-card">
+        <span class="number">Checklist</span>
+        <ul class="checklist">
+            <li><span class="check">✅</span> Firebase account created</li>
+            <li><span class="check">✅</span> Project created</li>
+            <li><span class="check">✅</span> Authentication enabled</li>
+            <li><span class="check">✅</span> Firestore database created</li>
+            <li><span class="check">✅</span> Firebase installed</li>
+            <li><span class="check">✅</span> Config added to your app</li>
+        </ul>
+    </div>
+    
+    <button class="btn-primary">✅ Ready to Build!</button>
+</body>
+</html>
