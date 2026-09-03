@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Icons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .icon-box {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #E8ECEF;
+        }
+        .icon-box .preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #FF6B35, #FF8F65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 36px;
+            color: white;
+            font-weight: bold;
+        }
+        .icon-box .size { font-weight: bold; color: #2D3436; font-size: 14px; }
+        .icon-box .filename { color: #B2BEC3; font-size: 12px; }
+        
+        .color-options {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .color-options .color {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .color-options .color.active { border-color: #FF6B35; }
+        
+        .emoji-options {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .emoji-options .emoji {
+            font-size: 30px;
+            padding: 10px;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #E8ECEF;
+            cursor: pointer;
+        }
+        .emoji-options .emoji.active { border-color: #FF6B35; background: #FFF3E0; }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="pwa-setup.html" class="back">←</a>
+        <span class="title">Create App Icons</span>
+        <span>🎨</span>
+    </div>
+    
+    <div style="background:white;border-radius:16px;padding:20px;border:1px solid #E8ECEF;margin-bottom:20px;">
+        <h3 style="color:#2D3436;font-size:16px;margin-bottom:12px;">Choose Your App Icon</h3>
+        
+        <p style="color:#636E72;font-size:14px;margin-bottom:10px;">Pick a color and emoji for your icon:</p>
+        
+        <div class="color-options">
+            <div class="color" style="background:#FF6B35;"></div>
+            <div class="color active" style="background:#FF8F65;"></div>
+            <div class="color" style="background:#FF5722;"></div>
+            <div class="color" style="background:#E91E63;"></div>
+            <div class="color" style="background:#FFD700;"></div>
+            <div class="color" style="background:#00C853;"></div>
+            <div class="color" style="background:#1877F2;"></div>
+        </div>
+        
+        <div class="emoji-options">
+            <span class="emoji active">🏃</span>
+            <span class="emoji">🛒</span>
+            <span class="emoji">📦</span>
+            <span class="emoji">🎁</span>
+            <span class="emoji">❤️</span>
+            <span class="emoji">⭐</span>
+            <span class="emoji">🚀</span>
+            <span class="emoji">✨</span>
+        </div>
+    </div>
+    
+    <div style="background:white;border-radius:16px;padding:20px;border:1px solid #E8ECEF;margin-bottom:20px;">
+        <h3 style="color:#2D3436;font-size:16px;margin-bottom:12px;">Icon Sizes Needed</h3>
+        <div class="icon-grid">
+            <div class="icon-box">
+                <div class="preview" style="width:72px;height:72px;font-size:30px;">🏃</div>
+                <div class="size">72 × 72</div>
+                <div class="filename">icon-72x72.png</div>
+            </div>
+            <div class="icon-box">
+                <div class="preview" style="width:96px;height:96px;font-size:36px;">🏃</div>
+                <div class="size">96 × 96</div>
+                <div class="filename">icon-96x96.png</div>
+            </div>
+            <div class="icon-box">
+                <div class="preview" style="width:128px;height:128px;font-size:48px;">🏃</div>
+                <div class="size">128 × 128</div>
+                <div class="filename">icon-128x128.png</div>
+            </div>
+            <div class="icon-box">
+                <div class="preview" style="width:144px;height:144px;font-size:56px;">🏃</div>
+                <div class="size">144 × 144</div>
+                <div class="filename">icon-144x144.png</div>
+            </div>
+            <div class="icon-box">
+                <div class="preview" style="width:152px;height:152px;font-size:60px;">🏃</div>
+                <div class="size">152 × 152</div>
+                <div class="filename">icon-152x152.png</div>
+            </div>
+            <div class="icon-box">
+                <div class="preview" style="width:192px;height:192px;font-size:72px;">🏃</div>
+                <div class="size">192 × 192</div>
+                <div class="filename">icon-192x192.png</div>
+            </div>
+            <div class="icon-box">
+                <div class="preview" style="width:384px;height:384px;font-size:120px;">🏃</div>
+                <div class="size">384 × 384</div>
+                <div class="filename">icon-384x384.png</div>
+            </div>
+            <div class="icon-box">
+                <div class="preview" style="width:512px;height:512px;font-size:160px;">🏃</div>
+                <div class="size">512 × 512</div>
+                <div class="filename">icon-512x512.png</div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background:#FFF3E0;border-radius:12px;padding:15px;border-left:4px solid #FF6B35;margin-bottom:20px;">
+        <p style="color:#2D3436;font-size:14px;">
+            <strong>💡 Need icons quickly?</strong><br>
+            Go to <strong>appicon.co</strong> or <strong>icon.kitchen</strong> - they generate all sizes for free!
+        </p>
+    </div>
+    
+    <div style="background:white;border-radius:16px;padding:20px;border:1px solid #E8ECEF;margin-bottom:20px;">
+        <h3 style="color:#2D3436;font-size:16px;margin-bottom:10px;">📁 Folder Structure</h3>
+        <div class="code-block" style="background:#2D3436;color:#F5F6FA;padding:15px;border-radius:10px;font-family:monospace;font-size:13px;">
+your-app/
+├── manifest.json
+├── sw.js
+├── icons/
+│   ├── icon-72x72.png
+│   ├── icon-96x96.png
+│   ├── icon-128x128.png
+│   ├── icon-144x144.png
+│   ├── icon-152x152.png
+│   ├── icon-192x192.png
+│   ├── icon-384x384.png
+│   └── icon-512x512.png
+└── all your HTML files...
+        </div>
+    </div>
+    
+    <button class="btn-primary">✅ Generate My Icons</button>
+</body>
+</html>
