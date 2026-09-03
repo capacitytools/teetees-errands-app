@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #F5F6FA; padding-bottom: 80px; }
+        
+        .header {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #E8ECEF;
+            position: sticky;
+            top: 0;
+        }
+        .back { font-size: 24px; cursor: pointer; }
+        .title { font-weight: bold; font-size: 18px; color: #2D3436; }
+        .filter { font-size: 20px; cursor: pointer; }
+        
+        .search {
+            margin: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E8ECEF;
+            color: #B2BEC3;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 10px 15px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-top: 4px solid #FF6B35;
+        }
+        .service-icon {
+            font-size: 36px;
+            background: #FFF3E0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+        }
+        .service-name { font-weight: bold; color: #2D3436; font-size: 14px; }
+        .service-desc { color: #636E72; font-size: 11px; margin-top: 5px; }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #E8ECEF;
+        }
+        .nav-item {
+            text-align: center;
+            color: #B2BEC3;
+            font-size: 12px;
+        }
+        .nav-item.active { color: #FF6B35; }
+        .nav-item .nav-icon { font-size: 24px; display: block; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span class="back">←</span>
+        <span class="title">Our Services</span>
+        <span class="filter">⚙️</span>
+    </div>
+    
+    <div class="search">🔍 Search services...</div>
+    
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">🛒</div>
+            <div class="service-name">Grocery & Essentials</div>
+            <div class="service-desc">Shop and deliver weekly groceries</div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">💊</div>
+            <div class="service-name">Prescription Pickups</div>
+            <div class="service-desc">Pick up medications safely</div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🎁</div>
+            <div class="service-name">Retail & Gift Shopping</div>
+            <div class="service-desc">Purchase and deliver specific items</div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🚚</div>
+            <div class="service-name">Dispatch & Courier</div>
+            <div class="service-desc">Mail packages and urgent dispatch</div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">❤️</div>
+            <div class="service-name">Elderly Assistance</div>
+            <div class="service-desc">Dependable help for elderly persons</div>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🇳🇬</div>
+            <div class="service-name">Taste of Homeland</div>
+            <div class="service-desc">Authentic Nigerian products overseas</div>
+        </div>
+    </div>
+    
+    <div class="bottom-nav">
+        <div class="nav-item">
+            <span class="nav-icon">🏠</span>
+            Home
+        </div>
+        <div class="nav-item active">
+            <span class="nav-icon">📋</span>
+            Services
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">📦</span>
+            Orders
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">👤</span>
+            Profile
+        </div>
+    </div>
+</body>
+</html>
