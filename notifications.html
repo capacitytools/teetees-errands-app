@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notifications</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        .mark-read { color: #FF6B35; font-size: 14px; font-weight: bold; cursor: pointer; }
+        
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .cat-tab {
+            padding: 8px 20px;
+            border-radius: 20px;
+            background: white;
+            border: 2px solid #E8ECEF;
+            font-weight: bold;
+            color: #636E72;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .cat-tab.active {
+            border-color: #FF6B35;
+            color: #FF6B35;
+            background: #FFF3E0;
+        }
+        
+        .notification {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .notification.unread {
+            border-left: 4px solid #FF6B35;
+            background: #FFFBF8;
+        }
+        .notif-icon {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            background: #F5F6FA;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .notif-content { flex: 1; }
+        .notif-title { font-weight: bold; color: #2D3436; font-size: 14px; }
+        .notif-text { color: #636E72; font-size: 13px; margin-top: 3px; }
+        .notif-time { color: #B2BEC3; font-size: 11px; margin-top: 5px; }
+        .notif-dot {
+            width: 8px;
+            height: 8px;
+            background: #FF6B35;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+        
+        .view-all {
+            text-align: center;
+            padding: 12px;
+            color: #FF6B35;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="app.html" class="back">←</a>
+        <span class="title">Notifications</span>
+        <span class="mark-read">Mark All Read</span>
+    </div>
+    
+    <!-- Categories -->
+    <div class="category-tabs">
+        <div class="cat-tab active">All</div>
+        <div class="cat-tab">Orders</div>
+        <div class="cat-tab">Promotions</div>
+        <div class="cat-tab">Service</div>
+    </div>
+    
+    <!-- Notifications -->
+    <div class="notification unread">
+        <div class="notif-icon">🚚</div>
+        <div class="notif-content">
+            <div class="notif-title">Your order is on the way!</div>
+            <div class="notif-text">Grocery order #ORD-2024-001 has been picked up and is being delivered.</div>
+            <div class="notif-time">Today, 10:35 AM</div>
+        </div>
+        <div class="notif-dot"></div>
+    </div>
+    
+    <div class="notification unread">
+        <div class="notif-icon">🎉</div>
+        <div class="notif-content">
+            <div class="notif-title">New Service: Taste of Homeland!</div>
+            <div class="notif-text">Send authentic Nigerian products to loved ones abroad. Learn more!</div>
+            <div class="notif-time">Today, 9:00 AM</div>
+        </div>
+        <div class="notif-dot"></div>
+    </div>
+    
+    <div class="notification">
+        <div class="notif-icon">💳</div>
+        <div class="notif-content">
+            <div class="notif-title">Payment Successful</div>
+            <div class="notif-text">Your payment of ₦7,800 for order #ORD-2024-001 was successful.</div>
+            <div class="notif-time">Yesterday, 2:30 PM</div>
+        </div>
+    </div>
+    
+    <div class="notification">
+        <div class="notif-icon">⭐</div>
+        <div class="notif-content">
+            <div class="notif-title">Rate Your Experience</div>
+            <div class="notif-text">How was your recent delivery? Share your feedback!</div>
+            <div class="notif-time">Yesterday, 11:00 AM</div>
+        </div>
+    </div>
+    
+    <div class="notification">
+        <div class="notif-icon">🎁</div>
+        <div class="notif-content">
+            <div class="notif-title">Referral Bonus Earned!</div>
+            <div class="notif-text">You earned ₦1,000 for referring a friend. Keep sharing!</div>
+            <div class="notif-time">Aug 28, 6:00 PM</div>
+        </div>
+    </div>
+    
+    <!-- View All -->
+    <div class="view-all">View all notifications →</div>
+</body>
+</html>
