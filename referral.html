@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Refer & Earn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .hero-card {
+            background: linear-gradient(135deg, #FF6B35, #FF8F65);
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .hero-card .emoji { font-size: 60px; display: block; margin-bottom: 10px; }
+        .hero-card h2 { font-size: 22px; }
+        .hero-card p { opacity: 0.9; font-size: 14px; margin-top: 5px; }
+        
+        .referral-code {
+            background: rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .referral-code .code {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+        .referral-code .copy-btn {
+            padding: 8px 20px;
+            background: white;
+            color: #FF6B35;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .share-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 20px;
+        }
+        .share-section .share-label {
+            font-weight: bold;
+            color: #2D3436;
+            margin-bottom: 12px;
+            display: block;
+            text-align: center;
+        }
+        .share-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .share-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .share-btn.whatsapp { background: #25D366; color: white; }
+        .share-btn.facebook { background: #1877F2; color: white; }
+        .share-btn.twitter { background: #000000; color: white; }
+        .share-btn.copy { background: #E8ECEF; color: #2D3436; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #E8ECEF;
+        }
+        .stat-box .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6B35;
+        }
+        .stat-box .label {
+            font-size: 12px;
+            color: #636E72;
+            margin-top: 3px;
+        }
+        
+        .history-section {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+        }
+        .history-section h3 {
+            color: #2D3436;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #F5F6FA;
+            font-size: 14px;
+        }
+        .history-item:last-child { border-bottom: none; }
+        .history-item .ref-name { color: #2D3436; }
+        .history-item .ref-earning { color: #00C853; font-weight: bold; }
+        .history-item .ref-date { color: #B2BEC3; font-size: 12px; }
+        
+        .how-it-works {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #E8ECEF;
+            margin-top: 15px;
+        }
+        .how-it-works h3 { color: #2D3436; margin-bottom: 15px; }
+        .step {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .step .num {
+            width: 30px;
+            height: 30px;
+            background: #FFF3E0;
+            color: #FF6B35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .step .text { color: #2D3436; font-size: 14px; }
+        .step .text .highlight { color: #FF6B35; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="profile.html" class="back">←</a>
+        <span class="title">Refer & Earn</span>
+        <span>🎁</span>
+    </div>
+    
+    <!-- Hero -->
+    <div class="hero-card">
+        <span class="emoji">🎉</span>
+        <h2>Refer a Friend, Earn Rewards!</h2>
+        <p>Share Teetees Errands with friends and earn ₦1,000 for each referral</p>
+        <div class="referral-code">
+            <span>Your Code:</span>
+            <span class="code">TEETEE5</span>
+            <button class="copy-btn">📋 Copy</button>
+        </div>
+    </div>
+    
+    <!-- Share -->
+    <div class="share-section">
+        <span class="share-label">📤 Share with friends</span>
+        <div class="share-buttons">
+            <button class="share-btn whatsapp">💬 WhatsApp</button>
+            <button class="share-btn facebook">📘 Facebook</button>
+            <button class="share-btn twitter">🐦 Twitter</button>
+            <button class="share-btn copy">📋 Copy Link</button>
+        </div>
+    </div>
+    
+    <!-- Stats -->
+    <div class="stats-grid">
+        <div class="stat-box">
+            <div class="number">12</div>
+            <div class="label">Total Referrals</div>
+        </div>
+        <div class="stat-box">
+            <div class="number">8</div>
+            <div class="label">Successful</div>
+        </div>
+        <div class="stat-box">
+            <div class="number">₦8,000</div>
+            <div class="label">Total Earnings</div>
+        </div>
+    </div>
+    
+    <!-- History -->
+    <div class="history-section">
+        <h3>📋 Referral History</h3>
+        <div class="history-item">
+            <span class="ref-name">👤 Abiola O.</span>
+            <span>
+                <span class="ref-earning">+₦1,000</span>
+                <div class="ref-date">Today</div>
+            </span>
+        </div>
+        <div class="history-item">
+            <span class="ref-name">👤 Chidi E.</span>
+            <span>
+                <span class="ref-earning">+₦1,000</span>
+                <div class="ref-date">Yesterday</div>
+            </span>
+        </div>
+        <div class="history-item">
+            <span class="ref-name">👤 Funke A.</span>
+            <span>
+                <span class="ref-earning">+₦1,000</span>
+                <div class="ref-date">Aug 28</div>
+            </span>
+        </div>
+        <div class="history-item">
+            <span class="ref-name">👤 Segun B.</span>
+            <span>
+                <span class="ref-earning">+₦1,000</span>
+                <div class="ref-date">Aug 25</div>
+            </span>
+        </div>
+        <div class="history-item">
+            <span class="ref-name">👤 Tunde O.</span>
+            <span>
+                <span class="ref-earning">+₦1,000</span>
+                <div class="ref-date">Aug 20</div>
+            </span>
+        </div>
+    </div>
+    
+    <!-- How It Works -->
+    <div class="how-it-works">
+        <h3>📖 How It Works</h3>
+        <div class="step">
+            <div class="num">1</div>
+            <div class="text">Share your unique referral code with friends</div>
+        </div>
+        <div class="step">
+            <div class="num">2</div>
+            <div class="text">Friend signs up using your code and places their first order</div>
+        </div>
+        <div class="step">
+            <div class="num">3</div>
+            <div class="text">You both earn <span class="highlight">₦1,000</span> in rewards!</div>
+        </div>
+        <div style="font-size:13px;color:#636E72;text-align:center;margin-top:10px;">
+            ⭐ Unlimited referrals • No expiry
+        </div>
+    </div>
+</body>
+</html>
