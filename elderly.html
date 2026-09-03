@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elderly Care & Support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .service-options {
+            margin: 15px 0;
+        }
+        .service-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 10px;
+        }
+        .service-left { display: flex; align-items: center; gap: 12px; }
+        .service-icon { font-size: 24px; }
+        .service-name { font-weight: bold; color: #2D3436; }
+        .service-desc { font-size: 12px; color: #636E72; }
+        
+        .toggle-switch {
+            width: 50px;
+            height: 28px;
+            background: #B2BEC3;
+            border-radius: 14px;
+            position: relative;
+            cursor: pointer;
+        }
+        .toggle-switch.active { background: #FF6B35; }
+        .toggle-switch .toggle-dot {
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: 0.3s;
+        }
+        .toggle-switch.active .toggle-dot { left: 25px; }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #2D3436;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E8ECEF;
+            border-radius: 10px;
+            font-size: 14px;
+            background: white;
+            font-family: Arial, sans-serif;
+        }
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .emergency {
+            border: 2px solid #FF1744;
+            border-radius: 12px;
+            padding: 15px;
+            background: #FFF5F5;
+            margin-bottom: 20px;
+        }
+        .emergency label { 
+            color: #FF1744; 
+            font-weight: bold; 
+            display: block;
+            margin-bottom: 5px;
+        }
+        .emergency input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #FF1744;
+            border-radius: 10px;
+            font-size: 14px;
+            background: white;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-primary:hover { background: #E55A2B; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="index.html" class="back">←</a>
+        <span class="title">Elderly Care & Support</span>
+        <span>❤️</span>
+    </div>
+    
+    <!-- Service Options -->
+    <div class="service-options">
+        <div class="service-option">
+            <div class="service-left">
+                <span class="service-icon">🛒</span>
+                <div><div class="service-name">Grocery Help</div><div class="service-desc">Shop and deliver groceries</div></div>
+            </div>
+            <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                <div class="toggle-dot"></div>
+            </div>
+        </div>
+        
+        <div class="service-option">
+            <div class="service-left">
+                <span class="service-icon">💊</span>
+                <div><div class="service-name">Prescription Runs</div><div class="service-desc">Pick up medications</div></div>
+            </div>
+            <div class="toggle-switch active" onclick="this.classList.toggle('active')">
+                <div class="toggle-dot"></div>
+            </div>
+        </div>
+        
+        <div class="service-option">
+            <div class="service-left">
+                <span class="service-icon">🤝</span>
+                <div><div class="service-name">Companion Visits</div><div class="service-desc">Friendly visits and check-ins</div></div>
+            </div>
+            <div class="toggle-switch" onclick="this.classList.toggle('active')">
+                <div class="toggle-dot"></div>
+            </div>
+        </div>
+        
+        <div class="service-option">
+            <div class="service-left">
+                <span class="service-icon">🏥</span>
+                <div><div class="service-name">Medical Appointments</div><div class="service-desc">Transport to appointments</div></div>
+            </div>
+            <div class="toggle-switch" onclick="this.classList.toggle('active')">
+                <div class="toggle-dot"></div>
+            </div>
+        </div>
+        
+        <div class="service-option">
+            <div class="service-left">
+                <span class="service-icon">📞</span>
+                <div><div class="service-name">Daily Check-ins</div><div class="service-desc">Regular phone/video check-ins</div></div>
+            </div>
+            <div class="toggle-switch" onclick="this.classList.toggle('active')">
+                <div class="toggle-dot"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Form -->
+    <div class="form-group">
+        <label>👤 Elderly Person's Name</label>
+        <input type="text" placeholder="Enter elderly person's name">
+    </div>
+    
+    <div class="form-group">
+        <label>📱 Contact Person</label>
+        <input type="text" placeholder="Enter primary contact name and phone">
+    </div>
+    
+    <div class="form-group">
+        <label>📅 Care Schedule</label>
+        <input type="text" placeholder="Select preferred schedule">
+    </div>
+    
+    <div class="form-group">
+        <label>📝 Special Needs/Notes</label>
+        <textarea placeholder="Any special needs or medical conditions?"></textarea>
+    </div>
+    
+    <!-- Emergency Contact -->
+    <div class="emergency">
+        <label>🚨 Emergency Contact Number</label>
+        <input type="text" placeholder="Enter emergency contact number">
+    </div>
+    
+    <!-- Request Button -->
+    <button class="btn-primary">❤️ Request Assistance</button>
+</body>
+</html>
