@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loading...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: white; 
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .loading-container {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            color: #FF6B35;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            margin: 20px auto;
+            border: 4px solid #E8ECEF;
+            border-top: 4px solid #FF6B35;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .text {
+            color: #636E72;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .dots {
+            display: inline-block;
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        
+        @keyframes dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+        }
+        
+        .progress-bar {
+            width: 200px;
+            height: 4px;
+            background: #E8ECEF;
+            border-radius: 2px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        
+        .progress-bar .fill {
+            height: 100%;
+            background: #FF6B35;
+            border-radius: 2px;
+            animation: progress 2s ease-in-out infinite;
+            width: 0%;
+        }
+        
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+        
+        .runner-animation {
+            font-size: 60px;
+            display: block;
+            animation: run 1s ease-in-out infinite alternate;
+        }
+        
+        @keyframes run {
+            0% { transform: translateX(-20px); }
+            100% { transform: translateX(20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <span class="runner-animation">🏃</span>
+        <div class="logo">TEETEES</div>
+        <div class="spinner"></div>
+        <div class="text">Loading<span class="dots">...</span></div>
+        <div class="progress-bar">
+            <div class="fill"></div>
+        </div>
+        <div style="color:#B2BEC3;font-size:12px;margin-top:10px;">
+            We're getting things ready for you
+        </div>
+    </div>
+</body>
+</html>
