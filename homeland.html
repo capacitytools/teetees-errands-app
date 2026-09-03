@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taste of Homeland</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .flag-colors {
+            display: flex;
+            height: 4px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .flag-green1 { flex: 1; background: #008751; }
+        .flag-white { flex: 1; background: white; }
+        .flag-green2 { flex: 1; background: #008751; }
+        
+        .categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            padding: 5px 0;
+        }
+        .category {
+            padding: 8px 20px;
+            border-radius: 20px;
+            background: white;
+            border: 2px solid #E8ECEF;
+            white-space: nowrap;
+            font-weight: bold;
+            color: #636E72;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .category.active {
+            background: #FF6B35;
+            color: white;
+            border-color: #FF6B35;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #E8ECEF;
+        }
+        .product-emoji { font-size: 50px; display: block; margin: 5px 0; }
+        .product-name { font-weight: bold; color: #2D3436; font-size: 14px; }
+        .product-price { color: #FF6B35; font-weight: bold; font-size: 14px; margin-top: 5px; }
+        .product-origin { font-size: 11px; color: #636E72; }
+        
+        .build-package {
+            text-align: center;
+            padding: 15px;
+            border: 2px dashed #FF6B35;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            background: #FFF3E0;
+            cursor: pointer;
+        }
+        .build-package .plus { font-size: 30px; color: #FF6B35; }
+        .build-package .text { font-weight: bold; color: #FF6B35; }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #2D3436;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E8ECEF;
+            border-radius: 10px;
+            font-size: 14px;
+            background: white;
+            font-family: Arial, sans-serif;
+        }
+        
+        .currency-selector {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .currency {
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: white;
+            border: 2px solid #E8ECEF;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+        .currency.active {
+            border-color: #FF6B35;
+            background: #FFF3E0;
+            color: #FF6B35;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-primary:hover { background: #E55A2B; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="index.html" class="back">←</a>
+        <span class="title">Taste of Homeland</span>
+        <span>🇳🇬</span>
+    </div>
+    
+    <!-- Flag Colors -->
+    <div class="flag-colors">
+        <div class="flag-green1"></div>
+        <div class="flag-white"></div>
+        <div class="flag-green2"></div>
+    </div>
+    
+    <!-- Categories -->
+    <div class="categories">
+        <div class="category active">Local Delicacies</div>
+        <div class="category">Traditional Fabrics</div>
+        <div class="category">Festive Items</div>
+        <div class="category">Care Packages</div>
+    </div>
+    
+    <!-- Products Grid -->
+    <div class="product-grid">
+        <div class="product-card">
+            <span class="product-emoji">🍲</span>
+            <div class="product-name">Jollof Rice</div>
+            <div class="product-price">₦5,000</div>
+            <div class="product-origin">🇳🇬 Nigeria</div>
+        </div>
+        <div class="product-card">
+            <span class="product-emoji">🥘</span>
+            <div class="product-name">Egusi Soup</div>
+            <div class="product-price">₦4,500</div>
+            <div class
