@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Errands</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        .filter-icon { font-size: 20px; cursor: pointer; }
+        
+        .search-bar {
+            padding: 12px 15px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #E8ECEF;
+            color: #B2BEC3;
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+            background: white;
+            border: 2px solid #E8ECEF;
+            font-weight: bold;
+            color: #636E72;
+            cursor: pointer;
+        }
+        .tab.active {
+            border-color: #FF6B35;
+            color: #FF6B35;
+            background: #FFF3E0;
+        }
+        
+        .order-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 12px;
+        }
+        .order-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .order-service {
+            font-weight: bold;
+            color: #2D3436;
+        }
+        .order-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .order-status.completed { background: #E8F5E9; color: #00C853; }
+        .order-status.active { background: #FFF3E0; color: #FF6B35; }
+        .order-status.pending { background: #F5F6FA; color: #636E72; }
+        .order-status.cancelled { background: #FFEBEE; color: #FF1744; }
+        
+        .order-details {
+            display: flex;
+            justify-content: space-between;
+            color: #636E72;
+            font-size: 13px;
+        }
+        .order-amount {
+            font-weight: bold;
+            color: #2D3436;
+        }
+        
+        .reorder-btn {
+            margin-top: 10px;
+            padding: 6px 16px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E8ECEF;
+        }
+        .stat {
+            flex: 1;
+            text-align: center;
+        }
+        .stat-number { font-size: 20px; font-weight: bold; color: #FF6B35; }
+        .stat-label { font-size: 11px; color: #636E72; }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #E8ECEF;
+        }
+        .nav-item {
+            text-align: center;
+            color: #B2BEC3;
+            font-size: 12px;
+            text-decoration: none;
+        }
+        .nav-item.active { color: #FF6B35; }
+        .nav-item .nav-icon { font-size: 24px; display: block; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="index.html" class="back">←</a>
+        <span class="title">My Errands</span>
+        <span class="filter-icon">⚙️</span>
+    </div>
+    
+    <!-- Search -->
+    <div class="search-bar">🔍 Search orders...</div>
+    
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab active">Active</div>
+        <div class="tab">Completed</div>
+        <div class="tab">Cancelled</div>
+    </div>
+    
+    <!-- Order Cards -->
+    <div class="order-card">
+        <div class="order-top">
+            <span class="order-service">🛒 Grocery Shopping</span>
+            <span class="order-status active">🔄 Active</span>
+        </div>
+        <div class="order-details">
+            <span>Today, 10:30 AM</span>
+            <span class="order-amount">₦12,500</span>
+        </div>
+        <button class="reorder-btn">🔄 Reorder</button>
+    </div>
+    
+    <div class="order-card">
+        <div class="order-top">
+            <span class="order-service">💊 Prescription Pickup</span>
+            <span class="order-status completed">✅ Completed</span>
+        </div>
+        <div class="order-details">
+            <span>Yesterday, 2:00 PM</span>
+            <span class="order-amount">₦3,200</span>
+        </div>
+        <button class="reorder-btn">🔄 Reorder</button>
+    </div>
+    
+    <div class="order-card">
+        <div class="order-top">
+            <span class="order-service">🎁 Gift Delivery</span>
+            <span class="order-status pending">⏳ Pending</span>
+        </div>
+        <div class="order-details">
+            <span>Aug 28, 4:00 PM</span>
+            <span class="order-amount">₦8,000</span>
+        </div>
+        <button class="reorder-btn">🔄 Reorder</button>
+    </div>
+    
+    <div class="order-card">
+        <div class="order-top">
+            <span class="order-service">🚚 Courier Dispatch</span>
+            <span class="order-status cancelled">❌ Cancelled</span>
+        </div>
+        <div class="order-details">
+            <span>Aug 25, 11:00 AM</span>
+            <span class="order-amount">₦5,000</span>
+        </div>
+        <button class="reorder-btn">🔄 Reorder</button>
+    </div>
+    
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-number">24</div>
+            <div class="stat-label">Total Errands</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">18</div>
+            <div class="stat-label">Completed</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">⭐ 4.8</div>
+            <div class="stat-label">Rating</div>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="app.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            Home
+        </a>
+        <a href="services.html" class="nav-item">
+            <span class="nav-icon">📋</span>
+            Services
+        </a>
+        <a href="history.html" class="nav-item active">
+            <span class="nav-icon">📦</span>
+            Orders
+        </a>
+        <a href="profile.html" class="nav-item">
+            <span class="nav-icon">👤</span>
+            Profile
+        </a>
+    </div>
+</body>
+</html>
