@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prescription Pickup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        .pill-icon { 
+            font-size: 24px; 
+        }
+        
+        .security-badge {
+            background: #E8F5E9;
+            color: #00C853;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #2D3436;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #E8ECEF;
+            border-radius: 10px;
+            font-size: 14px;
+            background: white;
+            font-family: Arial, sans-serif;
+        }
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .upload-area {
+            border: 2px dashed #E8ECEF;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            background: white;
+            cursor: pointer;
+        }
+        .upload-area .camera-icon {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .upload-area .upload-text {
+            color: #636E72;
+            font-size: 14px;
+        }
+        .upload-area .upload-sub {
+            color: #B2BEC3;
+            font-size: 12px;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-primary:hover { background: #E55A2B; }
+        
+        .secure-text {
+            text-align: center;
+            color: #636E72;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+        
+        /* Mobile optimized */
+        @media (max-width: 480px) {
+            .security-badge { font-size: 12px; padding: 6px 14px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="index.html" class="back">←</a>
+        <span class="title">Prescription Pickup</span>
+        <span class="pill-icon">💊</span>
+    </div>
+    
+    <!-- Security Badge -->
+    <div class="security-badge">🔒 Secure & Confidential</div>
+    
+    <!-- Pharmacy Name -->
+    <div class="form-group">
+        <label>🏪 Pharmacy Name</label>
+        <input type="text" placeholder="Enter pharmacy name">
+    </div>
+    
+    <!-- Pharmacy Address -->
+    <div class="form-group">
+        <label>📍 Pharmacy Address</label>
+        <input type="text" placeholder="Enter pharmacy address">
+    </div>
+    
+    <!-- Prescription Details -->
+    <div class="form-group">
+        <label>📋 Prescription Details</label>
+        <textarea placeholder="Enter prescription number or details"></textarea>
+    </div>
+    
+    <!-- Upload Photo -->
+    <div class="form-group">
+        <label>📸 Upload Prescription Photo</label>
+        <div class="upload-area">
+            <span class="camera-icon">📷</span>
+            <div class="upload-text">Tap to upload photo of prescription</div>
+            <div class="upload-sub">JPG, PNG or PDF accepted</div>
+        </div>
+    </div>
+    
+    <!-- Patient Name -->
+    <div class="form-group">
+        <label>👤 Patient Name</label>
+        <input type="text" placeholder="Enter patient's full name">
+    </div>
+    
+    <!-- Pickup Date & Time -->
+    <div class="form-group">
+        <label>📅 Pickup Date & Time</label>
+        <input type="text" placeholder="Select pickup date and time">
+    </div>
+    
+    <!-- Request Button -->
+    <button class="btn-primary">💊 Request Pickup</button>
+    
+    <!-- Secure Text -->
+    <div class="secure-text">Your prescription information is secure and confidential</div>
+</body>
+</html>
