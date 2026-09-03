@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scheduled Errands</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        .add-btn {
+            padding: 8px 16px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        
+        .calendar-mini {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 20px;
+        }
+        .calendar-mini .month {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: #2D3436;
+            margin-bottom: 12px;
+        }
+        .calendar-mini .month .arrow { font-size: 20px; cursor: pointer; }
+        .calendar-mini .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+        }
+        .calendar-mini .days .day {
+            padding: 8px 0;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #636E72;
+        }
+        .calendar-mini .days .day.active {
+            background: #FF6B35;
+            color: white;
+            font-weight: bold;
+        }
+        .calendar-mini .days .day.has-order {
+            position: relative;
+        }
+        .calendar-mini .days .day.has-order::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #FF6B35;
+            border-radius: 50%;
+            display: block;
+            margin: 2px auto 0;
+        }
+        .calendar-mini .days .day.active.has-order::after {
+            background: white;
+        }
+        .calendar-mini .days .day.weekend { color: #FF1744; }
+        
+        .scheduled-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 12px;
+        }
+        .scheduled-card .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .scheduled-card .service {
+            font-weight: bold;
+            color: #2D3436;
+            font-size: 16px;
+        }
+        .scheduled-card .frequency {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            background: #FFF3E0;
+            color: #FF6B35;
+        }
+        .scheduled-card .details {
+            color: #636E72;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .scheduled-card .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #F5F6FA;
+        }
+        .scheduled-card .actions button {
+            background: none;
+            border: none;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .scheduled-card .actions .edit { color: #1877F2; }
+        .scheduled-card .actions .pause { color: #FFD700; }
+        .scheduled-card .actions .cancel { color: #FF1744; }
+        
+        .add-scheduled {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px dashed #FF6B35;
+            text-align: center;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .add-scheduled .icon { font-size: 36px; display: block; }
+        .add-scheduled .text { font-weight: bold; color: #FF6B35; font-size: 16px; }
+        .add-scheduled .sub { color: #636E72; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="app.html" class="back">←</a>
+        <span class="title">Scheduled Errands</span>
+        <button class="add-btn">+ Add</button>
+    </div>
+    
+    <!-- Calendar -->
+    <div class="calendar-mini">
+        <div class="month">
+            <span class="arrow">‹</span>
+            <span>September 2026</span>
+            <span class="arrow">›</span>
+        </div>
+        <div class="days">
+            <span class="day" style="font-weight:bold;color:#2D3436;">S</span>
+            <span class="day" style="font-weight:bold;color:#2D3436;">M</span>
+            <span class="day" style="font-weight:bold;color:#2D3436;">T</span>
+            <span class="day" style="font-weight:bold;color:#2D3436;">W</span>
+            <span class="day" style="font-weight:bold;color:#2D3436;">T</span>
+            <span class="day" style="font-weight:bold;color:#2D3436;">F</span>
+            <span class="day" style="font-weight:bold;color:#2D3436;">S</span>
+            <span class="day">1</span>
+            <span class="day">2</span>
+            <span class="day">3</span>
+            <span class="day">4</span>
+            <span class="day">5</span>
+            <span class="day">6</span>
+            <span class="day weekend">7</span>
+            <span class="day">8</span>
+            <span class="day has-order">9</span>
+            <span class="day">10</span>
+            <span class="day">11</span>
+            <span class="day">12</span>
+            <span class="day">13</span>
+            <span class="day weekend">14</span>
+            <span class="day">15</span>
+            <span class="day active has-order">16</span>
+            <span class="day">17</span>
+            <span class="day">18</span>
+            <span class="day has-order">19</span>
+            <span class="day">20</span>
+            <span class="day weekend">21</span>
+            <span class="day">22</span>
+            <span class="day">23</span>
+            <span class="day">24</span>
+            <span class="day">25</span>
+            <span class="day">26</span>
+            <span class="day">27</span>
+            <span class="day weekend">28</span>
+            <span class="day">29</span>
+            <span class="day">30</span>
+        </div>
+    </div>
+    
+    <!-- Scheduled Orders -->
+    <div class="scheduled-card">
+        <div class="top">
+            <span class="service">🛒 Weekly Groceries</span>
+            <span class="frequency">📅 Weekly</span>
+        </div>
+        <div class="details">
+            Every Monday at 10:00 AM<br>
+            Delivery to: No 1, Road 10, Iworoko
+        </div>
+        <div class="actions">
+            <button class="edit">✏️ Edit</button>
+            <button class="pause">⏸️ Pause</button>
+            <button class="cancel">🗑️ Cancel</button>
+        </div>
+    </div>
+    
+    <div class="scheduled-card">
+        <div class="top">
+            <span class="service">💊 Prescription Refill</span>
+            <span class="frequency">📅 Monthly</span>
+        </div>
+        <div class="details">
+            Every 1st of the month at 2:00 PM<br>
+            Pickup from: EKSU Pharmacy
+        </div>
+        <div class="actions">
+            <button class="edit">✏️ Edit</button>
+            <button class="pause">⏸️ Pause</button>
+            <button class="cancel">🗑️ Cancel</button>
+        </div>
+    </div>
+    
+    <div class="scheduled-card">
+        <div class="top">
+            <span class="service">❤️ Elderly Check-in</span>
+            <span class="frequency">📅 Daily</span>
+        </div>
+        <div class="details">
+            Every day at 8:00 AM<br>
+            Visit: Grandma's House, Ado Ekiti
+        </div>
+        <div class="actions">
+            <button class="edit">✏️ Edit</button>
+            <button class="pause">⏸️ Pause</button>
+            <button class="cancel">🗑️ Cancel</button>
+        </div>
+    </div>
+    
+    <!-- Add New -->
+    <div class="add-scheduled">
+        <span class="icon">➕</span>
+        <div class="text">Add New Recurring Order</div>
+        <div class="sub">Set up weekly, monthly, or daily schedules</div>
+    </div>
+</body>
+</html>
