@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Track Your Errand</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            text-decoration: none;
+            color: #2D3436;
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: #2D3436; 
+        }
+        
+        .order-id {
+            text-align: center;
+            color: #636E72;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .timeline {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #E8ECEF;
+        }
+        .step {
+            display: flex;
+            gap: 15px;
+            padding: 12px 0;
+            position: relative;
+        }
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background: #E8ECEF;
+        }
+        .step .dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .step .dot.completed { background: #00C853; color: white; }
+        .step .dot.active { background: #FF6B35; color: white; animation: pulse 1.5s infinite; }
+        .step .dot.pending { background: #E8ECEF; color: #B2BEC3; }
+        
+        .step .info { flex: 1; }
+        .step .info .step-title { font-weight: bold; color: #2D3436; }
+        .step .info .step-time { font-size: 12px; color: #636E72; }
+        .step .info .step-desc { font-size: 13px; color: #636E72; }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .map-container {
+            background: #E8ECEF;
+            border-radius: 12px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border: 1px solid #DDE1E6;
+            position: relative;
+        }
+        .map-container .map-text { color: #636E72; font-size: 14px; }
+        .map-pin {
+            position: absolute;
+            font-size: 30px;
+        }
+        .map-pin.start { bottom: 20px; left: 20%; }
+        .map-pin.end { top: 20px; right: 20%; }
+        
+        .runner-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #E8ECEF;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .runner-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #FF6B35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .runner-info { flex: 1; }
+        .runner-info .name { font-weight: bold; color: #2D3436; font-size: 16px; }
+        .runner-info .rating { color: #FFD700; font-size: 14px; }
+        .runner-info .phone { color: #636E72; font-size: 13px; }
+        .runner-info .phone span { color: #FF6B35; }
+        
+        .btn-contact {
+            padding: 8px 20px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .eta {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 20px;
+        }
+        .eta .eta-text { color: #636E72; font-size: 14px; }
+        .eta .eta-time { color: #FF6B35; font-size: 28px; font-weight: bold; }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .btn-track {
+            flex: 1;
+            padding: 12px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-support {
+            flex: 1;
+            padding: 12px;
+            background: white;
+            color: #FF6B35;
+            border: 2px solid #FF6B35;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <a href="index.html" class="back">←</a>
+        <span class="title">Track Your Errand</span>
+        <span>📍</span>
+    </div>
+    
+    <!-- Order ID -->
+    <div class="order-id">Order #ORD-2024-001</div>
+    
+    <!-- Timeline -->
+    <div class="timeline">
+        <div class="step">
+            <div class="dot completed">✓</div>
+            <div class="info">
+                <div class="step-title">Order Placed</div>
+                <div class="step-time">Today, 10:30 AM</div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="dot completed">✓</div>
+            <div class="info">
+                <div class="step-title">Assigned to Runner</div>
+                <div class="step-time">Today, 10:35 AM</div>
+                <div class="step-desc">Runner John Doe assigned</div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="dot active">⏳</div>
+            <div class="info">
+                <div class="step-title">Picked Up</div>
+                <div class="step-time">In progress...</div>
+                <div class="step-desc">Runner is heading to pickup</div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="dot pending">⏳</div>
+            <div class="info">
+                <div class="step-title">In Transit</div>
+                <div class="step-time">Pending</div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="dot pending">⏳</div>
+            <div class="info">
+                <div class="step-title">Delivered</div>
+                <div class="step-time">Pending</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Map -->
+    <div class="map-container">
+        <span class="map-pin start">📍</span>
+        <span class="map-pin end">🏠</span>
+        <div class="map-text">🗺️ Live tracking map</div>
+    </div>
+    
+    <!-- Runner Card -->
+    <div class="runner-card">
+        <div class="runner-photo">👤</div>
+        <div class="runner-info">
+            <div class="name">John Doe</div>
+            <div class="rating">⭐ 4.8 (245 reviews)</div>
+            <div class="phone">📞 <span>Contact Runner</span></div>
+        </div>
+        <button class="btn-contact">📞 Call</button>
+    </div>
+    
+    <!-- ETA -->
+    <div class="eta">
+        <div class="eta-text">Estimated Delivery</div>
+        <div class="eta-time">15 min</div>
+    </div>
+    
+    <!-- Buttons -->
+    <div class="btn-group">
+        <button class="btn-track">📍 Track Order</button>
+        <button class="btn-support">💬 Contact Support</button>
+    </div>
+</body>
+</html>
