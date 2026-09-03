@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .success-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            border: 1px solid #E8ECEF;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            background: #E8F5E9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            animation: pop 0.5s ease-out;
+        }
+        
+        @keyframes pop {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        .checkmark .icon {
+            font-size: 40px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .success-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00C853;
+            margin-bottom: 8px;
+        }
+        
+        .success-sub {
+            color: #636E72;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .order-id {
+            color: #B2BEC3;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .order-summary {
+            background: #F8F9FA;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        
+        .order-summary .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 14px;
+            color: #2D3436;
+        }
+        
+        .order-summary .row .label { color: #636E72; }
+        
+        .eta {
+            display: inline-block;
+            padding: 6px 20px;
+            background: #FFF3E0;
+            color: #FF6B35;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .btn-primary {
+            flex: 1;
+            padding: 14px;
+            background: #FF6B35;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .btn-outline {
+            flex: 1;
+            padding: 14px;
+            background: white;
+            color: #FF6B35;
+            border: 2px solid #FF6B35;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .share-section {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .share-section .share {
+            padding: 8px 16px;
+            border: 1px solid #E8ECEF;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #636E72;
+            cursor: pointer;
+            background: white;
+        }
+        
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: confetti-fall 3s linear infinite;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti-container">
+        <!-- Confetti pieces -->
+        <div class="confetti-piece" style="left:10%;background:#FF6B35;animation-delay:0s;"></div>
+        <div class="confetti-piece" style="left:25%;background:#FFD700;animation-delay:0.5s;"></div>
+        <div class="confetti-piece" style="left:40%;background:#00C853;animation-delay:1s;"></div>
+        <div class="confetti-piece" style="left:55%;background:#1877F2;animation-delay:0.3s;"></div>
+        <div class="confetti-piece" style="left:70%;background:#FF6B35;animation-delay:0.8s;"></div>
+        <div class="confetti-piece" style="left:85%;background:#FFD700;animation-delay:1.2s;"></div>
+        <div class="confetti-piece" style="left:15%;background:#FF1744;animation-delay:0.6s;"></div>
+        <div class="confetti-piece" style="left:45%;background:#FF6B35;animation-delay:0.9s;"></div>
+        <div class="confetti-piece" style="left:75%;background:#00C853;animation-delay:0.4s;"></div>
+    </div>
+    
+    <div class="success-container">
+        <div class="checkmark">
+            <span class="icon">✅</span>
+        </div>
+        
+        <div class="success-title">Order Placed!</div>
+        <div class="success-sub">Your errand is on its way</div>
+        <div class="order-id">Order #ORD-2024-001</div>
+        
+        <div class="eta">🚚 Estimated Delivery: 30-45 min</div>
+        
+        <div class="order-summary">
+            <div class="row"><span class="label">Service</span><span>🛒 Grocery Shopping</span></div>
+            <div class="row"><span class="label">Delivery To</span><span>No 1, Road 10, Iworoko</span></div>
+            <div class="row"><span class="label">Total</span><span>₦7,800</span></div>
+        </div>
+        
+        <div class="btn-group">
+            <button class="btn-primary">📍 Track Order</button>
+            <button class="btn-outline">🛍️ Continue Shopping</button>
+        </div>
+        
+        <div class="share-section">
+            <span class="share">📱 Share</span>
+            <span class="share">💬 WhatsApp</span>
+            <span class="share">📘 Facebook</span>
+        </div>
+    </div>
+</body>
+</html>
