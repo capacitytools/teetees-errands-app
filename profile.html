@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+        }
+        
+        .profile-header {
+            text-align: center;
+            background: white;
+            border-radius: 12px;
+            padding: 30px 20px;
+            border: 1px solid #E8ECEF;
+            margin-bottom: 20px;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #FF6B35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 36px;
+            color: white;
+        }
+        .profile-name { font-size: 20px; font-weight: bold; color: #2D3436; }
+        .profile-email { color: #636E72; font-size: 14px; }
+        .profile-since { color: #B2BEC3; font-size: 12px; margin-top: 5px; }
+        
+        .loyalty-card {
+            background: linear-gradient(135deg, #FF6B35, #FF8F65);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .loyalty-points {
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .loyalty-label { font-size: 14px; opacity: 0.9; }
+        .loyalty-progress {
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            margin-top: 10px;
+        }
+        .loyalty-progress .fill {
+            height: 100%;
+            background: white;
+            border-radius: 3px;
+            width: 65%;
+        }
+        
+        .menu-section {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E8ECEF;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #F5F6FA;
+            text-decoration: none;
+            color: #2D3436;
+            cursor: pointer;
+        }
+        .menu-item:last-child { border-bottom: none; }
+        .menu-item .left { display: flex; align-items: center; gap: 12px; }
+        .menu-item .icon { font-size: 20px; }
+        .menu-item .label { font-weight: bold; }
+        .menu-item .arrow { color: #B2BEC3; font-size: 18px; }
+        .menu-item .badge {
+            background: #FF6B35;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        
+        .logout-btn {
+            width: 100%;
+            padding: 15px;
+            background: #FFEBEE;
+            color: #FF1744;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #E8ECEF;
+        }
+        .nav-item {
+            text-align: center;
+            color: #B2BEC3;
+            font-size: 12px;
+            text-decoration: none;
+        }
+        .nav-item.active { color: #FF6B35; }
+        .nav-item .nav-icon { font-size: 24px; display: block; }
+    </style>
+</head>
+<body>
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="avatar">👤</div>
+        <div class="profile-name">Bukola Lawal</div>
+        <div class="profile-email">bukola@teetees.com</div>
+        <div class="profile-since">Customer since 2024</div>
+    </div>
+    
+    <!-- Loyalty Points -->
+    <div class="loyalty-card">
+        <div class="loyalty-label">⭐ Your Rewards</div>
+        <div class="loyalty-points">1,250 pts</div>
+        <div style="font-size:13px;opacity:0.9;">250 pts to next reward</div>
+        <div class="loyalty-progress"><div class="fill"></div></div>
+    </div>
+    
+    <!-- Menu -->
+    <div class="menu-section">
+        <a href="#" class="menu-item">
+            <span class="left"><span class="icon">👤</span><span class="label">Personal Information</span></span>
+            <span class="arrow">→</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="left"><span class="icon">📍</span><span class="label">Saved Addresses</span></span>
+            <span class="arrow">→</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="left"><span class="icon">💳</span><span class="label">Payment Methods</span></span>
+            <span class="arrow">→</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="left"><span class="icon">🔔</span><span class="label">Notification Settings</span></span>
+            <span class="badge">3</span>
+            <span class="arrow">→</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="left"><span class="icon">📌</span><span class="label">Saved Places</span></span>
+            <span class="arrow">→</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="left"><span class="icon">🎁</span><span class="label">Referral Program</span></span>
+            <span class="badge">Earn</span>
+            <span class="arrow">→</span>
+        </a>
+    </div>
+    
+    <div class="menu-section">
+        <a href="#" class="menu-item">
+            <span class="left"><span class="icon">❓</span><span class="label">Help & Support</span></span>
+            <span class="arrow">→</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="left"><span class="icon">ℹ️</span><span class="label">About Teetees</span></span>
+            <span class="arrow">→</span>
+        </a>
+    </div>
+    
+    <!-- Logout -->
+    <button class="logout-btn">🚪 Logout</button>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="app.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            Home
+        </a>
+        <a href="services.html" class="nav-item">
+            <span class="nav-icon">📋</span>
+            Services
+        </a>
+        <a href="history.html" class="nav-item">
+            <span class="nav-icon">📦</span>
+            Orders
+        </a>
+        <a href="profile.html" class="nav-item active">
+            <span class="nav-icon">👤</span>
+            Profile
+        </a>
+    </div>
+</body>
+</html>
