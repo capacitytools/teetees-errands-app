@@ -1,112 +1,137 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Loading...</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Empty</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: white; 
-            height: 100vh;
+        body {
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        
-        .loading-container {
-            text-align: center;
+            min-height: 100vh;
             padding: 20px;
         }
-        
-        .logo {
-            font-size: 48px;
+        .empty-container {
+            text-align: center;
+            padding: 20px;
+            max-width: 320px;
+        }
+        .empty-icon { font-size: 100px; display: block; margin-bottom: 20px; }
+        .empty-title {
+            font-size: 24px;
             font-weight: bold;
-            color: #FF6B35;
+            color: var(--text-primary);
             margin-bottom: 10px;
-            letter-spacing: 2px;
         }
-        
-        .spinner {
-            width: 60px;
-            height: 60px;
-            margin: 20px auto;
-            border: 4px solid #E8ECEF;
-            border-top: 4px solid #FF6B35;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .text {
-            color: #636E72;
+        .empty-desc {
+            color: var(--text-secondary);
             font-size: 16px;
-            margin-top: 10px;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
-        
-        .dots {
-            display: inline-block;
-            animation: dots 1.5s steps(4, end) infinite;
+        .btn-primary {
+            padding: 14px 40px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
         }
-        
-        @keyframes dots {
-            0% { content: ''; }
-            25% { content: '.'; }
-            50% { content: '..'; }
-            75% { content: '...'; }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .suggestions {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
-        
-        .progress-bar {
-            width: 200px;
-            height: 4px;
-            background: #E8ECEF;
-            border-radius: 2px;
-            margin: 20px auto;
-            overflow: hidden;
+        .suggestion {
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
         }
-        
-        .progress-bar .fill {
-            height: 100%;
-            background: #FF6B35;
-            border-radius: 2px;
-            animation: progress 2s ease-in-out infinite;
-            width: 0%;
+        .suggestion:hover { border-color: var(--primary); color: var(--primary); }
+        .empty-variant {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
         }
-        
-        @keyframes progress {
-            0% { width: 0%; }
-            50% { width: 70%; }
-            100% { width: 100%; }
+        .empty-variant .variant-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-bottom: 10px;
         }
-        
-        .runner-animation {
-            font-size: 60px;
-            display: block;
-            animation: run 1s ease-in-out infinite alternate;
+        .variant-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
-        
-        @keyframes run {
-            0% { transform: translateX(-20px); }
-            100% { transform: translateX(20px); }
+        .variant-item {
+            padding: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
         }
+        .variant-item:hover { border-color: var(--primary); }
+        .variant-item .icon { font-size: 24px; display: block; }
+        .variant-item .label { font-size: 11px; color: var(--text-secondary); margin-top: 3px; }
     </style>
 </head>
 <body>
-    <div class="loading-container">
-        <span class="runner-animation">🏃</span>
-        <div class="logo">TEETEES</div>
-        <div class="spinner"></div>
-        <div class="text">Loading<span class="dots">...</span></div>
-        <div class="progress-bar">
-            <div class="fill"></div>
+    <div class="empty-container">
+        <span class="empty-icon">🛒</span>
+        <div class="empty-title">Your Cart is Empty</div>
+        <div class="empty-desc">
+            Looks like you haven't placed any orders yet.<br>
+            Start your first errand today!
         </div>
-        <div style="color:#B2BEC3;font-size:12px;margin-top:10px;">
-            We're getting things ready for you
+        <button class="btn-primary">🛍️ Start Your First Errand</button>
+
+        <div class="suggestions">
+            <span class="suggestion">🛒 Grocery</span>
+            <span class="suggestion">💊 Prescription</span>
+            <span class="suggestion">🎁 Gift</span>
+        </div>
+
+        <div class="empty-variant">
+            <div class="variant-title">Other Empty States</div>
+            <div class="variant-grid">
+                <div class="variant-item">
+                    <span class="icon">📦</span>
+                    <div class="label">No Orders</div>
+                </div>
+                <div class="variant-item">
+                    <span class="icon">🔔</span>
+                    <div class="label">No Notifications</div>
+                </div>
+                <div class="variant-item">
+                    <span class="icon">⭐</span>
+                    <div class="label">No Reviews</div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script src="/global.js"></script>
 </body>
 </html>
