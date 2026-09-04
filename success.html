@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Order Confirmed</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px; 
-            min-height: 100vh;
+        body {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
         }
-        
         .success-container {
-            background: white;
-            border-radius: 20px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
             padding: 30px 25px;
             text-align: center;
-            border: 1px solid #E8ECEF;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            border: 1px solid var(--border-color);
             max-width: 400px;
-            margin: 0 auto;
             width: 100%;
         }
-        
         .checkmark {
             width: 80px;
             height: 80px;
@@ -40,116 +39,103 @@
             margin: 0 auto 20px;
             animation: pop 0.5s ease-out;
         }
-        
         @keyframes pop {
             0% { transform: scale(0); }
             70% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
-        
-        .checkmark .icon {
-            font-size: 40px;
-            animation: bounce 1s ease-in-out infinite;
-        }
-        
+        .checkmark .icon { font-size: 40px; animation: bounce 1s ease-in-out infinite; }
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
         }
-        
         .success-title {
             font-size: 28px;
             font-weight: bold;
             color: #00C853;
             margin-bottom: 8px;
         }
-        
         .success-sub {
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 16px;
             margin-bottom: 5px;
         }
-        
         .order-id {
-            color: #B2BEC3;
+            color: var(--text-secondary);
             font-size: 14px;
             margin-bottom: 20px;
         }
-        
         .order-summary {
-            background: #F8F9FA;
-            border-radius: 12px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
             padding: 15px;
             text-align: left;
             margin-bottom: 20px;
         }
-        
         .order-summary .row {
             display: flex;
             justify-content: space-between;
             padding: 6px 0;
             font-size: 14px;
-            color: #2D3436;
+            color: var(--text-primary);
         }
-        
-        .order-summary .row .label { color: #636E72; }
-        
+        .order-summary .row .label { color: var(--text-secondary); }
         .eta {
             display: inline-block;
             padding: 6px 20px;
             background: #FFF3E0;
-            color: #FF6B35;
+            color: var(--primary);
             border-radius: 20px;
             font-weight: bold;
             font-size: 14px;
             margin-bottom: 20px;
         }
-        
         .btn-group {
             display: flex;
             gap: 10px;
             margin-top: 10px;
         }
-        
         .btn-primary {
             flex: 1;
             padding: 14px;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 50px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s;
         }
-        
+        .btn-primary:hover { transform: translateY(-2px); }
         .btn-outline {
             flex: 1;
             padding: 14px;
-            background: white;
-            color: #FF6B35;
-            border: 2px solid #FF6B35;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
             border-radius: 50px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s;
         }
-        
+        .btn-outline:hover { background: var(--primary); color: white; }
         .share-section {
             margin-top: 15px;
             display: flex;
             gap: 10px;
             justify-content: center;
         }
-        
         .share-section .share {
             padding: 8px 16px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             border-radius: 20px;
             font-size: 13px;
-            color: #636E72;
+            color: var(--text-secondary);
             cursor: pointer;
-            background: white;
+            background: var(--card-bg);
+            transition: all 0.3s;
         }
-        
+        .share-section .share:hover { border-color: var(--primary); }
         .confetti-container {
             position: fixed;
             top: 0;
@@ -158,15 +144,14 @@
             bottom: 0;
             pointer-events: none;
             overflow: hidden;
+            z-index: -1;
         }
-        
         .confetti-piece {
             position: absolute;
             width: 10px;
             height: 10px;
             animation: confetti-fall 3s linear infinite;
         }
-        
         @keyframes confetti-fall {
             0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
@@ -175,45 +160,42 @@
 </head>
 <body>
     <div class="confetti-container">
-        <!-- Confetti pieces -->
-        <div class="confetti-piece" style="left:10%;background:#FF6B35;animation-delay:0s;"></div>
+        <div class="confetti-piece" style="left:10%;background:var(--primary);animation-delay:0s;"></div>
         <div class="confetti-piece" style="left:25%;background:#FFD700;animation-delay:0.5s;"></div>
         <div class="confetti-piece" style="left:40%;background:#00C853;animation-delay:1s;"></div>
         <div class="confetti-piece" style="left:55%;background:#1877F2;animation-delay:0.3s;"></div>
-        <div class="confetti-piece" style="left:70%;background:#FF6B35;animation-delay:0.8s;"></div>
+        <div class="confetti-piece" style="left:70%;background:var(--primary);animation-delay:0.8s;"></div>
         <div class="confetti-piece" style="left:85%;background:#FFD700;animation-delay:1.2s;"></div>
         <div class="confetti-piece" style="left:15%;background:#FF1744;animation-delay:0.6s;"></div>
-        <div class="confetti-piece" style="left:45%;background:#FF6B35;animation-delay:0.9s;"></div>
+        <div class="confetti-piece" style="left:45%;background:var(--primary);animation-delay:0.9s;"></div>
         <div class="confetti-piece" style="left:75%;background:#00C853;animation-delay:0.4s;"></div>
     </div>
-    
+
     <div class="success-container">
-        <div class="checkmark">
-            <span class="icon">✅</span>
-        </div>
-        
+        <div class="checkmark"><span class="icon">✅</span></div>
         <div class="success-title">Order Placed!</div>
         <div class="success-sub">Your errand is on its way</div>
         <div class="order-id">Order #ORD-2024-001</div>
-        
         <div class="eta">🚚 Estimated Delivery: 30-45 min</div>
-        
+
         <div class="order-summary">
             <div class="row"><span class="label">Service</span><span>🛒 Grocery Shopping</span></div>
             <div class="row"><span class="label">Delivery To</span><span>No 1, Road 10, Iworoko</span></div>
             <div class="row"><span class="label">Total</span><span>₦7,800</span></div>
         </div>
-        
+
         <div class="btn-group">
-            <button class="btn-primary">📍 Track Order</button>
-            <button class="btn-outline">🛍️ Continue Shopping</button>
+            <a href="track.html" class="btn-primary">📍 Track Order</a>
+            <a href="app.html" class="btn-outline">🛍️ Continue Shopping</a>
         </div>
-        
+
         <div class="share-section">
             <span class="share">📱 Share</span>
             <span class="share">💬 WhatsApp</span>
             <span class="share">📘 Facebook</span>
         </div>
     </div>
+
+    <script src="/global.js"></script>
 </body>
 </html>
