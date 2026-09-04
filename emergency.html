@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Emergency</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
         .emergency-banner {
-            background: linear-gradient(135deg, #FF1744, #FF6B35);
-            border-radius: 16px;
+            background: linear-gradient(135deg, #FF1744, var(--primary));
+            border-radius: var(--radius-lg);
             padding: 20px;
             text-align: center;
             color: white;
@@ -31,63 +32,10 @@
             letter-spacing: 4px;
             text-transform: uppercase;
         }
-        .emergency-banner .icon {
-            font-size: 60px;
-            display: block;
-            margin: 5px 0;
-        }
-        .emergency-banner .title {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .emergency-banner .sub {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            color: #2D3436;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #E8ECEF;
-            border-radius: 10px;
-            font-size: 14px;
-            background: white;
-        }
-        .form-group select { appearance: none; }
-        .form-group textarea {
-            min-height: 60px;
-            resize: vertical;
-            font-family: Arial, sans-serif;
-        }
-        
+        .emergency-banner .icon { font-size: 60px; display: block; margin: 5px 0; }
+        .emergency-banner .title { font-size: 24px; font-weight: bold; }
+        .emergency-banner .sub { font-size: 14px; opacity: 0.9; }
+
         .urgency-level {
             display: flex;
             gap: 10px;
@@ -97,37 +45,38 @@
             flex: 1;
             padding: 12px;
             text-align: center;
-            border: 2px solid #E8ECEF;
-            border-radius: 10px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
             font-weight: bold;
             cursor: pointer;
-            color: #636E72;
-            background: white;
+            color: var(--text-secondary);
+            background: var(--card-bg);
+            transition: all 0.3s;
         }
         .urgency-level .level.active {
             border-color: #FF1744;
             color: #FF1744;
             background: #FFEBEE;
         }
-        .urgency-level .level.high { border-color: #FF6B35; color: #FF6B35; }
+        .urgency-level .level.high { border-color: var(--primary); color: var(--primary); }
         .urgency-level .level.high.active { background: #FFF3E0; }
-        
+
         .priority-fee {
             background: #FFF3E0;
-            border-radius: 12px;
+            border-radius: var(--radius);
             padding: 15px;
             margin: 15px 0;
-            border-left: 4px solid #FF6B35;
+            border-left: 4px solid var(--primary);
         }
         .priority-fee .row {
             display: flex;
             justify-content: space-between;
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 14px;
         }
-        .priority-fee .row .label { color: #636E72; }
+        .priority-fee .row .label { color: var(--text-secondary); }
         .priority-fee .row .value { font-weight: bold; }
-        
+
         .panic-btn {
             width: 100%;
             padding: 20px;
@@ -144,6 +93,7 @@
             justify-content: center;
             gap: 10px;
             margin-top: 10px;
+            transition: all 0.3s;
         }
         @keyframes pulse-btn {
             0% { transform: scale(1); }
@@ -151,39 +101,25 @@
             100% { transform: scale(1); }
         }
         .panic-btn:hover { animation: none; }
-        
-        .btn-primary {
-            width: 100%;
-            padding: 15px;
-            background: #FF6B35;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
-    <!-- Emergency Banner -->
-    <div class="emergency-banner">
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
+    <div class="header">
+        <a href="services.html" class="back">←</a>
+        <span class="title">Emergency Request</span>
+        <span style="font-size:20px;">🆘</span>
+    </div>
+
+    <div class="emergency-banner animate-fade-in-up">
         <span class="icon">🚨</span>
         <div class="label">⚠️ EMERGENCY</div>
         <div class="title">Urgent Service</div>
         <div class="sub">Priority response • Immediate runner assignment</div>
     </div>
-    
-    <!-- Header -->
-    <div class="header">
-        <a href="services.html" class="back">←</a>
-        <span class="title">Emergency Request</span>
-        <span>🆘</span>
-    </div>
-    
-    <!-- Service Type -->
-    <div class="form-group">
+
+    <div class="form-group animate-fade-in-up" style="animation-delay:0.1s;">
         <label>🚨 Service Type</label>
         <select>
             <option>Select service type</option>
@@ -193,21 +129,18 @@
             <option>Other</option>
         </select>
     </div>
-    
-    <!-- Address -->
-    <div class="form-group">
+
+    <div class="form-group animate-fade-in-up" style="animation-delay:0.2s;">
         <label>📍 Address</label>
         <input type="text" placeholder="Enter your current address">
     </div>
-    
-    <!-- Contact -->
-    <div class="form-group">
+
+    <div class="form-group animate-fade-in-up" style="animation-delay:0.3s;">
         <label>📱 Contact Person</label>
         <input type="text" placeholder="Enter contact name and phone">
     </div>
-    
-    <!-- Urgency Level -->
-    <div class="form-group">
+
+    <div class="form-group animate-fade-in-up" style="animation-delay:0.4s;">
         <label>⚡ Urgency Level</label>
         <div class="urgency-level">
             <div class="level">Standard</div>
@@ -215,27 +148,33 @@
             <div class="level active">🚨 Very Urgent</div>
         </div>
     </div>
-    
-    <!-- Priority Fee -->
-    <div class="priority-fee">
+
+    <div class="priority-fee animate-fade-in-up" style="animation-delay:0.5s;">
         <div class="row"><span class="label">Priority Service Fee</span><span class="value">₦2,500</span></div>
         <div class="row"><span class="label">Estimated Arrival</span><span class="value">10-15 min</span></div>
     </div>
-    
-    <!-- Additional Info -->
-    <div class="form-group">
+
+    <div class="form-group animate-fade-in-up" style="animation-delay:0.6s;">
         <label>📝 Additional Details</label>
         <textarea placeholder="Describe your emergency..."></textarea>
     </div>
-    
-    <!-- Send Help -->
-    <button class="panic-btn">🚨 SEND HELP NOW</button>
-    
-    <!-- Book Button -->
-    <button class="btn-primary">📞 Request Emergency Service</button>
-    
-    <div style="text-align:center;color:#636E72;font-size:12px;margin-top:10px;">
+
+    <button class="panic-btn animate-fade-in-up" style="animation-delay:0.7s;">🚨 SEND HELP NOW</button>
+
+    <button class="btn-primary animate-fade-in-up" style="animation-delay:0.8s;margin-top:10px;">📞 Request Emergency Service</button>
+
+    <div style="text-align:center;color:var(--text-secondary);font-size:12px;margin-top:10px;">
         ⚡ You'll be connected to a runner immediately
     </div>
+
+    <script src="/global.js"></script>
+    <script>
+        document.querySelectorAll('.urgency-level .level').forEach(level => {
+            level.addEventListener('click', function() {
+                document.querySelectorAll('.urgency-level .level').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
