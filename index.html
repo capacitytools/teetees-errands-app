@@ -42,14 +42,18 @@
             text-align: center;
             border: 1px solid var(--border-color);
             border-top: 4px solid var(--primary);
-            cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             color: var(--text-primary);
+            display: block;
+            cursor: pointer;
         }
         .nav-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .nav-card:active {
+            transform: scale(0.98);
         }
         .nav-card .icon { font-size: 36px; display: block; margin-bottom: 8px; }
         .nav-card .name { font-weight: bold; }
@@ -76,6 +80,13 @@
             color: var(--text-secondary); 
             font-size: 12px; 
         }
+
+        @media (max-width: 480px) {
+            .nav-grid { gap: 10px; }
+            .nav-card { padding: 15px 10px; }
+            .nav-card .icon { font-size: 28px; }
+            .nav-card .name { font-size: 13px; }
+        }
     </style>
 </head>
 <body>
@@ -94,136 +105,136 @@
     </div>
 
     <div class="nav-grid">
-        <div class="nav-card" onclick="window.location.href='/app.html'">
+        <a href="app.html" class="nav-card">
             <span class="icon">🏠</span>
             <div class="name">Home Dashboard</div>
             <div class="desc">See your recent orders</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/services.html'">
+        </a>
+        <a href="services.html" class="nav-card">
             <span class="icon">📋</span>
             <div class="name">All Services</div>
             <div class="desc">Browse all our services</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/grocery.html'">
+        </a>
+        <a href="grocery.html" class="nav-card">
             <span class="icon">🛒</span>
             <div class="name">Grocery Order</div>
             <div class="desc">Order groceries</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/prescription.html'">
+        </a>
+        <a href="prescription.html" class="nav-card">
             <span class="icon">💊</span>
             <div class="name">Prescription</div>
             <div class="desc">Pick up medications</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/gift.html'">
+        </a>
+        <a href="gift.html" class="nav-card">
             <span class="icon">🎁</span>
             <div class="name">Gift Order</div>
             <div class="desc">Surprise someone special</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/dispatch.html'">
+        </a>
+        <a href="dispatch.html" class="nav-card">
             <span class="icon">🚚</span>
             <div class="name">Dispatch</div>
             <div class="desc">Courier & delivery</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/elderly.html'">
+        </a>
+        <a href="elderly.html" class="nav-card">
             <span class="icon">❤️</span>
             <div class="name">Elderly Care</div>
             <div class="desc">Support for seniors</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/homeland.html'">
+        </a>
+        <a href="homeland.html" class="nav-card">
             <span class="icon">🇳🇬</span>
             <div class="name">Taste of Homeland</div>
             <div class="desc">Nigerian products abroad</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/track.html'">
+        </a>
+        <a href="track.html" class="nav-card">
             <span class="icon">📍</span>
             <div class="name">Track Order</div>
             <div class="desc">See your order status</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/history.html'">
+        </a>
+        <a href="history.html" class="nav-card">
             <span class="icon">📦</span>
             <div class="name">Order History</div>
             <div class="desc">View past orders</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/profile.html'">
+        </a>
+        <a href="profile.html" class="nav-card">
             <span class="icon">👤</span>
             <div class="name">Profile</div>
             <div class="desc">Your account settings</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/payment.html'">
+        </a>
+        <a href="payment.html" class="nav-card">
             <span class="icon">💳</span>
             <div class="name">Payment</div>
             <div class="desc">Pay securely</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/support.html'">
+        </a>
+        <a href="support.html" class="nav-card">
             <span class="icon">💬</span>
             <div class="name">Support Chat</div>
             <div class="desc">Get help 24/7</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/settings.html'">
+        </a>
+        <a href="settings.html" class="nav-card">
             <span class="icon">⚙️</span>
             <div class="name">Settings</div>
             <div class="desc">Customize your app</div>
-        </div>
-        <div class="nav-card" style="border-top-color:#1877F2;" onclick="window.location.href='/login.html'">
+        </a>
+        <a href="login.html" class="nav-card" style="border-top-color:#1877F2;">
             <span class="icon">🔐</span>
             <div class="name">Login</div>
             <div class="desc">Sign in to your account</div>
-        </div>
-        <div class="nav-card" style="border-top-color:#00C853;" onclick="window.location.href='/signup.html'">
+        </a>
+        <a href="signup.html" class="nav-card" style="border-top-color:#00C853;">
             <span class="icon">📝</span>
             <div class="name">Sign Up</div>
             <div class="desc">Create a new account</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/addresses.html'">
+        </a>
+        <a href="addresses.html" class="nav-card">
             <span class="icon">📍</span>
             <div class="name">Addresses</div>
             <div class="desc">Manage saved addresses</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/referral.html'">
+        </a>
+        <a href="referral.html" class="nav-card">
             <span class="icon">🎁</span>
             <div class="name">Refer & Earn</div>
             <div class="desc">Earn rewards</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/loyalty.html'">
+        </a>
+        <a href="loyalty.html" class="nav-card">
             <span class="icon">⭐</span>
             <div class="name">Loyalty Points</div>
             <div class="desc">Your rewards balance</div>
-        </div>
-        <div class="nav-card" style="border-top-color:#FFD700;" onclick="window.location.href='/admin.html'">
+        </a>
+        <a href="admin.html" class="nav-card" style="border-top-color:#FFD700;">
             <span class="icon">📊</span>
             <div class="name">Admin Dashboard</div>
             <div class="desc">Manage your business</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/about.html'">
+        </a>
+        <a href="about.html" class="nav-card">
             <span class="icon">ℹ️</span>
             <div class="name">About Us</div>
             <div class="desc">Learn about Teetees</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/feedback.html'">
+        </a>
+        <a href="feedback.html" class="nav-card">
             <span class="icon">📝</span>
             <div class="name">Feedback</div>
             <div class="desc">Tell us what you think</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/scheduled.html'">
+        </a>
+        <a href="scheduled.html" class="nav-card">
             <span class="icon">📅</span>
             <div class="name">Scheduled Orders</div>
             <div class="desc">Set up recurring errands</div>
-        </div>
-        <div class="nav-card" onclick="window.location.href='/multistop.html'">
+        </a>
+        <a href="multistop.html" class="nav-card">
             <span class="icon">🗺️</span>
             <div class="name">Multi-Stop</div>
             <div class="desc">Multiple errands in one</div>
-        </div>
-        <div class="nav-card" style="border-top-color:#FF1744;" onclick="window.location.href='/emergency.html'">
+        </a>
+        <a href="emergency.html" class="nav-card" style="border-top-color:#FF1744;">
             <span class="icon">🚨</span>
             <div class="name">Emergency</div>
             <div class="desc">Urgent service</div>
-        </div>
-        <div class="nav-card" style="border-top-color:#FFD700;" onclick="window.location.href='/packages.html'">
+        </a>
+        <a href="packages.html" class="nav-card" style="border-top-color:#FFD700;">
             <span class="icon">📊</span>
             <div class="name">Packages</div>
             <div class="desc">Compare plans</div>
-        </div>
+        </a>
     </div>
 
     <div class="footer">
