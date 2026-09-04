@@ -1,50 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Payment</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        .lock-icon { font-size: 20px; }
-        
         .security-badge {
             text-align: center;
             padding: 8px;
             background: #E8F5E9;
-            border-radius: 10px;
+            border-radius: var(--radius);
             color: #00C853;
             font-size: 13px;
             font-weight: bold;
             margin-bottom: 20px;
         }
-        
         .payment-methods {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #E8ECEF;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
             overflow: hidden;
             margin-bottom: 20px;
         }
@@ -53,84 +34,62 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            border-bottom: 1px solid #F5F6FA;
+            border-bottom: 1px solid var(--border-color);
             cursor: pointer;
+            transition: all 0.3s;
         }
         .method:last-child { border-bottom: none; }
+        .method:hover { background: var(--bg-secondary); }
         .method .left { display: flex; align-items: center; gap: 12px; }
         .method .icon { font-size: 24px; }
-        .method .name { font-weight: bold; color: #2D3436; }
+        .method .name { font-weight: bold; color: var(--text-primary); }
         .method .radio {
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            border: 2px solid #B2BEC3;
+            border: 2px solid var(--text-secondary);
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .method .radio.active {
-            border-color: #FF6B35;
-        }
+        .method .radio.active { border-color: var(--primary); }
         .method .radio.active::after {
             content: '';
             width: 10px;
             height: 10px;
-            background: #FF6B35;
+            background: var(--primary);
             border-radius: 50%;
         }
-        
         .card-form {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 20px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            color: #2D3436;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #E8ECEF;
-            border-radius: 10px;
-            font-size: 14px;
-            background: white;
-        }
-        .form-row {
-            display: flex;
-            gap: 15px;
-        }
+        .form-row { display: flex; gap: 15px; }
         .form-row .form-group { flex: 1; }
-        
         .toggle-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: white;
+            background: var(--card-bg);
             padding: 12px 15px;
-            border-radius: 10px;
-            border: 1px solid #E8ECEF;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
-        .toggle-label { font-weight: bold; color: #2D3436; font-size: 14px; }
+        .toggle-label { font-weight: bold; color: var(--text-primary); font-size: 14px; }
         .toggle-switch {
             width: 50px;
             height: 28px;
-            background: #B2BEC3;
+            background: var(--text-secondary);
             border-radius: 14px;
             position: relative;
             cursor: pointer;
+            transition: all 0.3s;
         }
-        .toggle-switch.active { background: #FF6B35; }
+        .toggle-switch.active { background: var(--primary); }
         .toggle-switch .toggle-dot {
             width: 22px;
             height: 22px;
@@ -142,10 +101,9 @@
             transition: 0.3s;
         }
         .toggle-switch.active .toggle-dot { left: 25px; }
-        
         .order-summary {
             background: #FFF3E0;
-            border-radius: 12px;
+            border-radius: var(--radius);
             padding: 15px;
             margin-bottom: 20px;
         }
@@ -153,32 +111,19 @@
             display: flex;
             justify-content: space-between;
             padding: 5px 0;
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 14px;
         }
         .summary-row.total {
             font-weight: bold;
             font-size: 18px;
-            border-top: 2px solid #FF6B35;
+            border-top: 2px solid var(--primary);
             padding-top: 10px;
             margin-top: 5px;
         }
-        
-        .btn-primary {
-            width: 100%;
-            padding: 15px;
-            background: #FF6B35;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
         .security-footer {
             text-align: center;
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 12px;
             margin-top: 15px;
         }
@@ -186,17 +131,16 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
     <div class="header">
         <a href="details.html" class="back">←</a>
         <span class="title">Payment</span>
-        <span class="lock-icon">🔒</span>
+        <span style="font-size:20px;">🔒</span>
     </div>
-    
-    <!-- Security Badge -->
+
     <div class="security-badge">🔒 Secure & Encrypted Payment</div>
-    
-    <!-- Payment Methods -->
+
     <div class="payment-methods">
         <div class="method">
             <span class="left"><span class="icon">💳</span><span class="name">Card</span></span>
@@ -219,8 +163,7 @@
             <div class="radio"></div>
         </div>
     </div>
-    
-    <!-- Card Form -->
+
     <div class="card-form">
         <div class="form-group">
             <label>💳 Card Number</label>
@@ -237,30 +180,37 @@
             </div>
         </div>
     </div>
-    
-    <!-- Save Card Toggle -->
+
     <div class="toggle-row">
         <span class="toggle-label">💾 Save Card for Future</span>
         <div class="toggle-switch active" onclick="this.classList.toggle('active')">
             <div class="toggle-dot"></div>
         </div>
     </div>
-    
-    <!-- Order Summary -->
+
     <div class="order-summary">
         <div class="summary-row"><span>Order Total</span><span>₦7,800</span></div>
         <div class="summary-row"><span>Service Fee</span><span>₦500</span></div>
         <div class="summary-row"><span>Delivery Fee</span><span>₦1,000</span></div>
         <div class="summary-row total"><span>Total</span><span>₦9,300</span></div>
     </div>
-    
-    <!-- Pay Button -->
+
     <button class="btn-primary">🔒 Pay Now</button>
-    
-    <!-- Security Footer -->
+
     <div class="security-footer">
         <div>Secured by SSL • 256-bit Encryption</div>
         <div class="badges">🔒 🔐 🛡️</div>
     </div>
+
+    <script src="/global.js"></script>
+    <script>
+        // Method selection
+        document.querySelectorAll('.method').forEach(method => {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.method .radio').forEach(r => r.classList.remove('active'));
+                this.querySelector('.radio').classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
