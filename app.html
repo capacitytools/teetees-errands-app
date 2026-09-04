@@ -29,8 +29,11 @@
             color: var(--text-secondary);
             margin-bottom: 20px;
             width: 100%;
+            display: block;
+            text-decoration: none;
             cursor: pointer;
         }
+        .search-bar:active { opacity: 0.7; }
         .quick-actions {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -45,12 +48,13 @@
             text-align: center;
             padding: 10px 0;
             cursor: pointer;
-            border: none;
-            background: none;
+            text-decoration: none;
+            color: var(--text-primary);
             border-radius: var(--radius);
             transition: all 0.3s;
-            color: var(--text-primary);
+            display: block;
         }
+        .action-btn:active { transform: scale(0.95); }
         .action-btn:hover {
             background: #FFF3E0;
             transform: translateY(-3px);
@@ -82,11 +86,13 @@
             align-items: center;
             padding: 12px 0;
             border-bottom: 1px solid var(--border-color);
+            text-decoration: none;
+            color: var(--text-primary);
             cursor: pointer;
             transition: all 0.3s;
         }
         .order-item:last-child { border-bottom: none; }
-        .order-item:hover { padding-left: 5px; }
+        .order-item:active { opacity: 0.7; }
         .order-item .info { color: var(--text-primary); }
         .order-item .info small { color: var(--text-secondary); display: block; }
         .order-item .status {
@@ -117,10 +123,14 @@
             padding: 15px;
             border-radius: var(--radius);
             text-align: center;
-            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-primary);
             border: 2px solid transparent;
             transition: all 0.3s;
+            cursor: pointer;
+            display: block;
         }
+        .suggestion-card:active { transform: scale(0.95); }
         .suggestion-card:hover {
             border-color: var(--primary);
             transform: translateY(-3px);
@@ -129,7 +139,6 @@
         .suggestion-card .label { font-size: 12px; font-weight: bold; color: var(--text-primary); }
         .suggestion-card .price { font-size: 11px; color: var(--primary); }
 
-        /* Bottom Nav */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -152,7 +161,9 @@
             transition: all 0.3s;
             border: none;
             background: none;
+            display: block;
         }
+        .nav-item:active { opacity: 0.7; }
         .nav-item.active { color: var(--primary); }
         .nav-item .nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
     </style>
@@ -161,8 +172,9 @@
     <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
 
     <div class="header">
+        <a href="index.html" class="back">←</a>
         <span class="title" style="color:var(--primary);">TEETEES</span>
-        <span style="font-size:20px;cursor:pointer;">🔔</span>
+        <a href="notifications.html" style="font-size:20px;text-decoration:none;color:var(--text-primary);">🔔</a>
     </div>
 
     <div class="greeting animate-fade-in-up">
@@ -170,96 +182,95 @@
         <p>What errand can we help with today?</p>
     </div>
 
-    <div class="search-bar" onclick="window.location.href='/services.html'">
+    <a href="services.html" class="search-bar">
         🔍 What errand do you need?
-    </div>
+    </a>
 
     <div class="quick-actions animate-fade-in-up" style="animation-delay:0.1s;">
-        <button class="action-btn" onclick="window.location.href='/grocery.html'">
+        <a href="grocery.html" class="action-btn">
             <div class="icon">🛒</div>
             <div class="label">Grocery</div>
-        </button>
-        <button class="action-btn" onclick="window.location.href='/prescription.html'">
+        </a>
+        <a href="prescription.html" class="action-btn">
             <div class="icon">💊</div>
             <div class="label">Prescription</div>
-        </button>
-        <button class="action-btn" onclick="window.location.href='/gift.html'">
+        </a>
+        <a href="gift.html" class="action-btn">
             <div class="icon">🎁</div>
             <div class="label">Gift</div>
-        </button>
-        <button class="action-btn" onclick="window.location.href='/dispatch.html'">
+        </a>
+        <a href="dispatch.html" class="action-btn">
             <div class="icon">🚚</div>
             <div class="label">Courier</div>
-        </button>
-        <button class="action-btn" onclick="window.location.href='/elderly.html'">
+        </a>
+        <a href="elderly.html" class="action-btn">
             <div class="icon">❤️</div>
             <div class="label">Elderly</div>
-        </button>
-        <button class="action-btn" onclick="window.location.href='/homeland.html'">
+        </a>
+        <a href="homeland.html" class="action-btn">
             <div class="icon">🇳🇬</div>
             <div class="label">Homeland</div>
-        </button>
+        </a>
     </div>
 
     <div class="smart-suggestions animate-fade-in-up" style="animation-delay:0.2s;">
         <h3>💡 Quick Reorder</h3>
         <div class="suggestion-grid">
-            <div class="suggestion-card" onclick="window.location.href='/grocery.html'">
+            <a href="grocery.html" class="suggestion-card">
                 <span class="icon">🛒</span>
                 <div class="label">Weekly Groceries</div>
                 <div class="price">₦12,500</div>
-            </div>
-            <div class="suggestion-card" onclick="window.location.href='/prescription.html'">
+            </a>
+            <a href="prescription.html" class="suggestion-card">
                 <span class="icon">💊</span>
                 <div class="label">Refill Meds</div>
                 <div class="price">₦3,200</div>
-            </div>
-            <div class="suggestion-card" onclick="window.location.href='/gift.html'">
+            </a>
+            <a href="gift.html" class="suggestion-card">
                 <span class="icon">🎁</span>
                 <div class="label">Birthday Gift</div>
                 <div class="price">₦8,000</div>
-            </div>
+            </a>
         </div>
     </div>
 
     <div class="recent-orders animate-fade-in-up" style="animation-delay:0.3s;">
         <h3>📋 Your Recent Errands</h3>
-        <div class="order-item" onclick="window.location.href='/details.html'">
+        <a href="details.html" class="order-item">
             <div class="info">🛒 Grocery Shopping <small>Today, 10:30 AM</small></div>
             <span class="status completed">✅ Completed</span>
-        </div>
-        <div class="order-item" onclick="window.location.href='/details.html'">
+        </a>
+        <a href="details.html" class="order-item">
             <div class="info">💊 Prescription Pickup <small>Yesterday, 2:00 PM</small></div>
             <span class="status active">🔄 Active</span>
-        </div>
-        <div class="order-item" onclick="window.location.href='/details.html'">
+        </a>
+        <a href="details.html" class="order-item">
             <div class="info">🎁 Gift Delivery <small>Aug 28, 4:00 PM</small></div>
             <span class="status pending">⏳ Pending</span>
-        </div>
+        </a>
     </div>
 
     <div class="bottom-nav">
-        <button class="nav-item active" onclick="window.location.href='/app.html'">
+        <a href="app.html" class="nav-item active">
             <span class="nav-icon">🏠</span>
             Home
-        </button>
-        <button class="nav-item" onclick="window.location.href='/services.html'">
+        </a>
+        <a href="services.html" class="nav-item">
             <span class="nav-icon">📋</span>
             Services
-        </button>
-        <button class="nav-item" onclick="window.location.href='/history.html'">
+        </a>
+        <a href="history.html" class="nav-item">
             <span class="nav-icon">📦</span>
             Orders
-        </button>
-        <button class="nav-item" onclick="window.location.href='/profile.html'">
+        </a>
+        <a href="profile.html" class="nav-item">
             <span class="nav-icon">👤</span>
             Profile
-        </button>
+        </a>
     </div>
 
     <script src="/global.js"></script>
     <script>
-        // Time-based greeting
         document.addEventListener('DOMContentLoaded', function() {
             const hour = new Date().getHours();
             let greeting = '';
