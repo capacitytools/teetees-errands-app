@@ -2,7 +2,9 @@
 // TEETEES ERRANDS - SERVICE WORKER
 // ============================================
 
-const CACHE_NAME = 'teetees-v1';
+// CHANGE THIS NUMBER EVERY TIME YOU UPDATE THE APP!
+const CACHE_NAME = 'teetees-v2';  // <-- CHANGE THIS!
+
 const urlsToCache = [
   '/',
   '/index.html',
@@ -45,6 +47,9 @@ const urlsToCache = [
   '/notfound.html',
   '/tutorial.html',
   '/splash-animated.html',
+  '/global.css',
+  '/global.js',
+  '/manifest.json',
   '/icons/icon-72x72.jpg',
   '/icons/icon-96x96.jpg',
   '/icons/icon-128x128.jpg',
@@ -55,19 +60,23 @@ const urlsToCache = [
   '/icons/icon-512x512.jpg'
 ];
 
-// Install - Save all files to cache
+// ============================================
+// INSTALL - Cache all files
+// ============================================
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Opened cache');
+        console.log('✅ Opened cache:', CACHE_NAME);
         return cache.addAll(urlsToCache);
       })
       .then(() => self.skipWaiting())
   );
 });
 
-// Activate - Clean old caches
+// ============================================
+// ACTIVATE - Clean old caches
+// ============================================
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
@@ -75,6 +84,7 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cacheName => {
           if (cacheWhitelist.indexOf(cacheName) === -1) {
+            console.log('🗑️ Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
@@ -84,8 +94,19 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch - Serve from cache or network
+// ============================================
+// FETCH - Serve from cache or network
+// ============================================
 self.addEventListener('fetch', event => {
+  // Skip navigation requests (this is often the problem!)
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .catch(() => caches.match('/index.html'))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then(response => {
@@ -111,13 +132,19 @@ self.addEventListener('fetch', event => {
             return response;
           })
           .catch(() => {
-            return caches.match('/index.html');
+            // Offline fallback
+            if (event.request.mode === 'navigate') {
+              return caches.match('/index.html');
+            }
+            return null;
           });
       })
   );
 });
 
-// Push Notifications
+// ============================================
+// PUSH NOTIFICATIONS
+// ============================================
 self.addEventListener('push', event => {
   const options = {
     body: event.data.text(),
@@ -139,7 +166,9 @@ self.addEventListener('push', event => {
   );
 });
 
-// Notification Click
+// ============================================
+// NOTIFICATION CLICK
+// ============================================
 self.addEventListener('notificationclick', event => {
   event.notification.close();
   
