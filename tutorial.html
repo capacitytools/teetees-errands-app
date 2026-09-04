@@ -1,39 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>How It Works</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        
         .step-card {
-            background: white;
-            border-radius: 16px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
             padding: 25px 20px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 15px;
             display: flex;
             gap: 15px;
@@ -42,7 +25,7 @@
         .step-card .number {
             width: 40px;
             height: 40px;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -55,51 +38,32 @@
         .step-card .content { flex: 1; }
         .step-card .content .title {
             font-weight: bold;
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 16px;
         }
         .step-card .content .desc {
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 14px;
             margin-top: 3px;
             line-height: 1.5;
         }
-        .step-card .content .icon {
-            font-size: 24px;
-            display: block;
-            margin-bottom: 5px;
-        }
-        
+        .step-card .content .icon { font-size: 24px; display: block; margin-bottom: 5px; }
+
         .video-placeholder {
-            background: #E8ECEF;
-            border-radius: 12px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
             height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 14px;
             margin-bottom: 20px;
             cursor: pointer;
-            border: 1px solid #DDE1E6;
+            border: 1px solid var(--border-color);
         }
-        .video-placeholder .play {
-            font-size: 60px;
-            opacity: 0.5;
-        }
-        
-        .btn-primary {
-            width: 100%;
-            padding: 15px;
-            background: #FF6B35;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
+        .video-placeholder .play { font-size: 60px; opacity: 0.5; }
+
         .dots {
             display: flex;
             justify-content: center;
@@ -110,30 +74,43 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #E8ECEF;
+            background: var(--border-color);
         }
         .dots .dot.active {
-            background: #FF6B35;
+            background: var(--primary);
             width: 30px;
             border-radius: 5px;
         }
+
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
     <div class="header">
-        <a href="index.html" class="back">←</a>
+        <a href="app.html" class="back">←</a>
         <span class="title">How It Works</span>
-        <span>📖</span>
+        <span style="font-size:20px;">📖</span>
     </div>
-    
-    <!-- Video -->
-    <div class="video-placeholder">
+
+    <div class="video-placeholder animate-fade-in-up">
         <span class="play">▶️</span>
     </div>
-    
-    <!-- Steps -->
-    <div class="step-card">
+
+    <div class="step-card animate-fade-in-up" style="animation-delay:0.1s;">
         <div class="number">1</div>
         <div class="content">
             <span class="icon">📝</span>
@@ -141,8 +118,8 @@
             <div class="desc">Choose from our services - Grocery, Prescription, Gift, Dispatch, or Elderly Care. Fill in the details and submit.</div>
         </div>
     </div>
-    
-    <div class="step-card">
+
+    <div class="step-card animate-fade-in-up" style="animation-delay:0.2s;">
         <div class="number">2</div>
         <div class="content">
             <span class="icon">👤</span>
@@ -150,8 +127,8 @@
             <div class="desc">A professional runner will be assigned to your errand. You'll receive real-time updates.</div>
         </div>
     </div>
-    
-    <div class="step-card">
+
+    <div class="step-card animate-fade-in-up" style="animation-delay:0.3s;">
         <div class="number">3</div>
         <div class="content">
             <span class="icon">🚚</span>
@@ -159,8 +136,8 @@
             <div class="desc">Track your errand live on the map. You'll know exactly when your items are picked up and delivered.</div>
         </div>
     </div>
-    
-    <div class="step-card">
+
+    <div class="step-card animate-fade-in-up" style="animation-delay:0.4s;">
         <div class="number">4</div>
         <div class="content">
             <span class="icon">✅</span>
@@ -168,16 +145,16 @@
             <div class="desc">Once delivered, rate your experience. Your feedback helps us improve and rewards our runners.</div>
         </div>
     </div>
-    
-    <!-- Dots -->
+
     <div class="dots">
         <span class="dot active"></span>
         <span class="dot"></span>
         <span class="dot"></span>
         <span class="dot"></span>
     </div>
-    
-    <!-- Get Started -->
-    <button class="btn-primary">🚀 Get Started</button>
+
+    <a href="services.html" class="btn-primary animate-fade-in-up" style="animation-delay:0.5s;">🚀 Get Started</a>
+
+    <script src="/global.js"></script>
 </body>
 </html>
