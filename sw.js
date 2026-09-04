@@ -45,16 +45,17 @@ const urlsToCache = [
   '/notfound.html',
   '/tutorial.html',
   '/splash-animated.html',
-  '/firebase-setup.html',
-  '/firebase-connect.html',
-  '/how-to-add-firebase.html',
-  '/payment-setup.html',
-  '/deploy-checklist.html'
+  '/icons/icon-72x72.jpg',
+  '/icons/icon-96x96.jpg',
+  '/icons/icon-128x128.jpg',
+  '/icons/icon-144x144.jpg',
+  '/icons/icon-152x152.jpg',
+  '/icons/icon-192x192.jpg',
+  '/icons/icon-384x384.jpg',
+  '/icons/icon-512x512.jpg'
 ];
 
-// ============================================
-// INSTALL - Cache all files
-// ============================================
+// Install - Save all files to cache
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -66,9 +67,7 @@ self.addEventListener('install', event => {
   );
 });
 
-// ============================================
-// ACTIVATE - Clean old caches
-// ============================================
+// Activate - Clean old caches
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
@@ -85,29 +84,23 @@ self.addEventListener('activate', event => {
   );
 });
 
-// ============================================
-// FETCH - Serve from cache or network
-// ============================================
+// Fetch - Serve from cache or network
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Cache hit - return response
         if (response) {
           return response;
         }
         
-        // Clone the request
         const fetchRequest = event.request.clone();
         
         return fetch(fetchRequest)
           .then(response => {
-            // Check if we received a valid response
             if (!response || response.status !== 200 || response.type !== 'basic') {
               return response;
             }
             
-            // Clone the response
             const responseToCache = response.clone();
             
             caches.open(CACHE_NAME)
@@ -118,21 +111,18 @@ self.addEventListener('fetch', event => {
             return response;
           })
           .catch(() => {
-            // Offline fallback
             return caches.match('/index.html');
           });
       })
   );
 });
 
-// ============================================
-// PUSH NOTIFICATIONS
-// ============================================
+// Push Notifications
 self.addEventListener('push', event => {
   const options = {
     body: event.data.text(),
-    icon: '/icons/icon-192x192.png',
-    badge: '/icons/icon-72x72.png',
+    icon: '/icons/icon-192x192.jpg',
+    badge: '/icons/icon-72x72.jpg',
     vibrate: [200, 100, 200],
     data: {
       dateOfArrival: Date.now(),
@@ -149,9 +139,7 @@ self.addEventListener('push', event => {
   );
 });
 
-// ============================================
-// NOTIFICATION CLICK
-// ============================================
+// Notification Click
 self.addEventListener('notificationclick', event => {
   event.notification.close();
   
