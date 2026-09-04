@@ -1,37 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Rewards</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        
         .points-hero {
-            background: linear-gradient(135deg, #FF6B35, #FF8F65);
-            border-radius: 16px;
+            background: var(--primary-gradient);
+            border-radius: var(--radius-lg);
             padding: 30px 25px;
             text-align: center;
             color: white;
@@ -43,10 +26,7 @@
             font-weight: bold;
             margin: 5px 0;
         }
-        .points-hero .next {
-            font-size: 13px;
-            opacity: 0.8;
-        }
+        .points-hero .next { font-size: 13px; opacity: 0.8; }
         .points-hero .progress {
             height: 6px;
             background: rgba(255,255,255,0.3);
@@ -61,14 +41,14 @@
         }
         
         .activity-section {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
         .activity-section h3 {
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 16px;
             margin-bottom: 12px;
         }
@@ -76,17 +56,17 @@
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
-            border-bottom: 1px solid #F5F6FA;
+            border-bottom: 1px solid var(--border-color);
             font-size: 14px;
         }
         .activity-item:last-child { border-bottom: none; }
-        .activity-item .act-name { color: #2D3436; }
-        .activity-item .act-points { 
+        .activity-item .act-name { color: var(--text-primary); }
+        .activity-item .act-points {
             font-weight: bold;
-            color: #FF6B35;
+            color: var(--primary);
         }
         .activity-item .act-points.earned { color: #00C853; }
-        .activity-item .act-date { color: #B2BEC3; font-size: 12px; }
+        .activity-item .act-date { color: var(--text-secondary); font-size: 12px; }
         
         .rewards-grid {
             display: grid;
@@ -95,23 +75,23 @@
             margin-bottom: 20px;
         }
         .reward-card {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 20px 15px;
             text-align: center;
-            border: 1px solid #E8ECEF;
-            border-top: 4px solid #FF6B35;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--primary);
         }
         .reward-card .emoji { font-size: 36px; display: block; margin-bottom: 8px; }
-        .reward-card .name { font-weight: bold; color: #2D3436; font-size: 14px; }
+        .reward-card .name { font-weight: bold; color: var(--text-primary); font-size: 14px; }
         .reward-card .points-needed {
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 12px;
             margin: 5px 0;
         }
         .reward-card .redeem-btn {
             padding: 6px 20px;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 20px;
@@ -119,10 +99,12 @@
             font-size: 12px;
             cursor: pointer;
             margin-top: 5px;
+            transition: all 0.3s;
         }
+        .reward-card .redeem-btn:hover { transform: scale(1.05); }
         .reward-card .redeem-btn.locked {
-            background: #E8ECEF;
-            color: #B2BEC3;
+            background: var(--border-color);
+            color: var(--text-secondary);
             cursor: not-allowed;
         }
         
@@ -133,36 +115,37 @@
         .quick-action {
             flex: 1;
             padding: 12px;
-            background: white;
-            border: 1px solid #E8ECEF;
-            border-radius: 10px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
             text-align: center;
             font-weight: bold;
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 13px;
             cursor: pointer;
+            transition: all 0.3s;
         }
+        .quick-action:hover { border-color: var(--primary); }
         .quick-action .icon { display: block; font-size: 24px; margin-bottom: 3px; }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
     <div class="header">
         <a href="profile.html" class="back">←</a>
         <span class="title">Teetees Rewards</span>
-        <span>⭐</span>
+        <span style="font-size:20px;">⭐</span>
     </div>
-    
-    <!-- Points Hero -->
-    <div class="points-hero">
+
+    <div class="points-hero animate-fade-in-up">
         <div class="label">⭐ Your Points Balance</div>
         <div class="points">1,250</div>
         <div class="next">250 points until next reward</div>
         <div class="progress"><div class="fill"></div></div>
     </div>
-    
-    <!-- Recent Activity -->
-    <div class="activity-section">
+
+    <div class="activity-section animate-fade-in-up" style="animation-delay:0.1s;">
         <h3>📊 Recent Activity</h3>
         <div class="activity-item">
             <span class="act-name">🎁 Referral Bonus - Abiola O.</span>
@@ -200,37 +183,35 @@
             </span>
         </div>
     </div>
-    
-    <!-- Rewards Store -->
-    <h3 style="color:#2D3436;margin-bottom:12px;">🎁 Rewards Store</h3>
+
+    <h3 style="color:var(--text-primary);margin-bottom:12px;">🎁 Rewards Store</h3>
     <div class="rewards-grid">
-        <div class="reward-card">
+        <div class="reward-card animate-fade-in-up">
             <span class="emoji">🚚</span>
             <div class="name">Free Delivery</div>
             <div class="points-needed">200 points</div>
             <button class="redeem-btn">Redeem</button>
         </div>
-        <div class="reward-card">
+        <div class="reward-card animate-fade-in-up" style="animation-delay:0.1s;">
             <span class="emoji">💰</span>
             <div class="name">₦500 Discount</div>
             <div class="points-needed">400 points</div>
             <button class="redeem-btn">Redeem</button>
         </div>
-        <div class="reward-card" style="border-top-color:#FFD700;">
+        <div class="reward-card animate-fade-in-up" style="animation-delay:0.2s;border-top-color:#FFD700;">
             <span class="emoji">⭐</span>
             <div class="name">Priority Service</div>
             <div class="points-needed">600 points</div>
             <button class="redeem-btn">Redeem</button>
         </div>
-        <div class="reward-card" style="border-top-color:#FFD700;">
+        <div class="reward-card animate-fade-in-up" style="animation-delay:0.3s;border-top-color:#FFD700;">
             <span class="emoji">🎁</span>
             <div class="name">Special Package</div>
             <div class="points-needed">800 points</div>
             <button class="redeem-btn locked">🔒 Locked</button>
         </div>
     </div>
-    
-    <!-- Quick Actions -->
+
     <div class="quick-actions">
         <div class="quick-action">
             <span class="icon">📊</span>
@@ -245,5 +226,7 @@
             How It Works
         </div>
     </div>
+
+    <script src="/global.js"></script>
 </body>
 </html>
