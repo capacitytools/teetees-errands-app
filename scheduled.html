@@ -1,49 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Scheduled Errands</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
         .add-btn {
             padding: 8px 16px;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 20px;
             font-weight: bold;
             font-size: 13px;
             cursor: pointer;
+            transition: all 0.3s;
         }
-        
+        .add-btn:hover { transform: scale(1.05); }
+
         .calendar-mini {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
         .calendar-mini .month {
@@ -51,7 +37,7 @@
             justify-content: space-between;
             align-items: center;
             font-weight: bold;
-            color: #2D3436;
+            color: var(--text-primary);
             margin-bottom: 12px;
         }
         .calendar-mini .month .arrow { font-size: 20px; cursor: pointer; }
@@ -65,10 +51,10 @@
             padding: 8px 0;
             border-radius: 8px;
             font-size: 14px;
-            color: #636E72;
+            color: var(--text-secondary);
         }
         .calendar-mini .days .day.active {
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             font-weight: bold;
         }
@@ -79,23 +65,23 @@
             content: '';
             width: 6px;
             height: 6px;
-            background: #FF6B35;
+            background: var(--primary);
             border-radius: 50%;
             display: block;
             margin: 2px auto 0;
         }
-        .calendar-mini .days .day.active.has-order::after {
-            background: white;
-        }
+        .calendar-mini .days .day.active.has-order::after { background: white; }
         .calendar-mini .days .day.weekend { color: #FF1744; }
-        
+
         .scheduled-card {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 12px;
+            transition: all 0.3s;
         }
+        .scheduled-card:hover { transform: translateY(-2px); }
         .scheduled-card .top {
             display: flex;
             justify-content: space-between;
@@ -104,7 +90,7 @@
         }
         .scheduled-card .service {
             font-weight: bold;
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 16px;
         }
         .scheduled-card .frequency {
@@ -113,10 +99,10 @@
             font-size: 11px;
             font-weight: bold;
             background: #FFF3E0;
-            color: #FF6B35;
+            color: var(--primary);
         }
         .scheduled-card .details {
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 14px;
             line-height: 1.6;
         }
@@ -125,7 +111,7 @@
             gap: 15px;
             margin-top: 10px;
             padding-top: 10px;
-            border-top: 1px solid #F5F6FA;
+            border-top: 1px solid var(--border-color);
         }
         .scheduled-card .actions button {
             background: none;
@@ -133,48 +119,52 @@
             font-weight: bold;
             font-size: 13px;
             cursor: pointer;
+            transition: all 0.3s;
         }
+        .scheduled-card .actions button:hover { transform: scale(1.05); }
         .scheduled-card .actions .edit { color: #1877F2; }
         .scheduled-card .actions .pause { color: #FFD700; }
         .scheduled-card .actions .cancel { color: #FF1744; }
-        
+
         .add-scheduled {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 20px;
-            border: 2px dashed #FF6B35;
+            border: 2px dashed var(--primary);
             text-align: center;
             cursor: pointer;
             margin-top: 10px;
+            transition: all 0.3s;
         }
+        .add-scheduled:hover { background: #FFF3E0; }
         .add-scheduled .icon { font-size: 36px; display: block; }
-        .add-scheduled .text { font-weight: bold; color: #FF6B35; font-size: 16px; }
-        .add-scheduled .sub { color: #636E72; font-size: 13px; }
+        .add-scheduled .text { font-weight: bold; color: var(--primary); font-size: 16px; }
+        .add-scheduled .sub { color: var(--text-secondary); font-size: 13px; }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
     <div class="header">
         <a href="app.html" class="back">←</a>
         <span class="title">Scheduled Errands</span>
         <button class="add-btn">+ Add</button>
     </div>
-    
-    <!-- Calendar -->
-    <div class="calendar-mini">
+
+    <div class="calendar-mini animate-fade-in-up">
         <div class="month">
             <span class="arrow">‹</span>
             <span>September 2026</span>
             <span class="arrow">›</span>
         </div>
         <div class="days">
-            <span class="day" style="font-weight:bold;color:#2D3436;">S</span>
-            <span class="day" style="font-weight:bold;color:#2D3436;">M</span>
-            <span class="day" style="font-weight:bold;color:#2D3436;">T</span>
-            <span class="day" style="font-weight:bold;color:#2D3436;">W</span>
-            <span class="day" style="font-weight:bold;color:#2D3436;">T</span>
-            <span class="day" style="font-weight:bold;color:#2D3436;">F</span>
-            <span class="day" style="font-weight:bold;color:#2D3436;">S</span>
+            <span class="day" style="font-weight:bold;color:var(--text-primary);">S</span>
+            <span class="day" style="font-weight:bold;color:var(--text-primary);">M</span>
+            <span class="day" style="font-weight:bold;color:var(--text-primary);">T</span>
+            <span class="day" style="font-weight:bold;color:var(--text-primary);">W</span>
+            <span class="day" style="font-weight:bold;color:var(--text-primary);">T</span>
+            <span class="day" style="font-weight:bold;color:var(--text-primary);">F</span>
+            <span class="day" style="font-weight:bold;color:var(--text-primary);">S</span>
             <span class="day">1</span>
             <span class="day">2</span>
             <span class="day">3</span>
@@ -207,9 +197,8 @@
             <span class="day">30</span>
         </div>
     </div>
-    
-    <!-- Scheduled Orders -->
-    <div class="scheduled-card">
+
+    <div class="scheduled-card animate-fade-in-up" style="animation-delay:0.1s;">
         <div class="top">
             <span class="service">🛒 Weekly Groceries</span>
             <span class="frequency">📅 Weekly</span>
@@ -224,8 +213,8 @@
             <button class="cancel">🗑️ Cancel</button>
         </div>
     </div>
-    
-    <div class="scheduled-card">
+
+    <div class="scheduled-card animate-fade-in-up" style="animation-delay:0.2s;">
         <div class="top">
             <span class="service">💊 Prescription Refill</span>
             <span class="frequency">📅 Monthly</span>
@@ -240,8 +229,8 @@
             <button class="cancel">🗑️ Cancel</button>
         </div>
     </div>
-    
-    <div class="scheduled-card">
+
+    <div class="scheduled-card animate-fade-in-up" style="animation-delay:0.3s;">
         <div class="top">
             <span class="service">❤️ Elderly Check-in</span>
             <span class="frequency">📅 Daily</span>
@@ -256,12 +245,13 @@
             <button class="cancel">🗑️ Cancel</button>
         </div>
     </div>
-    
-    <!-- Add New -->
-    <div class="add-scheduled">
+
+    <div class="add-scheduled animate-fade-in-up" style="animation-delay:0.4s;">
         <span class="icon">➕</span>
         <div class="text">Add New Recurring Order</div>
         <div class="sub">Set up weekly, monthly, or daily schedules</div>
     </div>
+
+    <script src="/global.js"></script>
 </body>
 </html>
