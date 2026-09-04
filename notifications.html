@@ -1,35 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Notifications</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        .mark-read { color: #FF6B35; font-size: 14px; font-weight: bold; cursor: pointer; }
-        
         .category-tabs {
             display: flex;
             gap: 10px;
@@ -38,38 +20,40 @@
         .cat-tab {
             padding: 8px 20px;
             border-radius: 20px;
-            background: white;
-            border: 2px solid #E8ECEF;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
             font-weight: bold;
-            color: #636E72;
+            color: var(--text-secondary);
             cursor: pointer;
             font-size: 13px;
+            transition: all 0.3s;
         }
         .cat-tab.active {
-            border-color: #FF6B35;
-            color: #FF6B35;
+            border-color: var(--primary);
+            color: var(--primary);
             background: #FFF3E0;
         }
-        
         .notification {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 10px;
             display: flex;
             gap: 12px;
             align-items: flex-start;
+            transition: all 0.3s;
         }
+        .notification:hover { transform: translateX(5px); }
         .notification.unread {
-            border-left: 4px solid #FF6B35;
+            border-left: 4px solid var(--primary);
             background: #FFFBF8;
         }
         .notif-icon {
             font-size: 24px;
             width: 40px;
             height: 40px;
-            background: #F5F6FA;
+            background: var(--bg-secondary);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -77,45 +61,43 @@
             flex-shrink: 0;
         }
         .notif-content { flex: 1; }
-        .notif-title { font-weight: bold; color: #2D3436; font-size: 14px; }
-        .notif-text { color: #636E72; font-size: 13px; margin-top: 3px; }
-        .notif-time { color: #B2BEC3; font-size: 11px; margin-top: 5px; }
+        .notif-title { font-weight: bold; color: var(--text-primary); font-size: 14px; }
+        .notif-text { color: var(--text-secondary); font-size: 13px; margin-top: 3px; }
+        .notif-time { color: var(--text-secondary); font-size: 11px; margin-top: 5px; }
         .notif-dot {
             width: 8px;
             height: 8px;
-            background: #FF6B35;
+            background: var(--primary);
             border-radius: 50%;
             flex-shrink: 0;
             margin-top: 5px;
         }
-        
         .view-all {
             text-align: center;
             padding: 12px;
-            color: #FF6B35;
+            color: var(--primary);
             font-weight: bold;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
     <div class="header">
         <a href="app.html" class="back">←</a>
         <span class="title">Notifications</span>
-        <span class="mark-read">Mark All Read</span>
+        <span style="font-size:14px;cursor:pointer;">Mark All Read</span>
     </div>
-    
-    <!-- Categories -->
+
     <div class="category-tabs">
         <div class="cat-tab active">All</div>
         <div class="cat-tab">Orders</div>
         <div class="cat-tab">Promotions</div>
         <div class="cat-tab">Service</div>
     </div>
-    
-    <!-- Notifications -->
-    <div class="notification unread">
+
+    <div class="notification unread animate-fade-in-up">
         <div class="notif-icon">🚚</div>
         <div class="notif-content">
             <div class="notif-title">Your order is on the way!</div>
@@ -124,8 +106,8 @@
         </div>
         <div class="notif-dot"></div>
     </div>
-    
-    <div class="notification unread">
+
+    <div class="notification unread animate-fade-in-up" style="animation-delay:0.1s;">
         <div class="notif-icon">🎉</div>
         <div class="notif-content">
             <div class="notif-title">New Service: Taste of Homeland!</div>
@@ -134,8 +116,8 @@
         </div>
         <div class="notif-dot"></div>
     </div>
-    
-    <div class="notification">
+
+    <div class="notification animate-fade-in-up" style="animation-delay:0.2s;">
         <div class="notif-icon">💳</div>
         <div class="notif-content">
             <div class="notif-title">Payment Successful</div>
@@ -143,8 +125,8 @@
             <div class="notif-time">Yesterday, 2:30 PM</div>
         </div>
     </div>
-    
-    <div class="notification">
+
+    <div class="notification animate-fade-in-up" style="animation-delay:0.3s;">
         <div class="notif-icon">⭐</div>
         <div class="notif-content">
             <div class="notif-title">Rate Your Experience</div>
@@ -152,8 +134,8 @@
             <div class="notif-time">Yesterday, 11:00 AM</div>
         </div>
     </div>
-    
-    <div class="notification">
+
+    <div class="notification animate-fade-in-up" style="animation-delay:0.4s;">
         <div class="notif-icon">🎁</div>
         <div class="notif-content">
             <div class="notif-title">Referral Bonus Earned!</div>
@@ -161,8 +143,18 @@
             <div class="notif-time">Aug 28, 6:00 PM</div>
         </div>
     </div>
-    
-    <!-- View All -->
+
     <div class="view-all">View all notifications →</div>
+
+    <script src="/global.js"></script>
+    <script>
+        // Tab switching
+        document.querySelectorAll('.cat-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
