@@ -1,33 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Our Services</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #F5F6FA; padding-bottom: 80px; }
-        
         .header {
-            background: white;
+            background: var(--card-bg);
             padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #E8ECEF;
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
+            z-index: 100;
         }
-        .back { font-size: 24px; cursor: pointer; }
-        .title { font-weight: bold; font-size: 18px; color: #2D3436; }
-        .filter { font-size: 20px; cursor: pointer; }
+        .back { 
+            font-size: 24px; 
+            cursor: pointer; 
+            color: var(--text-primary);
+        }
+        .title { 
+            font-weight: bold; 
+            font-size: 18px; 
+            color: var(--text-primary); 
+        }
+        .filter { 
+            font-size: 20px; 
+            cursor: pointer; 
+        }
         
         .search {
             margin: 15px;
             padding: 15px;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #E8ECEF;
-            color: #B2BEC3;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
         }
         
         .services-grid {
@@ -37,12 +54,17 @@
             padding: 10px 15px;
         }
         .service-card {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 20px 15px;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border-top: 4px solid #FF6B35;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary);
+            transition: all 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
         .service-icon {
             font-size: 36px;
@@ -55,32 +77,23 @@
             justify-content: center;
             margin: 0 auto 10px;
         }
-        .service-name { font-weight: bold; color: #2D3436; font-size: 14px; }
-        .service-desc { color: #636E72; font-size: 11px; margin-top: 5px; }
-        
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0;
-            border-top: 1px solid #E8ECEF;
+        .service-name { 
+            font-weight: bold; 
+            color: var(--text-primary); 
+            font-size: 14px; 
         }
-        .nav-item {
-            text-align: center;
-            color: #B2BEC3;
-            font-size: 12px;
+        .service-desc { 
+            color: var(--text-secondary); 
+            font-size: 11px; 
+            margin-top: 5px; 
         }
-        .nav-item.active { color: #FF6B35; }
-        .nav-item .nav-icon { font-size: 24px; display: block; }
     </style>
 </head>
 <body>
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+    
     <div class="header">
-        <span class="back">←</span>
+        <a href="/app.html" class="back">←</a>
         <span class="title">Our Services</span>
         <span class="filter">⚙️</span>
     </div>
@@ -121,22 +134,24 @@
     </div>
     
     <div class="bottom-nav">
-        <div class="nav-item">
+        <a href="/app.html" class="nav-item">
             <span class="nav-icon">🏠</span>
             Home
-        </div>
-        <div class="nav-item active">
+        </a>
+        <a href="/services.html" class="nav-item active">
             <span class="nav-icon">📋</span>
             Services
-        </div>
-        <div class="nav-item">
+        </a>
+        <a href="/history.html" class="nav-item">
             <span class="nav-icon">📦</span>
             Orders
-        </div>
-        <div class="nav-item">
+        </a>
+        <a href="/profile.html" class="nav-item">
             <span class="nav-icon">👤</span>
             Profile
-        </div>
+        </a>
     </div>
+    
+    <script src="/global.js"></script>
 </body>
 </html>
