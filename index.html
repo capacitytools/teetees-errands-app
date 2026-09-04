@@ -12,23 +12,34 @@
     <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
     <link rel="stylesheet" href="/global.css">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #F5F6FA;
+            color: #2D3436;
+            padding: 20px 15px 100px;
+            min-height: 100vh;
+        }
+        
         .header {
             text-align: center;
             padding: 40px 0 20px;
         }
         .logo { 
-            color: var(--primary); 
+            color: #FF6B35; 
             font-size: 36px; 
             font-weight: bold; 
         }
         .tagline { 
-            color: var(--text-primary); 
+            color: #2D3436; 
             font-size: 18px; 
         }
         .sub { 
-            color: var(--text-secondary); 
+            color: #636E72; 
             font-size: 14px; 
         }
+        
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -36,15 +47,15 @@
             margin-top: 30px;
         }
         .nav-card {
-            background: var(--card-bg);
+            background: white;
             padding: 25px 15px;
-            border-radius: var(--radius);
+            border-radius: 12px;
             text-align: center;
-            border: 1px solid var(--border-color);
-            border-top: 4px solid var(--primary);
+            border: 1px solid #E8ECEF;
+            border-top: 4px solid #FF6B35;
             transition: all 0.3s;
             text-decoration: none;
-            color: var(--text-primary);
+            color: #2D3436;
             display: block;
             cursor: pointer;
         }
@@ -57,30 +68,67 @@
         }
         .nav-card .icon { font-size: 36px; display: block; margin-bottom: 8px; }
         .nav-card .name { font-weight: bold; }
-        .nav-card .desc { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+        .nav-card .desc { font-size: 11px; color: #636E72; margin-top: 4px; }
         .nav-card.coming {
             opacity: 0.5;
-            border-top-color: var(--text-secondary);
+            border-top-color: #B2BEC3;
         }
-        .pwa-badge {
-            margin-top: 30px;
-            padding: 15px;
-            background: #E8F5E9;
-            border-radius: var(--radius);
+        
+        /* ========================================== */
+        /* INSTALL BANNER - SHOWS AUTOMATICALLY */
+        /* ========================================== */
+        .install-banner {
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #FF6B35, #FF8F65);
+            border-radius: 16px;
             text-align: center;
-            border: 2px solid #00C853;
+            color: white;
             cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255,107,53,0.3);
+            display: block;
+            animation: slideDown 0.6s ease-out;
+            transition: all 0.3s;
         }
-        .pwa-badge .emoji { font-size: 24px; }
-        .pwa-badge .text { color: #00C853; font-weight: bold; font-size: 14px; }
-        .pwa-badge .sub { color: var(--text-secondary); font-size: 12px; }
+        .install-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255,107,53,0.4);
+        }
+        .install-banner:active {
+            transform: scale(0.98);
+        }
+        .install-banner .icon { font-size: 40px; display: block; margin-bottom: 8px; }
+        .install-banner .title { font-size: 20px; font-weight: bold; }
+        .install-banner .desc { font-size: 14px; opacity: 0.9; margin-top: 5px; }
+        .install-banner .btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 30px;
+            background: white;
+            color: #FF6B35;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         .footer { 
             text-align: center; 
             margin-top: 40px; 
-            color: var(--text-secondary); 
+            color: #636E72; 
             font-size: 12px; 
         }
-
+        
         @media (max-width: 480px) {
             .nav-grid { gap: 10px; }
             .nav-card { padding: 15px 10px; }
@@ -98,10 +146,14 @@
         <div class="sub">Your errands, Our priority.</div>
     </div>
 
-    <div class="pwa-badge" id="pwaBadge">
-        <span class="emoji">📱</span>
-        <div class="text">✨ Install Teetees App</div>
-        <div class="sub">Add to home screen for the best experience</div>
+    <!-- ========================================== -->
+    <!-- INSTALL BANNER - SHOWS AUTOMATICALLY -->
+    <!-- ========================================== -->
+    <div class="install-banner" id="installBanner" style="display:none;">
+        <span class="icon">📱</span>
+        <div class="title">Install Teetees App</div>
+        <div class="desc">Get the best experience with our app</div>
+        <span class="btn">📲 Install Now</span>
     </div>
 
     <div class="nav-grid">
@@ -242,27 +294,86 @@
         Your errands, Our priority. 🏃
     </div>
 
-    <script src="/global.js"></script>
     <script>
-        // PWA Install
+        // ==========================================
+        // DARK MODE
+        // ==========================================
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            const btn = document.getElementById('darkToggle');
+            if (btn) btn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+            const btn = document.getElementById('darkToggle');
+            if (btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+        });
+
+        // ==========================================
+        // PWA INSTALL - SHOW AUTOMATICALLY
+        // ==========================================
         let deferredPrompt;
+        const installBanner = document.getElementById('installBanner');
+
+        // Listen for the install prompt event
         window.addEventListener('beforeinstallprompt', function(e) {
             e.preventDefault();
             deferredPrompt = e;
-            document.getElementById('pwaBadge').style.display = 'block';
+            
+            // Show the install banner
+            installBanner.style.display = 'block';
+            console.log('✅ Install banner shown!');
         });
 
-        document.getElementById('pwaBadge').addEventListener('click', function() {
+        // When user clicks the banner
+        installBanner.addEventListener('click', function() {
             if (deferredPrompt) {
+                // Show the native install prompt
                 deferredPrompt.prompt();
+                
+                // Wait for user decision
                 deferredPrompt.userChoice.then(function(choiceResult) {
                     if (choiceResult.outcome === 'accepted') {
-                        document.getElementById('pwaBadge').style.display = 'none';
+                        console.log('✅ User installed the app!');
+                        installBanner.style.display = 'none';
+                    } else {
+                        console.log('❌ User declined installation');
+                        // Keep banner visible so they can try again
                     }
                     deferredPrompt = null;
                 });
+            } else {
+                // If the native prompt isn't available, guide the user
+                alert('📱 To install:\n\nOn Android: Tap menu → "Add to Home Screen"\nOn iPhone: Tap share → "Add to Home Screen"');
             }
         });
+
+        // If app is already installed, hide the banner
+        window.addEventListener('appinstalled', function() {
+            console.log('✅ App installed successfully!');
+            installBanner.style.display = 'none';
+        });
+
+        // ==========================================
+        // CHECK IF ALREADY INSTALLED
+        // ==========================================
+        // Check if running in standalone mode (already installed)
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            installBanner.style.display = 'none';
+            console.log('✅ App already installed');
+        }
+
+        // Also check for iOS standalone mode
+        if (window.navigator.standalone) {
+            installBanner.style.display = 'none';
+            console.log('✅ iOS app already installed');
+        }
     </script>
 </body>
 </html>
