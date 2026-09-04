@@ -1,16 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- ========================================== -->
+    <!-- BASIC META TAGS -->
+    <!-- ========================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Teetees Errands</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ========================================== -->
+    <!-- PWA META TAGS - MAKES IT INSTALLABLE! -->
+    <!-- ========================================== -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- ========================================== -->
+    <!-- APPLE TOUCH ICON -->
+    <!-- ========================================== -->
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    
+    <!-- ========================================== -->
+    <!-- STYLES -->
+    <!-- ========================================== -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #F5F6FA; padding: 20px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: #F5F6FA; 
+            padding: 20px 15px 100px; 
+            min-height: 100vh;
+        }
         
-        .header { text-align: center; padding: 40px 0 20px; }
-        .logo { color: #FF6B35; font-size: 36px; font-weight: bold; }
-        .tagline { color: #2D3436; font-size: 18px; }
-        .sub { color: #636E72; font-size: 14px; }
+        .header { 
+            text-align: center; 
+            padding: 40px 0 20px; 
+        }
+        .logo { 
+            color: #FF6B35; 
+            font-size: 36px; 
+            font-weight: bold; 
+        }
+        .tagline { 
+            color: #2D3436; 
+            font-size: 18px; 
+        }
+        .sub { 
+            color: #636E72; 
+            font-size: 14px; 
+        }
         
         .nav-grid {
             display: grid;
@@ -27,21 +67,81 @@
             text-decoration: none;
             color: #2D3436;
             border-top: 4px solid #FF6B35;
+            display: block;
         }
-        .nav-card .icon { font-size: 36px; display: block; margin-bottom: 8px; }
-        .nav-card .name { font-weight: bold; }
-        .nav-card .desc { font-size: 11px; color: #636E72; margin-top: 4px; }
+        .nav-card .icon { 
+            font-size: 36px; 
+            display: block; 
+            margin-bottom: 8px; 
+        }
+        .nav-card .name { 
+            font-weight: bold; 
+        }
+        .nav-card .desc { 
+            font-size: 11px; 
+            color: #636E72; 
+            margin-top: 4px; 
+        }
+        .nav-card.coming {
+            opacity: 0.5;
+            border-top-color: #B2BEC3;
+        }
         
-        .footer { text-align: center; margin-top: 40px; color: #636E72; font-size: 12px; }
+        .footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            color: #636E72; 
+            font-size: 12px; 
+        }
+        
+        .pwa-badge {
+            margin-top: 30px;
+            padding: 15px;
+            background: #E8F5E9;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #00C853;
+            display: none;
+        }
+        .pwa-badge .emoji { font-size: 24px; }
+        .pwa-badge .text { 
+            color: #00C853; 
+            font-weight: bold; 
+            font-size: 14px;
+        }
+        .pwa-badge .sub {
+            color: #636E72;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 480px) {
+            .logo { font-size: 28px; }
+            .tagline { font-size: 16px; }
+        }
     </style>
 </head>
 <body>
+    <!-- ========================================== -->
+    <!-- HEADER -->
+    <!-- ========================================== -->
     <div class="header">
         <div class="logo">TEETEES</div>
         <div class="tagline">WE RUN • YOU RELAX</div>
         <div class="sub">Your errands, Our priority.</div>
     </div>
     
+    <!-- ========================================== -->
+    <!-- PWA BADGE - Shows app is installable -->
+    <!-- ========================================== -->
+    <div class="pwa-badge" id="pwaBadge">
+        <span class="emoji">📱</span>
+        <div class="text">✨ Install Teetees App</div>
+        <div class="sub">Add to home screen for the best experience</div>
+    </div>
+    
+    <!-- ========================================== -->
+    <!-- NAVIGATION GRID -->
+    <!-- ========================================== -->
     <div class="nav-grid">
         <a href="app.html" class="nav-card">
             <span class="icon">🏠</span>
@@ -58,16 +158,146 @@
             <div class="name">Grocery Order</div>
             <div class="desc">Order groceries</div>
         </a>
-        <a href="#" class="nav-card" style="opacity:0.5;">
-            <span class="icon">➕</span>
-            <div class="name">More Coming Soon</div>
-            <div class="desc">Prescription, Gift & more</div>
+        <a href="prescription.html" class="nav-card">
+            <span class="icon">💊</span>
+            <div class="name">Prescription</div>
+            <div class="desc">Pick up medications</div>
+        </a>
+        <a href="gift.html" class="nav-card">
+            <span class="icon">🎁</span>
+            <div class="name">Gift Order</div>
+            <div class="desc">Surprise someone special</div>
+        </a>
+        <a href="dispatch.html" class="nav-card">
+            <span class="icon">🚚</span>
+            <div class="name">Dispatch</div>
+            <div class="desc">Courier & delivery</div>
+        </a>
+        <a href="elderly.html" class="nav-card">
+            <span class="icon">❤️</span>
+            <div class="name">Elderly Care</div>
+            <div class="desc">Support for seniors</div>
+        </a>
+        <a href="homeland.html" class="nav-card">
+            <span class="icon">🇳🇬</span>
+            <div class="name">Taste of Homeland</div>
+            <div class="desc">Nigerian products abroad</div>
+        </a>
+        <a href="track.html" class="nav-card">
+            <span class="icon">📍</span>
+            <div class="name">Track Order</div>
+            <div class="desc">See your order status</div>
+        </a>
+        <a href="history.html" class="nav-card">
+            <span class="icon">📦</span>
+            <div class="name">Order History</div>
+            <div class="desc">View past orders</div>
+        </a>
+        <a href="profile.html" class="nav-card">
+            <span class="icon">👤</span>
+            <div class="name">Profile</div>
+            <div class="desc">Your account settings</div>
+        </a>
+        <a href="payment.html" class="nav-card">
+            <span class="icon">💳</span>
+            <div class="name">Payment</div>
+            <div class="desc">Pay securely</div>
+        </a>
+        <a href="support.html" class="nav-card">
+            <span class="icon">💬</span>
+            <div class="name">Support Chat</div>
+            <div class="desc">Get help 24/7</div>
+        </a>
+        <a href="settings.html" class="nav-card">
+            <span class="icon">⚙️</span>
+            <div class="name">Settings</div>
+            <div class="desc">Customize your app</div>
+        </a>
+        <a href="login.html" class="nav-card" style="border-top-color:#1877F2;">
+            <span class="icon">🔐</span>
+            <div class="name">Login</div>
+            <div class="desc">Sign in to your account</div>
+        </a>
+        <a href="signup.html" class="nav-card" style="border-top-color:#00C853;">
+            <span class="icon">📝</span>
+            <div class="name">Sign Up</div>
+            <div class="desc">Create a new account</div>
         </a>
     </div>
     
+    <!-- ========================================== -->
+    <!-- FOOTER -->
+    <!-- ========================================== -->
     <div class="footer">
         Made with ❤️ for Teetees Errands<br>
-        Your errands, Our priority.
+        Your errands, Our priority. 🏃
+        <br><br>
+        <span style="font-size:11px;color:#B2BEC3;">
+            📱 Install this app on your home screen!
+        </span>
     </div>
+    
+    <!-- ========================================== -->
+    <!-- PWA SCRIPTS -->
+    <!-- ========================================== -->
+    <script>
+        // ==========================================
+        // 1. REGISTER SERVICE WORKER
+        // ==========================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('✅ Service Worker registered!');
+                        console.log('Scope:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('❌ Service Worker registration failed:', error);
+                    });
+            });
+        }
+        
+        // ==========================================
+        // 2. CHECK IF APP IS INSTALLABLE
+        // ==========================================
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', function(e) {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install badge
+            document.getElementById('pwaBadge').style.display = 'block';
+            console.log('✅ App is installable!');
+        });
+        
+        // ==========================================
+        // 3. INSTALL BUTTON CLICK
+        // ==========================================
+        document.getElementById('pwaBadge')?.addEventListener('click', function() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(function(choiceResult) {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('✅ User installed the app!');
+                        document.getElementById('pwaBadge').style.display = 'none';
+                    } else {
+                        console.log('❌ User dismissed install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        });
+        
+        // ==========================================
+        // 4. CHECK IF APP IS ALREADY INSTALLED
+        // ==========================================
+        window.addEventListener('appinstalled', function() {
+            console.log('✅ App was installed successfully!');
+            document.getElementById('pwaBadge').style.display = 'none';
+        });
+        
+        console.log('🚀 Teetees Errands PWA loaded!');
+    </script>
 </body>
 </html>
