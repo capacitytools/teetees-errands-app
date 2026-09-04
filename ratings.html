@@ -1,40 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Rate Your Experience</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        
         .rating-main {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
             padding: 30px;
             text-align: center;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
         .smiley { font-size: 60px; display: block; margin-bottom: 10px; }
@@ -49,35 +32,12 @@
         }
         .rating-stars .star.active { color: #FFD700; }
         .rating-stars .star:hover { transform: scale(1.2); }
-        .rating-label { color: #636E72; font-size: 16px; }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            color: #2D3436;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #E8ECEF;
-            border-radius: 10px;
-            font-size: 14px;
-            background: white;
-            min-height: 100px;
-            resize: vertical;
-            font-family: Arial, sans-serif;
-        }
-        
+        .rating-label { color: var(--text-secondary); font-size: 16px; }
         .aspect-ratings {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
         .aspect-row {
@@ -85,77 +45,62 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
-            border-bottom: 1px solid #F5F6FA;
+            border-bottom: 1px solid var(--border-color);
         }
         .aspect-row:last-child { border-bottom: none; }
-        .aspect-label { font-weight: bold; color: #2D3436; font-size: 14px; }
+        .aspect-label { font-weight: bold; color: var(--text-primary); font-size: 14px; }
         .aspect-stars { color: #FFD700; font-size: 18px; }
-        
         .upload-area {
-            border: 2px dashed #E8ECEF;
-            border-radius: 12px;
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
             padding: 20px;
             text-align: center;
-            background: white;
+            background: var(--card-bg);
             margin-bottom: 20px;
             cursor: pointer;
+            transition: all 0.3s;
         }
+        .upload-area:hover { border-color: var(--primary); }
         .upload-area .camera-icon { font-size: 30px; display: block; }
-        .upload-area .upload-text { color: #636E72; font-size: 14px; }
-        
-        .btn-primary {
-            width: 100%;
-            padding: 15px;
-            background: #FF6B35;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .past-reviews {
-            margin-top: 20px;
-        }
-        .past-reviews h3 { color: #2D3436; margin-bottom: 15px; }
+        .upload-area .upload-text { color: var(--text-secondary); font-size: 14px; }
+        .past-reviews { margin-top: 20px; }
+        .past-reviews h3 { color: var(--text-primary); margin-bottom: 15px; }
         .review {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 10px;
         }
-        .review .reviewer { font-weight: bold; color: #2D3436; }
+        .review .reviewer { font-weight: bold; color: var(--text-primary); }
         .review .review-stars { color: #FFD700; font-size: 14px; }
-        .review .review-text { color: #636E72; font-size: 13px; margin-top: 5px; }
-        .review .review-time { color: #B2BEC3; font-size: 11px; margin-top: 5px; }
+        .review .review-text { color: var(--text-secondary); font-size: 13px; margin-top: 5px; }
+        .review .review-time { color: var(--text-secondary); font-size: 11px; margin-top: 5px; }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
     <div class="header">
         <a href="details.html" class="back">←</a>
         <span class="title">Rate Your Experience</span>
-        <span>⭐</span>
+        <span style="font-size:20px;">⭐</span>
     </div>
-    
-    <!-- Rating Main -->
-    <div class="rating-main">
+
+    <div class="rating-main animate-fade-in-up">
         <span class="smiley">😊</span>
         <div class="rating-label">How was your experience?</div>
-        <div class="rating-stars">
-            <span class="star active">★</span>
-            <span class="star active">★</span>
-            <span class="star active">★</span>
-            <span class="star active">★</span>
-            <span class="star">☆</span>
+        <div class="rating-stars" id="ratingStars">
+            <span class="star active" data-value="1">★</span>
+            <span class="star active" data-value="2">★</span>
+            <span class="star active" data-value="3">★</span>
+            <span class="star active" data-value="4">★</span>
+            <span class="star" data-value="5">☆</span>
         </div>
         <div style="font-size:20px;font-weight:bold;color:#FFD700;margin-top:5px;">4.0 / 5.0</div>
     </div>
-    
-    <!-- Aspect Ratings -->
-    <div class="aspect-ratings">
+
+    <div class="aspect-ratings animate-fade-in-up" style="animation-delay:0.1s;">
         <div class="aspect-row">
             <span class="aspect-label">⏱️ Punctuality</span>
             <span class="aspect-stars">★★★★☆</span>
@@ -173,23 +118,19 @@
             <span class="aspect-stars">★★★★☆</span>
         </div>
     </div>
-    
-    <!-- Review Text -->
+
     <div class="form-group">
         <label>📝 Share Your Experience</label>
         <textarea placeholder="What did you like? What could be improved?"></textarea>
     </div>
-    
-    <!-- Upload Photo -->
+
     <div class="upload-area">
         <span class="camera-icon">📷</span>
         <div class="upload-text">Add a photo (optional)</div>
     </div>
-    
-    <!-- Submit -->
+
     <button class="btn-primary">⭐ Submit Review</button>
-    
-    <!-- Past Reviews -->
+
     <div class="past-reviews">
         <h3>Recent Reviews</h3>
         <div class="review">
@@ -203,5 +144,19 @@
             <div class="review-time">1 week ago</div>
         </div>
     </div>
+
+    <script src="/global.js"></script>
+    <script>
+        // Star rating
+        document.querySelectorAll('#ratingStars .star').forEach((star, index) => {
+            star.addEventListener('click', function() {
+                const stars = this.parentElement.querySelectorAll('.star');
+                const value = parseInt(this.dataset.value);
+                stars.forEach((s, i) => {
+                    s.classList.toggle('active', i < value);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
