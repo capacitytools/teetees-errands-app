@@ -12,11 +12,9 @@
     <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
     <link rel="stylesheet" href="/global.css">
     <style>
-        .header { 
-            text-align: center; 
+        .header {
+            text-align: center;
             padding: 40px 0 20px;
-            border: none;
-            margin-bottom: 30px;
         }
         .logo { 
             color: var(--primary); 
@@ -26,14 +24,11 @@
         .tagline { 
             color: var(--text-primary); 
             font-size: 18px; 
-            margin-top: 5px;
         }
         .sub { 
             color: var(--text-secondary); 
             font-size: 14px; 
-            margin-top: 2px;
         }
-        
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -45,206 +40,217 @@
             padding: 25px 15px;
             border-radius: var(--radius);
             text-align: center;
-            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.3s;
             text-decoration: none;
             color: var(--text-primary);
-            border-top: 4px solid var(--primary);
-            display: block;
-            transition: all 0.3s;
         }
         .nav-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
-        .nav-card .icon { 
-            font-size: 36px; 
-            display: block; 
-            margin-bottom: 8px; 
-        }
-        .nav-card .name { 
-            font-weight: bold; 
-            color: var(--text-primary);
-        }
-        .nav-card .desc { 
-            font-size: 11px; 
-            color: var(--text-secondary); 
-            margin-top: 4px; 
-        }
+        .nav-card .icon { font-size: 36px; display: block; margin-bottom: 8px; }
+        .nav-card .name { font-weight: bold; }
+        .nav-card .desc { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
         .nav-card.coming {
             opacity: 0.5;
-            border-top-color: #B2BEC3;
+            border-top-color: var(--text-secondary);
         }
-        
-        .footer { 
-            text-align: center; 
-            margin-top: 40px; 
-            color: var(--text-secondary); 
-            font-size: 12px; 
-        }
-        
         .pwa-badge {
             margin-top: 30px;
             padding: 15px;
             background: #E8F5E9;
             border-radius: var(--radius);
             text-align: center;
-            border: 2px solid var(--success);
-            display: none;
+            border: 2px solid #00C853;
             cursor: pointer;
-            transition: all 0.3s;
-        }
-        .pwa-badge:hover {
-            transform: scale(1.02);
         }
         .pwa-badge .emoji { font-size: 24px; }
-        .pwa-badge .text { 
-            color: var(--success); 
-            font-weight: bold; 
-            font-size: 14px;
-        }
-        .pwa-badge .sub {
-            color: var(--text-secondary);
-            font-size: 12px;
+        .pwa-badge .text { color: #00C853; font-weight: bold; font-size: 14px; }
+        .pwa-badge .sub { color: var(--text-secondary); font-size: 12px; }
+        .footer { 
+            text-align: center; 
+            margin-top: 40px; 
+            color: var(--text-secondary); 
+            font-size: 12px; 
         }
     </style>
 </head>
 <body>
     <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
-    
+
     <div class="header">
         <div class="logo">TEETEES</div>
         <div class="tagline">WE RUN • YOU RELAX</div>
         <div class="sub">Your errands, Our priority.</div>
     </div>
-    
+
     <div class="pwa-badge" id="pwaBadge">
         <span class="emoji">📱</span>
         <div class="text">✨ Install Teetees App</div>
         <div class="sub">Add to home screen for the best experience</div>
     </div>
-    
+
     <div class="nav-grid">
-        <a href="/app.html" class="nav-card">
+        <div class="nav-card" onclick="window.location.href='/app.html'">
             <span class="icon">🏠</span>
             <div class="name">Home Dashboard</div>
             <div class="desc">See your recent orders</div>
-        </a>
-        <a href="/services.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/services.html'">
             <span class="icon">📋</span>
             <div class="name">All Services</div>
             <div class="desc">Browse all our services</div>
-        </a>
-        <a href="/grocery.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/grocery.html'">
             <span class="icon">🛒</span>
             <div class="name">Grocery Order</div>
             <div class="desc">Order groceries</div>
-        </a>
-        <a href="/prescription.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/prescription.html'">
             <span class="icon">💊</span>
             <div class="name">Prescription</div>
             <div class="desc">Pick up medications</div>
-        </a>
-        <a href="/gift.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/gift.html'">
             <span class="icon">🎁</span>
             <div class="name">Gift Order</div>
             <div class="desc">Surprise someone special</div>
-        </a>
-        <a href="/dispatch.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/dispatch.html'">
             <span class="icon">🚚</span>
             <div class="name">Dispatch</div>
             <div class="desc">Courier & delivery</div>
-        </a>
-        <a href="/elderly.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/elderly.html'">
             <span class="icon">❤️</span>
             <div class="name">Elderly Care</div>
             <div class="desc">Support for seniors</div>
-        </a>
-        <a href="/homeland.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/homeland.html'">
             <span class="icon">🇳🇬</span>
             <div class="name">Taste of Homeland</div>
             <div class="desc">Nigerian products abroad</div>
-        </a>
-        <a href="/track.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/track.html'">
             <span class="icon">📍</span>
             <div class="name">Track Order</div>
             <div class="desc">See your order status</div>
-        </a>
-        <a href="/history.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/history.html'">
             <span class="icon">📦</span>
             <div class="name">Order History</div>
             <div class="desc">View past orders</div>
-        </a>
-        <a href="/profile.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/profile.html'">
             <span class="icon">👤</span>
             <div class="name">Profile</div>
             <div class="desc">Your account settings</div>
-        </a>
-        <a href="/payment.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/payment.html'">
             <span class="icon">💳</span>
             <div class="name">Payment</div>
             <div class="desc">Pay securely</div>
-        </a>
-        <a href="/support.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/support.html'">
             <span class="icon">💬</span>
             <div class="name">Support Chat</div>
             <div class="desc">Get help 24/7</div>
-        </a>
-        <a href="/settings.html" class="nav-card">
+        </div>
+        <div class="nav-card" onclick="window.location.href='/settings.html'">
             <span class="icon">⚙️</span>
             <div class="name">Settings</div>
             <div class="desc">Customize your app</div>
-        </a>
-        <a href="/login.html" class="nav-card" style="border-top-color:#1877F2;">
+        </div>
+        <div class="nav-card" style="border-top-color:#1877F2;" onclick="window.location.href='/login.html'">
             <span class="icon">🔐</span>
             <div class="name">Login</div>
             <div class="desc">Sign in to your account</div>
-        </a>
-        <a href="/signup.html" class="nav-card" style="border-top-color:#00C853;">
+        </div>
+        <div class="nav-card" style="border-top-color:#00C853;" onclick="window.location.href='/signup.html'">
             <span class="icon">📝</span>
             <div class="name">Sign Up</div>
             <div class="desc">Create a new account</div>
-        </a>
+        </div>
+        <div class="nav-card" onclick="window.location.href='/addresses.html'">
+            <span class="icon">📍</span>
+            <div class="name">Addresses</div>
+            <div class="desc">Manage saved addresses</div>
+        </div>
+        <div class="nav-card" onclick="window.location.href='/referral.html'">
+            <span class="icon">🎁</span>
+            <div class="name">Refer & Earn</div>
+            <div class="desc">Earn rewards</div>
+        </div>
+        <div class="nav-card" onclick="window.location.href='/loyalty.html'">
+            <span class="icon">⭐</span>
+            <div class="name">Loyalty Points</div>
+            <div class="desc">Your rewards balance</div>
+        </div>
+        <div class="nav-card" style="border-top-color:#FFD700;" onclick="window.location.href='/admin.html'">
+            <span class="icon">📊</span>
+            <div class="name">Admin Dashboard</div>
+            <div class="desc">Manage your business</div>
+        </div>
+        <div class="nav-card" onclick="window.location.href='/about.html'">
+            <span class="icon">ℹ️</span>
+            <div class="name">About Us</div>
+            <div class="desc">Learn about Teetees</div>
+        </div>
+        <div class="nav-card" onclick="window.location.href='/feedback.html'">
+            <span class="icon">📝</span>
+            <div class="name">Feedback</div>
+            <div class="desc">Tell us what you think</div>
+        </div>
+        <div class="nav-card" onclick="window.location.href='/scheduled.html'">
+            <span class="icon">📅</span>
+            <div class="name">Scheduled Orders</div>
+            <div class="desc">Set up recurring errands</div>
+        </div>
+        <div class="nav-card" onclick="window.location.href='/multistop.html'">
+            <span class="icon">🗺️</span>
+            <div class="name">Multi-Stop</div>
+            <div class="desc">Multiple errands in one</div>
+        </div>
+        <div class="nav-card" style="border-top-color:#FF1744;" onclick="window.location.href='/emergency.html'">
+            <span class="icon">🚨</span>
+            <div class="name">Emergency</div>
+            <div class="desc">Urgent service</div>
+        </div>
+        <div class="nav-card" style="border-top-color:#FFD700;" onclick="window.location.href='/packages.html'">
+            <span class="icon">📊</span>
+            <div class="name">Packages</div>
+            <div class="desc">Compare plans</div>
+        </div>
     </div>
-    
+
     <div class="footer">
         Made with ❤️ for Teetees Errands<br>
         Your errands, Our priority. 🏃
-        <br><br>
-        <span style="font-size:11px;color:#B2BEC3;">
-            📱 Install this app on your home screen!
-        </span>
     </div>
-    
+
     <script src="/global.js"></script>
     <script>
-        // PWA INSTALL LOGIC
+        // PWA Install
         let deferredPrompt;
-        
         window.addEventListener('beforeinstallprompt', function(e) {
             e.preventDefault();
             deferredPrompt = e;
             document.getElementById('pwaBadge').style.display = 'block';
-            console.log('✅ App is installable!');
         });
-        
-        document.getElementById('pwaBadge')?.addEventListener('click', function() {
+
+        document.getElementById('pwaBadge').addEventListener('click', function() {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then(function(choiceResult) {
                     if (choiceResult.outcome === 'accepted') {
-                        console.log('✅ User installed the app!');
                         document.getElementById('pwaBadge').style.display = 'none';
-                    } else {
-                        console.log('❌ User dismissed install prompt');
                     }
                     deferredPrompt = null;
                 });
             }
-        });
-        
-        window.addEventListener('appinstalled', function() {
-            console.log('✅ App was installed successfully!');
-            document.getElementById('pwaBadge').style.display = 'none';
         });
     </script>
 </body>
