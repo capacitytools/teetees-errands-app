@@ -1,46 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Settings</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        
         .settings-section {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #E8ECEF;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
             overflow: hidden;
             margin-bottom: 15px;
         }
         .section-title {
             padding: 12px 20px;
-            background: #F5F6FA;
+            background: var(--bg-secondary);
             font-weight: bold;
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 13px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -50,25 +33,27 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
-            border-bottom: 1px solid #F5F6FA;
+            border-bottom: 1px solid var(--border-color);
             cursor: pointer;
+            transition: all 0.3s;
         }
         .setting-item:last-child { border-bottom: none; }
+        .setting-item:hover { background: var(--bg-secondary); }
         .setting-item .left { display: flex; align-items: center; gap: 12px; }
         .setting-item .icon { font-size: 20px; }
-        .setting-item .name { font-weight: bold; color: #2D3436; }
-        .setting-item .desc { font-size: 12px; color: #636E72; }
-        .setting-item .arrow { color: #B2BEC3; font-size: 18px; }
-        
+        .setting-item .name { font-weight: bold; color: var(--text-primary); }
+        .setting-item .desc { font-size: 12px; color: var(--text-secondary); }
+        .setting-item .arrow { color: var(--text-secondary); font-size: 18px; }
         .toggle-switch {
             width: 50px;
             height: 28px;
-            background: #B2BEC3;
+            background: var(--text-secondary);
             border-radius: 14px;
             position: relative;
             cursor: pointer;
+            transition: all 0.3s;
         }
-        .toggle-switch.active { background: #FF6B35; }
+        .toggle-switch.active { background: var(--primary); }
         .toggle-switch .toggle-dot {
             width: 22px;
             height: 22px;
@@ -80,22 +65,21 @@
             transition: 0.3s;
         }
         .toggle-switch.active .toggle-dot { left: 25px; }
-        
         .setting-value {
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
     <div class="header">
         <a href="profile.html" class="back">←</a>
         <span class="title">Settings</span>
-        <span>⚙️</span>
+        <span style="font-size:20px;">⚙️</span>
     </div>
-    
-    <!-- Account Section -->
+
     <div class="settings-section">
         <div class="section-title">Account</div>
         <div class="setting-item">
@@ -115,8 +99,7 @@
             <span class="setting-value">+234 803 430 1587</span>
         </div>
     </div>
-    
-    <!-- Preferences Section -->
+
     <div class="settings-section">
         <div class="section-title">Preferences</div>
         <div class="setting-item">
@@ -129,14 +112,8 @@
             <span class="setting-value">₦ NGN</span>
             <span class="arrow">→</span>
         </div>
-        <div class="setting-item">
-            <span class="left"><span class="icon">📐</span><span class="name">Units</span></span>
-            <span class="setting-value">Metric</span>
-            <span class="arrow">→</span>
-        </div>
     </div>
-    
-    <!-- Notifications Section -->
+
     <div class="settings-section">
         <div class="section-title">Notifications</div>
         <div class="setting-item">
@@ -158,8 +135,7 @@
             </div>
         </div>
     </div>
-    
-    <!-- App Section -->
+
     <div class="settings-section">
         <div class="section-title">App</div>
         <div class="setting-item">
@@ -173,8 +149,7 @@
             <span class="arrow">→</span>
         </div>
     </div>
-    
-    <!-- Info Section -->
+
     <div class="settings-section">
         <div class="section-title">Information</div>
         <div class="setting-item">
@@ -194,5 +169,7 @@
             <span class="setting-value">v1.0.0</span>
         </div>
     </div>
+
+    <script src="/global.js"></script>
 </body>
 </html>
