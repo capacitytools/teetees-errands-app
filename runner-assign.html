@@ -1,43 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Assign Runner</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        
         .order-summary {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
         .order-summary h3 {
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 16px;
             margin-bottom: 8px;
         }
@@ -46,10 +29,10 @@
             justify-content: space-between;
             padding: 4px 0;
             font-size: 14px;
-            color: #636E72;
+            color: var(--text-secondary);
         }
-        .order-summary .row .val { color: #2D3436; font-weight: bold; }
-        
+        .order-summary .row .val { color: var(--text-primary); font-weight: bold; }
+
         .filters {
             display: flex;
             gap: 8px;
@@ -59,34 +42,38 @@
         .filter {
             padding: 6px 16px;
             border-radius: 20px;
-            background: white;
-            border: 2px solid #E8ECEF;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
             font-weight: bold;
             font-size: 12px;
-            color: #636E72;
+            color: var(--text-secondary);
             cursor: pointer;
+            transition: all 0.3s;
         }
         .filter.active {
-            border-color: #FF6B35;
-            color: #FF6B35;
+            border-color: var(--primary);
+            color: var(--primary);
             background: #FFF3E0;
         }
-        
+        .filter:hover { border-color: var(--primary); }
+
         .runner-card {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 15px;
+            transition: all 0.3s;
         }
+        .runner-card:hover { transform: translateY(-2px); }
         .runner-card .avatar {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #FF6B35;
+            background: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -97,7 +84,7 @@
         .runner-card .info { flex: 1; }
         .runner-card .info .name {
             font-weight: bold;
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 15px;
         }
         .runner-card .info .rating {
@@ -105,69 +92,69 @@
             font-size: 13px;
         }
         .runner-card .info .distance {
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 12px;
         }
         .runner-card .assign-btn {
             padding: 8px 20px;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 20px;
             font-weight: bold;
             font-size: 12px;
             cursor: pointer;
+            transition: all 0.3s;
         }
+        .runner-card .assign-btn:hover { transform: scale(1.05); }
         .runner-card .assign-btn.assigned {
             background: #00C853;
+            cursor: default;
         }
-        
+
         .map-mini {
-            background: #E8ECEF;
-            border-radius: 12px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
             height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #DDE1E6;
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
     <div class="header">
         <a href="admin.html" class="back">←</a>
         <span class="title">Assign Runner</span>
-        <span>👥</span>
+        <span style="font-size:20px;">👥</span>
     </div>
-    
-    <!-- Order Summary -->
-    <div class="order-summary">
+
+    <div class="order-summary animate-fade-in-up">
         <h3>📦 Order #ORD-2024-001</h3>
         <div class="row"><span>Service</span><span class="val">🛒 Grocery Shopping</span></div>
         <div class="row"><span>Pickup</span><span class="val">No 1, Road 10, Iworoko</span></div>
         <div class="row"><span>Delivery</span><span class="val">Teetees Lane, Ado Ekiti</span></div>
         <div class="row"><span>Distance</span><span class="val">4.5 km</span></div>
     </div>
-    
-    <!-- Map -->
-    <div class="map-mini">
+
+    <div class="map-mini animate-fade-in-up" style="animation-delay:0.1s;">
         🗺️ Available runners near you
     </div>
-    
-    <!-- Filters -->
-    <div class="filters">
+
+    <div class="filters animate-fade-in-up" style="animation-delay:0.2s;">
         <span class="filter active">All</span>
         <span class="filter">Nearest</span>
         <span class="filter">⭐ Top Rated</span>
         <span class="filter">🟢 Online</span>
     </div>
-    
-    <!-- Runners -->
-    <div class="runner-card">
+
+    <div class="runner-card animate-fade-in-up" style="animation-delay:0.3s;">
         <div class="avatar">👤</div>
         <div class="info">
             <div class="name">John Doe</div>
@@ -176,8 +163,8 @@
         </div>
         <button class="assign-btn">Assign</button>
     </div>
-    
-    <div class="runner-card" style="border-color:#00C853;">
+
+    <div class="runner-card animate-fade-in-up" style="animation-delay:0.4s;border-color:#00C853;">
         <div class="avatar">👤</div>
         <div class="info">
             <div class="name">Jane Smith</div>
@@ -186,8 +173,8 @@
         </div>
         <button class="assign-btn assigned">✅ Assigned</button>
     </div>
-    
-    <div class="runner-card">
+
+    <div class="runner-card animate-fade-in-up" style="animation-delay:0.5s;">
         <div class="avatar">👤</div>
         <div class="info">
             <div class="name">Mike Johnson</div>
@@ -196,15 +183,25 @@
         </div>
         <button class="assign-btn">Assign</button>
     </div>
-    
-    <div class="runner-card" style="opacity:0.6;">
+
+    <div class="runner-card animate-fade-in-up" style="animation-delay:0.6s;opacity:0.6;">
         <div class="avatar">👤</div>
         <div class="info">
             <div class="name">Sarah Williams</div>
             <div class="rating">⭐ 4.5 (156 reviews)</div>
             <div class="distance">📍 5.2 km away • 🔴 Busy</div>
         </div>
-        <button class="assign-btn" style="background:#B2BEC3;cursor:not-allowed;">Busy</button>
+        <button class="assign-btn" style="background:var(--text-secondary);cursor:not-allowed;">Busy</button>
     </div>
+
+    <script src="/global.js"></script>
+    <script>
+        document.querySelectorAll('.filter').forEach(filter => {
+            filter.addEventListener('click', function() {
+                document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>
