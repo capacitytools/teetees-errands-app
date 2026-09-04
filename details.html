@@ -1,37 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Order Details</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        
         .order-id {
             text-align: center;
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 13px;
             margin-bottom: 5px;
         }
@@ -40,28 +23,26 @@
             padding: 8px 0;
             margin-bottom: 20px;
             background: #FFF3E0;
-            border-radius: 10px;
-            color: #FF6B35;
+            border-radius: var(--radius);
+            color: var(--primary);
             font-weight: bold;
         }
-        
         .detail-card {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 15px;
         }
         .detail-row {
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px solid #F5F6FA;
+            border-bottom: 1px solid var(--border-color);
         }
         .detail-row:last-child { border-bottom: none; }
-        .detail-label { color: #636E72; font-size: 14px; }
-        .detail-value { color: #2D3436; font-weight: bold; font-size: 14px; }
-        
+        .detail-label { color: var(--text-secondary); font-size: 14px; }
+        .detail-value { color: var(--text-primary); font-weight: bold; font-size: 14px; }
         .runner-mini {
             display: flex;
             align-items: center;
@@ -72,32 +53,27 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: #FF6B35;
+            background: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 18px;
         }
-        .runner-mini .info .name { font-weight: bold; color: #2D3436; }
-        .runner-mini .info .phone { font-size: 12px; color: #636E72; }
-        
-        .items-list {
-            margin: 10px 0;
-        }
+        .runner-mini .info .name { font-weight: bold; color: var(--text-primary); }
+        .runner-mini .info .phone { font-size: 12px; color: var(--text-secondary); }
         .item-row {
             display: flex;
             justify-content: space-between;
             padding: 6px 0;
             font-size: 14px;
-            color: #2D3436;
-            border-bottom: 1px solid #F5F6FA;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
         }
         .item-row:last-child { border-bottom: none; }
-        
         .payment-breakdown {
             background: #FFF3E0;
-            border-radius: 12px;
+            border-radius: var(--radius);
             padding: 15px;
             margin: 15px 0;
         }
@@ -105,17 +81,16 @@
             display: flex;
             justify-content: space-between;
             padding: 6px 0;
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 14px;
         }
         .payment-row.total {
             font-weight: bold;
             font-size: 18px;
-            border-top: 2px solid #FF6B35;
+            border-top: 2px solid var(--primary);
             padding-top: 10px;
             margin-top: 5px;
         }
-        
         .btn-group {
             display: flex;
             gap: 10px;
@@ -124,53 +99,57 @@
         .btn-track {
             flex: 1;
             padding: 12px;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: var(--radius);
             font-weight: bold;
             cursor: pointer;
-            text-decoration: none;
             text-align: center;
+            text-decoration: none;
+            transition: all 0.3s;
         }
+        .btn-track:hover { transform: translateY(-2px); }
         .btn-support {
             flex: 1;
             padding: 12px;
-            background: white;
-            color: #FF6B35;
-            border: 2px solid #FF6B35;
-            border-radius: 10px;
+            background: var(--card-bg);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
             font-weight: bold;
             cursor: pointer;
             text-align: center;
             text-decoration: none;
+            transition: all 0.3s;
         }
-        
+        .btn-support:hover { background: var(--primary); color: white; }
         .rating-section {
             text-align: center;
             padding: 15px;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #E8ECEF;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
         }
-        .rating-section .stars { font-size: 30px; }
-        .rating-section .rate-text { color: #636E72; font-size: 14px; margin-top: 5px; }
+        .rating-section .stars { font-size: 30px; cursor: pointer; }
+        .rating-section .stars .star { color: #E8ECEF; transition: all 0.3s; }
+        .rating-section .stars .star.active { color: #FFD700; }
+        .rating-section .rate-text { color: var(--text-secondary); font-size: 14px; margin-top: 5px; }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
     <div class="header">
         <a href="history.html" class="back">←</a>
         <span class="title">Order Details</span>
-        <span>📄</span>
+        <span style="font-size:20px;">📄</span>
     </div>
-    
-    <!-- Order ID & Status -->
+
     <div class="order-id">Order #ORD-2024-001</div>
     <div class="order-status-big">🔄 Active - In Progress</div>
-    
-    <!-- Order Summary -->
-    <div class="detail-card">
+
+    <div class="detail-card animate-fade-in-up">
         <div class="detail-row">
             <span class="detail-label">Service</span>
             <span class="detail-value">🛒 Grocery Shopping</span>
@@ -188,10 +167,9 @@
             <span class="detail-value">Teetees Lane, Ado Ekiti</span>
         </div>
     </div>
-    
-    <!-- Runner Info -->
-    <div class="detail-card">
-        <div style="font-weight:bold;color:#2D3436;margin-bottom:10px;">👤 Runner</div>
+
+    <div class="detail-card animate-fade-in-up" style="animation-delay:0.1s;">
+        <div style="font-weight:bold;color:var(--text-primary);margin-bottom:10px;">👤 Runner</div>
         <div class="runner-mini">
             <div class="photo">👤</div>
             <div class="info">
@@ -201,20 +179,16 @@
             </div>
         </div>
     </div>
-    
-    <!-- Items -->
-    <div class="detail-card">
-        <div style="font-weight:bold;color:#2D3436;margin-bottom:10px;">📋 Items</div>
-        <div class="items-list">
-            <div class="item-row"><span>Rice 2kg</span><span>₦2,000</span></div>
-            <div class="item-row"><span>Milk 1L</span><span>₦1,500</span></div>
-            <div class="item-row"><span>Bread</span><span>₦800</span></div>
-            <div class="item-row"><span>Eggs (12)</span><span>₦1,200</span></div>
-            <div class="item-row"><span>Vegetables</span><span>₦1,000</span></div>
-        </div>
+
+    <div class="detail-card animate-fade-in-up" style="animation-delay:0.2s;">
+        <div style="font-weight:bold;color:var(--text-primary);margin-bottom:10px;">📋 Items</div>
+        <div class="item-row"><span>Rice 2kg</span><span>₦2,000</span></div>
+        <div class="item-row"><span>Milk 1L</span><span>₦1,500</span></div>
+        <div class="item-row"><span>Bread</span><span>₦800</span></div>
+        <div class="item-row"><span>Eggs (12)</span><span>₦1,200</span></div>
+        <div class="item-row"><span>Vegetables</span><span>₦1,000</span></div>
     </div>
-    
-    <!-- Payment Breakdown -->
+
     <div class="payment-breakdown">
         <div class="payment-row"><span>Subtotal</span><span>₦6,500</span></div>
         <div class="payment-row"><span>Service Fee</span><span>₦500</span></div>
@@ -222,18 +196,35 @@
         <div class="payment-row"><span>Discount</span><span>-₦200</span></div>
         <div class="payment-row total"><span>Total</span><span>₦7,800</span></div>
     </div>
-    
-    <!-- Buttons -->
+
     <div class="btn-group">
         <a href="track.html" class="btn-track">📍 Track Order</a>
         <a href="support.html" class="btn-support">💬 Contact Support</a>
     </div>
-    
-    <!-- Rating -->
+
     <div class="rating-section">
-        <div class="stars">⭐⭐⭐⭐☆</div>
+        <div class="stars">
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star active">★</span>
+            <span class="star">☆</span>
+        </div>
         <div class="rate-text">Rate your experience</div>
-        <div style="font-size:12px;color:#636E72;margin-top:5px;">Tap to rate</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-top:5px;">Tap to rate</div>
     </div>
+
+    <script src="/global.js"></script>
+    <script>
+        // Star rating
+        document.querySelectorAll('.stars .star').forEach((star, index) => {
+            star.addEventListener('click', function() {
+                const stars = this.parentElement.querySelectorAll('.star');
+                stars.forEach((s, i) => {
+                    s.classList.toggle('active', i <= index);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
