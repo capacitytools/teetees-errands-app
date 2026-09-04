@@ -1,83 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Not Found</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            height: 100vh;
+        body {
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
             padding: 20px;
         }
-        
         .notfound-container {
             text-align: center;
             padding: 20px;
             max-width: 350px;
         }
-        
         .notfound-icon {
             font-size: 100px;
             display: block;
             margin-bottom: 15px;
             animation: float 3s ease-in-out infinite;
         }
-        
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        
         .notfound-title {
             font-size: 32px;
             font-weight: bold;
-            color: #2D3436;
+            color: var(--text-primary);
             margin-bottom: 5px;
         }
-        
         .notfound-sub {
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 16px;
             margin-bottom: 5px;
         }
-        
         .notfound-desc {
-            color: #B2BEC3;
+            color: var(--text-secondary);
             font-size: 14px;
             margin-bottom: 25px;
             line-height: 1.6;
         }
-        
         .btn-primary {
             padding: 14px 40px;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 50px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s;
         }
-        
-        .btn-outline {
-            padding: 14px 40px;
-            background: white;
-            color: #FF6B35;
-            border: 2px solid #E8ECEF;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            display: inline-block;
-            width: 100%;
-        }
-        
+        .btn-primary:hover { transform: translateY(-2px); }
         .suggestions {
             margin-top: 25px;
             display: flex;
@@ -85,20 +70,20 @@
             justify-content: center;
             flex-wrap: wrap;
         }
-        
         .suggestions .suggestion {
             padding: 8px 16px;
-            background: white;
-            border: 1px solid #E8ECEF;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
             font-size: 13px;
-            color: #636E72;
+            color: var(--text-secondary);
             text-decoration: none;
+            transition: all 0.3s;
         }
-        
+        .suggestions .suggestion:hover { border-color: var(--primary); color: var(--primary); }
         .error-code {
             margin-top: 20px;
-            color: #B2BEC3;
+            color: var(--text-secondary);
             font-size: 12px;
         }
     </style>
@@ -111,18 +96,19 @@
         <div class="notfound-desc">
             Oops! The page you're looking for doesn't exist or has been moved.
         </div>
-        
-        <button class="btn-primary">🏠 Go Back Home</button>
-        <button class="btn-outline">📞 Contact Support</button>
-        
+
+        <a href="app.html" class="btn-primary">🏠 Go Back Home</a>
+
         <div class="suggestions">
-            <a href="#" class="suggestion">🏠 Home</a>
-            <a href="#" class="suggestion">📋 Services</a>
-            <a href="#" class="suggestion">📦 Orders</a>
-            <a href="#" class="suggestion">👤 Profile</a>
+            <a href="app.html" class="suggestion">🏠 Home</a>
+            <a href="services.html" class="suggestion">📋 Services</a>
+            <a href="history.html" class="suggestion">📦 Orders</a>
+            <a href="profile.html" class="suggestion">👤 Profile</a>
         </div>
-        
+
         <div class="error-code">Error Code: 404-Not-Found</div>
     </div>
+
+    <script src="/global.js"></script>
 </body>
 </html>
