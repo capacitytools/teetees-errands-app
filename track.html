@@ -1,47 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Track Your Errand</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        
         .order-id {
             text-align: center;
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 14px;
             margin-bottom: 20px;
         }
         
         .timeline {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 25px;
             margin-bottom: 20px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
         }
         .step {
             display: flex;
@@ -56,7 +39,7 @@
             top: 40px;
             bottom: 0;
             width: 2px;
-            background: #E8ECEF;
+            background: var(--border-color);
         }
         .step .dot {
             width: 30px;
@@ -69,33 +52,27 @@
             flex-shrink: 0;
             z-index: 1;
         }
-        .step .dot.completed { background: #00C853; color: white; }
-        .step .dot.active { background: #FF6B35; color: white; animation: pulse 1.5s infinite; }
-        .step .dot.pending { background: #E8ECEF; color: #B2BEC3; }
+        .step .dot.completed { background: var(--success); color: white; }
+        .step .dot.active { background: var(--primary); color: white; animation: pulse 1.5s infinite; }
+        .step .dot.pending { background: var(--border-color); color: #B2BEC3; }
         
         .step .info { flex: 1; }
-        .step .info .step-title { font-weight: bold; color: #2D3436; }
-        .step .info .step-time { font-size: 12px; color: #636E72; }
-        .step .info .step-desc { font-size: 13px; color: #636E72; }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
+        .step .info .step-title { font-weight: bold; color: var(--text-primary); }
+        .step .info .step-time { font-size: 12px; color: var(--text-secondary); }
+        .step .info .step-desc { font-size: 13px; color: var(--text-secondary); }
         
         .map-container {
-            background: #E8ECEF;
-            border-radius: 12px;
+            background: var(--border-color);
+            border-radius: var(--radius);
             height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-            border: 1px solid #DDE1E6;
+            border: 1px solid var(--border-color);
             position: relative;
         }
-        .map-container .map-text { color: #636E72; font-size: 14px; }
+        .map-container .map-text { color: var(--text-secondary); font-size: 14px; }
         .map-pin {
             position: absolute;
             font-size: 30px;
@@ -104,10 +81,10 @@
         .map-pin.end { top: 20px; right: 20%; }
         
         .runner-card {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             gap: 15px;
@@ -117,7 +94,7 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: #FF6B35;
+            background: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -126,14 +103,14 @@
             flex-shrink: 0;
         }
         .runner-info { flex: 1; }
-        .runner-info .name { font-weight: bold; color: #2D3436; font-size: 16px; }
+        .runner-info .name { font-weight: bold; color: var(--text-primary); font-size: 16px; }
         .runner-info .rating { color: #FFD700; font-size: 14px; }
-        .runner-info .phone { color: #636E72; font-size: 13px; }
-        .runner-info .phone span { color: #FF6B35; }
+        .runner-info .phone { color: var(--text-secondary); font-size: 13px; }
+        .runner-info .phone span { color: var(--primary); }
         
         .btn-contact {
             padding: 8px 20px;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 20px;
@@ -144,13 +121,13 @@
         .eta {
             text-align: center;
             padding: 15px;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #E8ECEF;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
-        .eta .eta-text { color: #636E72; font-size: 14px; }
-        .eta .eta-time { color: #FF6B35; font-size: 28px; font-weight: bold; }
+        .eta .eta-text { color: var(--text-secondary); font-size: 14px; }
+        .eta .eta-time { color: var(--primary); font-size: 28px; font-weight: bold; }
         
         .btn-group {
             display: flex;
@@ -160,37 +137,36 @@
         .btn-track {
             flex: 1;
             padding: 12px;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: var(--radius);
             font-weight: bold;
             cursor: pointer;
         }
         .btn-support {
             flex: 1;
             padding: 12px;
-            background: white;
-            color: #FF6B35;
-            border: 2px solid #FF6B35;
-            border-radius: 10px;
+            background: var(--card-bg);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
             font-weight: bold;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+    
     <div class="header">
-        <a href="index.html" class="back">←</a>
+        <a href="/app.html" class="back">←</a>
         <span class="title">Track Your Errand</span>
         <span>📍</span>
     </div>
     
-    <!-- Order ID -->
     <div class="order-id">Order #ORD-2024-001</div>
     
-    <!-- Timeline -->
     <div class="timeline">
         <div class="step">
             <div class="dot completed">✓</div>
@@ -231,14 +207,12 @@
         </div>
     </div>
     
-    <!-- Map -->
     <div class="map-container">
         <span class="map-pin start">📍</span>
         <span class="map-pin end">🏠</span>
         <div class="map-text">🗺️ Live tracking map</div>
     </div>
     
-    <!-- Runner Card -->
     <div class="runner-card">
         <div class="runner-photo">👤</div>
         <div class="runner-info">
@@ -249,16 +223,16 @@
         <button class="btn-contact">📞 Call</button>
     </div>
     
-    <!-- ETA -->
     <div class="eta">
         <div class="eta-text">Estimated Delivery</div>
         <div class="eta-time">15 min</div>
     </div>
     
-    <!-- Buttons -->
     <div class="btn-group">
         <button class="btn-track">📍 Track Order</button>
         <button class="btn-support">💬 Contact Support</button>
     </div>
+    
+    <script src="/global.js"></script>
 </body>
 </html>
