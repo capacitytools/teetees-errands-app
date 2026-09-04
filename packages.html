@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Choose Your Plan</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
+    <style>
+        .toggle-switch-big {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 4px;
+            border: 2px solid var(--border-color);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .toggle-switch-big .option {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 26px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: 0.3s;
+        }
+        .toggle-switch-big .option.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .packages-grid {
+            display: grid;
+            gap: 15px;
+        }
+        .package-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 25px 20px;
+            border: 2px solid var(--border-color);
+            text-align: center;
+            position: relative;
+        }
+        .package-card.popular {
+            border-color: var(--primary);
+            box-shadow: 0 4px 20px rgba(255,107,53,0.15);
+        }
+        .package-card.popular::before {
+            content: '🌟 MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 3px 16px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .package-card .name {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+        .package-card .price {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 5px 0;
+        }
+        .package-card .price .period {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: normal;
+        }
+        .package-card .desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .package-card .features {
+            text-align: left;
+            margin: 15px 0;
+            padding: 0 10px;
+        }
+        .package-card .features .feature {
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .package-card .features .feature:last-child { border-bottom: none; }
+        .package-card .features .feature .check { color: #00C853; }
+        .package-card .features .feature .cross { color: #FF1744; }
+
+        .btn-select {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        .btn-select:hover { transform: translateY(-2px); }
+        .btn-select.outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .comparison-table {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .comparison-table th {
+            font-weight: bold;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+        }
+        .comparison-table th:first-child { text-align: left; }
+        .comparison-table td:first-child { text-align: left; color: var(--text-secondary); }
+        .comparison-table .check { color: #00C853; font-weight: bold; }
+        .comparison-table .cross { color: #FF1744; }
+
+        .annual-discount {
+            text-align: center;
+            background: #FFF3E0;
+            border-radius: var(--radius);
+            padding: 15px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .annual-discount .save { font-size: 20px; }
+    </style>
+</head>
+<body>
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
+    <div class="header">
+        <a href="services.html" class="back">←</a>
+        <span class="title">Choose Your Plan</span>
+        <span style="font-size:20px;">📊</span>
+    </div>
+
+    <div class="toggle-switch-big animate-fade-in-up">
+        <div class="option active" onclick="selectPlan(this)">👤 Individual</div>
+        <div class="option" onclick="selectPlan(this)">🏢 Business</div>
+    </div>
+
+    <div class="packages-grid">
+        <div class="package-card animate-fade-in-up" style="animation-delay:0.1s;">
+            <div class="name">Basic</div>
+            <div class="price">₦2,500 <span class="period">/mo</span></div>
+            <div class="desc">Perfect for occasional errands</div>
+            <div class="features">
+                <div class="feature"><span class="check">✅</span> 5 errands per month</div>
+                <div class="feature"><span class="check">✅</span> Standard delivery</div>
+                <div class="feature"><span class="cross">❌</span> Priority support</div>
+                <div class="feature"><span class="cross">❌</span> Free delivery</div>
+                <div class="feature"><span class="cross">❌</span> Loyalty points</div>
+            </div>
+            <button class="btn-select outline">Select Basic</button>
+        </div>
+
+        <div class="package-card popular animate-fade-in-up" style="animation-delay:0.2s;">
+            <div class="name">Pro</div>
+            <div class="price">₦5,000 <span class="period">/mo</span></div>
+            <div class="desc">Best for regular users</div>
+            <div class="features">
+                <div class="feature"><span class="check">✅</span> 20 errands per month</div>
+                <div class="feature"><span class="check">✅</span> Priority delivery</div>
+                <div class="feature"><span class="check">✅</span> Priority support</div>
+                <div class="feature"><span class="check">✅</span> Free delivery</div>
+                <div class="feature"><span class="check">✅</span> 2x loyalty points</div>
+            </div>
+            <button class="btn-select">Select Pro</button>
+        </div>
+
+        <div class="package-card animate-fade-in-up" style="animation-delay:0.3s;">
+            <div class="name">Enterprise</div>
+            <div class="price">₦10,000 <span class="period">/mo</span></div>
+            <div class="desc">For businesses and teams</div>
+            <div class="features">
+                <div class="feature"><span class="check">✅</span> Unlimited errands</div>
+                <div class="feature"><span class="check">✅</span> Express delivery</div>
+                <div class="feature"><span class="check">✅</span> 24/7 support</div>
+                <div class="feature"><span class="check">✅</span> Free delivery</div>
+                <div class="feature"><span class="check">✅</span> 5x loyalty points</div>
+            </div>
+            <button class="btn-select outline">Select Enterprise</button>
+        </div>
+    </div>
+
+    <div class="annual-discount animate-fade-in-up" style="animation-delay:0.4s;">
+        <div class="save">🎉 Save 20% with Annual Plan</div>
+        <div style="font-size:14px;color:var(--text-secondary);font-weight:normal;">Pay yearly and get 2 months free</div>
+    </div>
+
+    <div class="comparison-table animate-fade-in-up" style="animation-delay:0.5s;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Basic</th>
+                    <th>Pro</th>
+                    <th>Enterprise</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Monthly Errands</td>
+                    <td>5</td>
+                    <td>20</td>
+                    <td>♾️ Unlimited</td>
+                </tr>
+                <tr>
+                    <td>Delivery Speed</td>
+                    <td>Standard</td>
+                    <td>Priority</td>
+                    <td>Express</td>
+                </tr>
+                <tr>
+                    <td>Support</td>
+                    <td>Standard</td>
+                    <td>Priority</td>
+                    <td>24/7</td>
+                </tr>
+                <tr>
+                    <td>Free Delivery</td>
+                    <td><span class="cross">❌</span></td>
+                    <td><span class="check">✅</span></td>
+                    <td><span class="check">✅</span></td>
+                </tr>
+                <tr>
+                    <td>Loyalty Points</td>
+                    <td>1x</td>
+                    <td>2x</td>
+                    <td>5x</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>₦2,500/mo</td>
+                    <td>₦5,000/mo</td>
+                    <td>₦10,000/mo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/global.js"></script>
+    <script>
+        function selectPlan(el) {
+            document.querySelectorAll('.toggle-switch-big .option').forEach(o => o.classList.remove('active'));
+            el.classList.add('active');
+        }
+    </script>
+</body>
+</html>
