@@ -25,9 +25,13 @@
             text-align: center;
             border: 1px solid var(--border-color);
             border-top: 4px solid var(--primary);
+            text-decoration: none;
+            color: var(--text-primary);
             cursor: pointer;
             transition: all 0.3s;
+            display: block;
         }
+        .service-card:active { transform: scale(0.97); }
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
@@ -71,9 +75,12 @@
             color: var(--text-secondary);
             margin-bottom: 10px;
             width: 100%;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
         }
+        .search-bar:active { opacity: 0.7; }
 
-        /* Bottom Nav */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -96,7 +103,9 @@
             transition: all 0.3s;
             border: none;
             background: none;
+            display: block;
         }
+        .nav-item:active { opacity: 0.7; }
         .nav-item.active { color: var(--primary); }
         .nav-item .nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
     </style>
@@ -107,76 +116,76 @@
     <div class="header">
         <a href="app.html" class="back">←</a>
         <span class="title">Our Services</span>
-        <span style="font-size:20px;cursor:pointer;">⚙️</span>
+        <a href="settings.html" style="font-size:20px;text-decoration:none;color:var(--text-primary);">⚙️</a>
     </div>
 
-    <div class="search-bar">🔍 Search services...</div>
+    <a href="services.html" class="search-bar">🔍 Search services...</a>
 
     <div class="service-grid">
-        <div class="service-card animate-fade-in-up" onclick="window.location.href='/grocery.html'">
+        <a href="grocery.html" class="service-card animate-fade-in-up">
             <div class="icon">🛒</div>
             <div class="name">Grocery & Essentials</div>
             <div class="desc">Shop and deliver weekly groceries</div>
             <span class="tag">Popular</span>
-        </div>
+        </a>
 
-        <div class="service-card animate-fade-in-up" style="animation-delay:0.1s;" onclick="window.location.href='/prescription.html'">
+        <a href="prescription.html" class="service-card animate-fade-in-up" style="animation-delay:0.1s;">
             <div class="icon">💊</div>
             <div class="name">Prescription Pickups</div>
             <div class="desc">Pick up medications safely</div>
             <span class="tag">Trusted</span>
-        </div>
+        </a>
 
-        <div class="service-card animate-fade-in-up" style="animation-delay:0.2s;" onclick="window.location.href='/gift.html'">
+        <a href="gift.html" class="service-card animate-fade-in-up" style="animation-delay:0.2s;">
             <div class="icon">🎁</div>
             <div class="name">Retail & Gift Shopping</div>
             <div class="desc">Purchase and deliver specific items</div>
-        </div>
+        </a>
 
-        <div class="service-card animate-fade-in-up" style="animation-delay:0.3s;" onclick="window.location.href='/dispatch.html'">
+        <a href="dispatch.html" class="service-card animate-fade-in-up" style="animation-delay:0.3s;">
             <div class="icon">🚚</div>
             <div class="name">Dispatch & Courier</div>
             <div class="desc">Mail packages and urgent dispatch</div>
-        </div>
+        </a>
 
-        <div class="service-card animate-fade-in-up" style="animation-delay:0.4s;" onclick="window.location.href='/elderly.html'">
+        <a href="elderly.html" class="service-card animate-fade-in-up" style="animation-delay:0.4s;">
             <div class="icon">❤️</div>
             <div class="name">Elderly Assistance</div>
             <div class="desc">Dependable help for elderly persons</div>
             <span class="tag">Caring</span>
-        </div>
+        </a>
 
-        <div class="service-card animate-fade-in-up" style="animation-delay:0.5s;" onclick="window.location.href='/homeland.html'">
+        <a href="homeland.html" class="service-card animate-fade-in-up" style="animation-delay:0.5s;">
             <div class="icon">🇳🇬</div>
             <div class="name">Taste of Homeland</div>
             <div class="desc">Authentic Nigerian products overseas</div>
             <span class="tag">Global</span>
-        </div>
+        </a>
     </div>
 
     <div style="margin: 20px 0;">
         <div style="background:var(--card-bg);border-radius:var(--radius);padding:15px;border:1px solid var(--border-color);text-align:center;">
-            <p style="color:var(--text-secondary);font-size:13px;">💡 Need something else? <a href="#" style="color:var(--primary);font-weight:bold;">Contact us</a></p>
+            <p style="color:var(--text-secondary);font-size:13px;">💡 Need something else? <a href="support.html" style="color:var(--primary);font-weight:bold;text-decoration:none;">Contact us</a></p>
         </div>
     </div>
 
     <div class="bottom-nav">
-        <button class="nav-item" onclick="window.location.href='/app.html'">
+        <a href="app.html" class="nav-item">
             <span class="nav-icon">🏠</span>
             Home
-        </button>
-        <button class="nav-item active" onclick="window.location.href='/services.html'">
+        </a>
+        <a href="services.html" class="nav-item active">
             <span class="nav-icon">📋</span>
             Services
-        </button>
-        <button class="nav-item" onclick="window.location.href='/history.html'">
+        </a>
+        <a href="history.html" class="nav-item">
             <span class="nav-icon">📦</span>
             Orders
-        </button>
-        <button class="nav-item" onclick="window.location.href='/profile.html'">
+        </a>
+        <a href="profile.html" class="nav-item">
             <span class="nav-icon">👤</span>
             Profile
-        </button>
+        </a>
     </div>
 
     <script src="/global.js"></script>
