@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: white; 
-            height: 100vh;
+        body {
+            padding: 0;
+            margin: 0;
+            background: var(--bg-primary);
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
-        
         .top-section {
-            background: linear-gradient(135deg, #FF6B35, #FF8F65);
-            padding: 40px 30px 30px;
+            background: var(--primary-gradient);
+            padding: 50px 30px 40px;
             text-align: center;
             height: 40%;
             display: flex;
@@ -35,48 +42,23 @@
             margin-top: 5px;
         }
         .top-section .emoji-big { font-size: 60px; display: block; margin-bottom: 5px; }
-        
         .bottom-section {
             flex: 1;
             padding: 30px 25px;
-            background: white;
+            background: var(--bg-primary);
             border-radius: 30px 30px 0 0;
             margin-top: -30px;
         }
         .bottom-section .title {
             font-size: 22px;
             font-weight: bold;
-            color: #2D3436;
+            color: var(--text-primary);
             text-align: center;
             margin-bottom: 25px;
         }
-        
-        .form-group {
-            margin-bottom: 18px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            color: #2D3436;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 14px 15px;
-            border: 2px solid #E8ECEF;
-            border-radius: 12px;
-            font-size: 14px;
-            background: #F8F9FA;
-        }
-        .form-group input:focus {
-            border-color: #FF6B35;
-            outline: none;
-        }
-        
         .forgot-link {
             text-align: right;
-            color: #FF6B35;
+            color: var(--primary);
             font-size: 14px;
             font-weight: bold;
             margin-top: -10px;
@@ -84,38 +66,23 @@
             display: block;
             text-decoration: none;
         }
-        
-        .btn-primary {
-            width: 100%;
-            padding: 16px;
-            background: #FF6B35;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 15px;
-        }
-        .btn-primary:hover { background: #E55A2B; }
-        
         .signup-link {
             text-align: center;
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 14px;
+            margin-top: 15px;
         }
         .signup-link a {
-            color: #FF6B35;
+            color: var(--primary);
             font-weight: bold;
             text-decoration: none;
         }
-        
         .social-section {
             margin-top: 20px;
             text-align: center;
         }
         .social-section .or {
-            color: #B2BEC3;
+            color: var(--text-secondary);
             font-size: 13px;
             margin-bottom: 15px;
             display: block;
@@ -127,12 +94,11 @@
             position: absolute;
             width: 30%;
             height: 1px;
-            background: #E8ECEF;
+            background: var(--border-color);
             top: 50%;
         }
         .social-section .or::before { left: 0; }
         .social-section .or::after { right: 0; }
-        
         .social-buttons {
             display: flex;
             gap: 15px;
@@ -140,9 +106,9 @@
         .social-btn {
             flex: 1;
             padding: 12px;
-            border: 2px solid #E8ECEF;
-            border-radius: 12px;
-            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--card-bg);
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
@@ -150,46 +116,42 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: all 0.3s;
         }
+        .social-btn:hover { border-color: var(--primary); }
         .social-btn .icon { font-size: 20px; }
     </style>
 </head>
 <body>
-    <!-- Top Section -->
+    <!-- No dark toggle on login page -->
+
     <div class="top-section">
         <span class="emoji-big">🏃</span>
         <div class="logo">TEETEES</div>
         <div class="welcome">Welcome Back</div>
     </div>
-    
-    <!-- Bottom Section -->
+
     <div class="bottom-section">
         <div class="title">Log In to Your Account</div>
-        
-        <!-- Email/Phone -->
+
         <div class="form-group">
             <label>📧 Email or Phone</label>
             <input type="text" placeholder="Enter your email or phone">
         </div>
-        
-        <!-- Password -->
+
         <div class="form-group">
             <label>🔒 Password</label>
             <input type="password" placeholder="Enter your password">
         </div>
-        
-        <!-- Forgot Password -->
+
         <a href="#" class="forgot-link">Forgot Password?</a>
-        
-        <!-- Login Button -->
-        <button class="btn-primary">🔓 Log In</button>
-        
-        <!-- Sign Up Link -->
+
+        <a href="app.html" class="btn-primary">🔓 Log In</a>
+
         <div class="signup-link">
             Don't have an account? <a href="signup.html">Sign Up</a>
         </div>
-        
-        <!-- Social Login -->
+
         <div class="social-section">
             <span class="or">Or continue with</span>
             <div class="social-buttons">
@@ -202,5 +164,7 @@
             </div>
         </div>
     </div>
+
+    <script src="/global.js"></script>
 </body>
 </html>
