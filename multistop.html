@@ -1,87 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Multi-Stop Errand</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
+    <link rel="stylesheet" href="/global.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            background: #F5F6FA; 
-            padding: 20px 15px 100px; 
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back { 
-            font-size: 24px; 
-            cursor: pointer; 
-            text-decoration: none;
-            color: #2D3436;
-        }
-        .title { 
-            font-weight: bold; 
-            font-size: 18px; 
-            color: #2D3436; 
-        }
-        
         .route-summary {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 20px;
         }
         .route-summary .row {
             display: flex;
             justify-content: space-between;
             padding: 5px 0;
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 14px;
         }
-        .route-summary .row .label { color: #636E72; }
+        .route-summary .row .label { color: var(--text-secondary); }
         .route-summary .row .value { font-weight: bold; }
-        
+
         .map-preview {
-            background: #E8ECEF;
-            border-radius: 12px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
             height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid #DDE1E6;
-            color: #636E72;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
             font-size: 14px;
             margin-bottom: 20px;
             position: relative;
         }
-        .map-preview .dots {
-            font-size: 30px;
-            letter-spacing: 10px;
-        }
-        
-        .stop-list {
-            margin-bottom: 20px;
-        }
+        .map-preview .dots { font-size: 30px; letter-spacing: 10px; }
+
+        .stop-list { margin-bottom: 20px; }
         .stop-item {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 1px solid #E8ECEF;
+            border: 1px solid var(--border-color);
             margin-bottom: 10px;
             display: flex;
             gap: 12px;
             align-items: flex-start;
+            transition: all 0.3s;
         }
+        .stop-item:hover { transform: translateX(5px); }
         .stop-item .number {
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             display: flex;
             align-items: center;
@@ -94,16 +74,16 @@
         .stop-item .content { flex: 1; }
         .stop-item .content .type {
             font-weight: bold;
-            color: #2D3436;
+            color: var(--text-primary);
             font-size: 14px;
         }
         .stop-item .content .address {
-            color: #636E72;
+            color: var(--text-secondary);
             font-size: 13px;
             margin-top: 2px;
         }
         .stop-item .content .notes {
-            color: #B2BEC3;
+            color: var(--text-secondary);
             font-size: 12px;
             margin-top: 3px;
         }
@@ -118,79 +98,57 @@
             cursor: pointer;
         }
         .stop-item .actions .remove { color: #FF1744; }
-        .stop-item .actions .reorder { color: #636E72; }
-        
+        .stop-item .actions .reorder { color: var(--text-secondary); }
+
         .add-stop {
-            background: white;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
             padding: 15px;
-            border: 2px dashed #E8ECEF;
+            border: 2px dashed var(--border-color);
             text-align: center;
             cursor: pointer;
-            color: #636E72;
+            color: var(--text-secondary);
             font-weight: bold;
+            transition: all 0.3s;
         }
+        .add-stop:hover { border-color: var(--primary); }
         .add-stop .icon { display: block; font-size: 24px; }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: bold;
-            color: #2D3436;
-            margin-bottom: 5px;
-            font-size: 13px;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #E8ECEF;
-            border-radius: 10px;
-            font-size: 14px;
-            background: white;
-        }
-        .form-group textarea {
-            min-height: 60px;
-            resize: vertical;
-            font-family: Arial, sans-serif;
-        }
-        
-        .btn-primary {
+
+        .btn-optimize {
             width: 100%;
             padding: 15px;
-            background: #FF6B35;
+            background: var(--primary);
             color: white;
             border: none;
             border-radius: 50px;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s;
         }
+        .btn-optimize:hover { transform: translateY(-2px); }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()">🌙</button>
+
     <div class="header">
         <a href="services.html" class="back">←</a>
         <span class="title">Multi-Stop Errand</span>
-        <span>🗺️</span>
+        <span style="font-size:20px;">🗺️</span>
     </div>
-    
-    <!-- Route Summary -->
-    <div class="route-summary">
+
+    <div class="route-summary animate-fade-in-up">
         <div class="row"><span class="label">📏 Total Distance</span><span class="value">4.5 km</span></div>
         <div class="row"><span class="label">⏱️ Estimated Time</span><span class="value">25 min</span></div>
         <div class="row"><span class="label">📍 Stops</span><span class="value">3 stops</span></div>
     </div>
-    
-    <!-- Map -->
-    <div class="map-preview">
+
+    <div class="map-preview animate-fade-in-up" style="animation-delay:0.1s;">
         <span class="dots">📍 → 📍 → 📍</span>
     </div>
-    
-    <!-- Stop List -->
-    <div class="stop-list">
+
+    <div class="stop-list animate-fade-in-up" style="animation-delay:0.2s;">
         <div class="stop-item">
             <div class="number">1</div>
             <div class="content">
@@ -203,7 +161,7 @@
                 <button class="reorder">↕</button>
             </div>
         </div>
-        
+
         <div class="stop-item">
             <div class="number">2</div>
             <div class="content">
@@ -216,7 +174,7 @@
                 <button class="reorder">↕</button>
             </div>
         </div>
-        
+
         <div class="stop-item">
             <div class="number">3</div>
             <div class="content">
@@ -230,16 +188,14 @@
             </div>
         </div>
     </div>
-    
-    <!-- Add Stop -->
-    <div class="add-stop">
+
+    <div class="add-stop animate-fade-in-up" style="animation-delay:0.3s;">
         <span class="icon">➕</span>
         Add Stop
     </div>
-    
-    <!-- Add New Stop Form -->
-    <div style="background:white;border-radius:12px;padding:15px;border:1px solid #E8ECEF;margin:15px 0;">
-        <h3 style="color:#2D3436;font-size:16px;margin-bottom:12px;">📍 Add New Stop</h3>
+
+    <div style="background:var(--card-bg);border-radius:var(--radius);padding:15px;border:1px solid var(--border-color);margin:15px 0;">
+        <h3 style="color:var(--text-primary);font-size:16px;margin-bottom:12px;">📍 Add New Stop</h3>
         <div class="form-group">
             <label>Address</label>
             <input type="text" placeholder="Enter address">
@@ -252,14 +208,17 @@
             <label>Notes</label>
             <textarea placeholder="Add notes for this stop"></textarea>
         </div>
-        <button style="width:100%;padding:12px;background:#FF6B35;color:white;border:none;border-radius:10px;font-weight:bold;cursor:pointer;">➕ Add Stop</button>
+        <button style="width:100%;padding:12px;background:var(--primary);color:white;border:none;border-radius:var(--radius);font-weight:bold;cursor:pointer;transition:all 0.3s;">
+            ➕ Add Stop
+        </button>
     </div>
-    
-    <!-- Optimize Button -->
-    <button class="btn-primary">🔄 Optimize Route</button>
-    
-    <div style="text-align:center;color:#636E72;font-size:12px;margin-top:10px;">
+
+    <button class="btn-optimize animate-fade-in-up" style="animation-delay:0.4s;">🔄 Optimize Route</button>
+
+    <div style="text-align:center;color:var(--text-secondary);font-size:12px;margin-top:10px;">
         We'll optimize the route for the fastest delivery
     </div>
+
+    <script src="/global.js"></script>
 </body>
 </html>
