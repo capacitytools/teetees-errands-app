@@ -12,39 +12,99 @@
     <link rel="apple-touch-icon" href="/icons/icon-192x192.jpg">
     <link rel="stylesheet" href="/global.css">
     <style>
-        body { padding-bottom: 80px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #F5F6FA;
+            color: #2D3436;
+            padding: 20px 15px 100px;
+            min-height: 100vh;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #E8ECEF;
+        }
+        .back {
+            font-size: 24px;
+            text-decoration: none;
+            color: #2D3436;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #2D3436;
+        }
+        .dark-toggle {
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 1px solid #E8ECEF;
+            background: white;
+            color: #2D3436;
+            cursor: pointer;
+            font-size: 16px;
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+        }
+        
         .greeting {
-            background: var(--card-bg);
-            border-radius: var(--radius);
+            background: white;
+            border-radius: 12px;
             padding: 20px;
             margin-bottom: 15px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #E8ECEF;
         }
-        .greeting h2 { color: var(--text-primary); }
-        .greeting p { color: var(--text-secondary); }
+        .greeting h2 { color: #2D3436; }
+        .greeting p { color: #636E72; }
+        
+        .search-bar {
+            padding: 12px 15px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E8ECEF;
+            color: #B2BEC3;
+            margin-bottom: 20px;
+            width: 100%;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+        }
         
         .quick-actions {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             padding: 15px;
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #E8ECEF;
             margin-bottom: 20px;
         }
         .action-btn {
             text-align: center;
             padding: 10px 0;
             text-decoration: none;
-            color: var(--text-primary);
-            border-radius: var(--radius);
-            transition: all 0.3s;
+            color: #2D3436;
+            border-radius: 12px;
             display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
         }
         .action-btn:active { transform: scale(0.95); }
         .action-btn .icon {
-            background: var(--primary);
+            background: #FF6B35;
             color: white;
             width: 50px;
             height: 50px;
@@ -58,25 +118,27 @@
         .action-btn .label { font-size: 12px; font-weight: bold; }
         
         .recent-orders {
-            background: var(--card-bg);
-            border-radius: var(--radius);
+            background: white;
+            border-radius: 12px;
             padding: 15px;
-            border: 1px solid var(--border-color);
+            border: 1px solid #E8ECEF;
             margin-bottom: 20px;
         }
-        .recent-orders h3 { color: var(--text-primary); margin-bottom: 15px; }
+        .recent-orders h3 { color: #2D3436; margin-bottom: 15px; }
         .order-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #F5F6FA;
             text-decoration: none;
-            color: var(--text-primary);
-            transition: all 0.3s;
+            color: #2D3436;
+            cursor: pointer;
         }
         .order-item:last-child { border-bottom: none; }
         .order-item:active { opacity: 0.7; }
+        .order-item .info { color: #2D3436; }
+        .order-item .info small { color: #636E72; display: block; }
         .order-item .status {
             padding: 4px 12px;
             border-radius: 20px;
@@ -84,42 +146,33 @@
             font-weight: bold;
         }
         .order-item .status.completed { background: #E8F5E9; color: #00C853; }
-        .order-item .status.active { background: #FFF3E0; color: var(--primary); }
-        .order-item .status.pending { background: var(--bg-secondary); color: var(--text-secondary); }
-
-        .search-bar {
-            padding: 12px 15px;
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            width: 100%;
-            display: block;
-            text-decoration: none;
-        }
+        .order-item .status.active { background: #FFF3E0; color: #FF6B35; }
+        .order-item .status.pending { background: #F5F6FA; color: #636E72; }
         
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--bg-primary);
+            background: white;
             display: flex;
             justify-content: space-around;
             padding: 10px 0;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid #E8ECEF;
             z-index: 999;
         }
         .nav-item {
             text-align: center;
-            color: var(--text-secondary);
+            color: #B2BEC3;
             font-size: 11px;
             text-decoration: none;
             padding: 4px 12px;
             display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-        .nav-item.active { color: var(--primary); }
+        .nav-item.active { color: #FF6B35; }
         .nav-item .nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
     </style>
 </head>
@@ -129,9 +182,9 @@
 
     <!-- HEADER -->
     <div class="header">
-        <a href="index.html" class="back">←</a>
-        <span class="title" style="color:var(--primary);">TEETEES</span>
-        <a href="notifications.html" style="font-size:20px;text-decoration:none;color:var(--text-primary);">🔔</a>
+        <a href="/index.html" class="back">←</a>
+        <span class="title" style="color:#FF6B35;">TEETEES</span>
+        <a href="/notifications.html" style="font-size:20px;text-decoration:none;color:#2D3436;">🔔</a>
     </div>
 
     <!-- GREETING -->
@@ -141,33 +194,33 @@
     </div>
 
     <!-- SEARCH -->
-    <a href="services.html" class="search-bar">
+    <a href="/services.html" class="search-bar">
         🔍 What errand do you need?
     </a>
 
     <!-- QUICK ACTIONS -->
     <div class="quick-actions">
-        <a href="grocery.html" class="action-btn">
+        <a href="/grocery.html" class="action-btn">
             <div class="icon">🛒</div>
             <div class="label">Grocery</div>
         </a>
-        <a href="prescription.html" class="action-btn">
+        <a href="/prescription.html" class="action-btn">
             <div class="icon">💊</div>
             <div class="label">Prescription</div>
         </a>
-        <a href="gift.html" class="action-btn">
+        <a href="/gift.html" class="action-btn">
             <div class="icon">🎁</div>
             <div class="label">Gift</div>
         </a>
-        <a href="dispatch.html" class="action-btn">
+        <a href="/dispatch.html" class="action-btn">
             <div class="icon">🚚</div>
             <div class="label">Courier</div>
         </a>
-        <a href="elderly.html" class="action-btn">
+        <a href="/elderly.html" class="action-btn">
             <div class="icon">❤️</div>
             <div class="label">Elderly</div>
         </a>
-        <a href="homeland.html" class="action-btn">
+        <a href="/homeland.html" class="action-btn">
             <div class="icon">🇳🇬</div>
             <div class="label">Homeland</div>
         </a>
@@ -176,44 +229,62 @@
     <!-- RECENT ORDERS -->
     <div class="recent-orders">
         <h3>📋 Your Recent Errands</h3>
-        <a href="details.html" class="order-item">
-            <div>🛒 Grocery Shopping <br><small style="color:var(--text-secondary);">Today, 10:30 AM</small></div>
+        <a href="/details.html" class="order-item">
+            <div class="info">🛒 Grocery Shopping <small>Today, 10:30 AM</small></div>
             <span class="status completed">✅ Completed</span>
         </a>
-        <a href="details.html" class="order-item">
-            <div>💊 Prescription Pickup <br><small style="color:var(--text-secondary);">Yesterday, 2:00 PM</small></div>
+        <a href="/details.html" class="order-item">
+            <div class="info">💊 Prescription Pickup <small>Yesterday, 2:00 PM</small></div>
             <span class="status active">🔄 Active</span>
         </a>
-        <a href="details.html" class="order-item">
-            <div>🎁 Gift Delivery <br><small style="color:var(--text-secondary);">Aug 28, 4:00 PM</small></div>
+        <a href="/details.html" class="order-item">
+            <div class="info">🎁 Gift Delivery <small>Aug 28, 4:00 PM</small></div>
             <span class="status pending">⏳ Pending</span>
         </a>
     </div>
 
     <!-- BOTTOM NAV -->
     <div class="bottom-nav">
-        <a href="app.html" class="nav-item active">
+        <a href="/app.html" class="nav-item active">
             <span class="nav-icon">🏠</span>
             Home
         </a>
-        <a href="services.html" class="nav-item">
+        <a href="/services.html" class="nav-item">
             <span class="nav-icon">📋</span>
             Services
         </a>
-        <a href="history.html" class="nav-item">
+        <a href="/history.html" class="nav-item">
             <span class="nav-icon">📦</span>
             Orders
         </a>
-        <a href="profile.html" class="nav-item">
+        <a href="/profile.html" class="nav-item">
             <span class="nav-icon">👤</span>
             Profile
         </a>
     </div>
 
-    <script src="/global.js"></script>
     <script>
-        // Time-based greeting
+        // ==========================================
+        // DARK MODE
+        // ==========================================
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            const btn = document.getElementById('darkToggle');
+            if (btn) btn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Load saved theme
         document.addEventListener('DOMContentLoaded', function() {
+            const saved = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+            const btn = document.getElementById('darkToggle');
+            if (btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+            
+            // Time-based greeting
             const hour = new Date().getHours();
             let greeting = '';
             if (hour < 12) greeting = '🌅 Good morning!';
